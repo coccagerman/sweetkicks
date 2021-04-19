@@ -1,0 +1,23 @@
+footer {
+    background-color: $sweetOrange;
+    padding: 1rem 0;
+    display: flex;
+        justify-content: space-around;
+        align-items: center;
+
+        .footerLogo {
+            width: 20rem;
+        }
+
+        .socialNetwork {
+            color: black;
+            font-size: 2rem;
+            margin: 0 1.5rem;
+            -webkit-transition: .5s;
+            transition: .5s;
+
+            &:hover {
+                color:  white;
+              }
+          }
+}

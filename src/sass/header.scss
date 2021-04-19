@@ -1,0 +1,180 @@
+header {
+    display: flex;
+        justify-content: space-between;
+        align-items: center;
+    padding: 1rem 2rem;
+
+    .headerLogo{
+        width: 25rem;
+        margin-left: 2rem;
+    }
+
+    nav {
+        font-size: 2.5rem;
+        ul {    
+            list-style: none;
+            display: flex;
+
+            a {
+                text-decoration: none;
+                margin: 0 2rem;
+                padding: .5rem 1rem;
+                -webkit-transform: perspective(1px) translateZ(0);
+                transform: perspective(1px) translateZ(0);
+                position: relative;
+                transition-duration: 1s;
+
+                &:before {
+                    content: "";
+                    position: absolute;
+                    z-index: -1;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background: $sweetOrange;
+                    -webkit-transform: scaleY(0);
+                    transform: scaleY(0);
+                    -webkit-transform-origin: 50% 0;
+                    transform-origin: 50% 0;
+                    -webkit-transition-property: transform;
+                    transition-property: transform;
+                    -webkit-transition-duration: 0.5s;
+                    transition-duration: 0.5s;
+                    -webkit-transition-timing-function: ease-out;
+                    transition-timing-function: ease-out;
+                }
+
+                &:hover:before, &:focus:before, &:active:before {
+                    -webkit-transform: scaleY(1);
+                    transform: scaleY(1);
+                    -webkit-transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
+                    transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
+                  }
+            }
+
+            .switch-container {
+                display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                .switch {
+                    margin: 0 .25rem;
+                    position: relative;
+                    display: inline-block;
+                    width: 60px;
+                    height: 34px;
+
+
+                    input {
+                        opacity: 0;
+                        width: 0;
+                        height: 0;
+
+                        &:checked + .slider {
+                            background-color: $sweetOrange;
+                        }
+
+                        &:focus + .slider {
+                            box-shadow: 0 0 1px $sweetOrange;
+                        }
+
+                        &:checked + .slider:before {
+                            -webkit-transform: translateX(26px);
+                            -ms-transform: translateX(26px);
+                            transform: translateX(26px);
+                        }
+                    }
+
+                    .slider {
+                        position: absolute;
+                        cursor: pointer;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        background-color: $sweetGray;
+                        -webkit-transition: .4s;
+                        transition: .4s;
+
+                        &:before {
+                            position: absolute;
+                            content: "";
+                            height: 26px;
+                            width: 26px;
+                            left: 4px;
+                            bottom: 4px;
+                            background-color: white;
+                            -webkit-transition: .4s;
+                            transition: .4s;
+                        }
+                    }
+
+                    .slider.round {
+                        border-radius: 34px;
+                    }
+                    
+                    .slider.round:before {
+                    border-radius: 50%;
+                    background-color: $sweetOrange;
+                    transition: .4s;
+                    }
+
+                    input:checked + .slider.round:before {
+                        background-color: black;
+                    }
+                }
+
+                .iconify {
+                    font-size: 1.75rem;
+                    transition: .5s;
+                }
+            }
+        }
+    }
+}
+
+.lightMode {
+    header {
+        background-color: white;
+
+        nav {
+            ul {
+                a {
+                    color: black;
+                    transition: .25s;
+
+                    &:hover {
+                        color: white;
+                    }
+                }
+
+                .switch-container {
+                    .iconify {
+                        color: black;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.darkMode {
+    header {
+        background-color: black;
+
+        nav {
+            ul {
+                a {
+                    color: white;
+                }
+
+                .switch-container {
+                    .iconify {
+                        color: white;
+                    }
+                }
+            }
+        }
+    }
+}

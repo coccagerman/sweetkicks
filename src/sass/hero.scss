@@ -1,0 +1,38 @@
+.hero {
+    height: 90vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+    .hero-img {
+        margin: auto;
+        height: 90vh;
+    }
+
+    .iconify {
+        font-size: 3rem;
+        position: absolute;
+        bottom: 1rem;
+        mouse: pointer;
+    }
+}
+
+.lightMode {
+    .hero {
+        background-color: white;
+        .iconify {
+            color: $sweetOrange;
+        }
+    }
+}
+
+.darkMode {
+    .hero {
+        background-color: black;
+        .iconify {
+            color: white;
+        }
+    }
+}
