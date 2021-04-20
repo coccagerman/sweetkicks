@@ -1,0 +1,19 @@
+.gallery {
+    padding: 2rem 10rem;
+    display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+}
+
+.lightMode {
+    .gallery {
+        background-color: white;
+    }
+}
+
+.darkMode {
+    .gallery {
+        background-color: $bitterGray;
+    }
+}

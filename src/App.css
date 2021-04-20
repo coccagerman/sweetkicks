@@ -8,8 +8,6 @@
 }
 
 header {
-  background-color: black;
-  color: #e03f31;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -32,7 +30,6 @@ header nav {
 }
 
 header nav ul {
-  color: white;
   list-style: none;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -41,7 +38,6 @@ header nav ul {
 
 header nav ul a {
   text-decoration: none;
-  color: white;
   margin: 0 2rem;
   padding: .5rem 1rem;
   -webkit-transform: perspective(1px) translateZ(0);
@@ -82,8 +78,202 @@ header nav ul a:hover:before, header nav ul a:focus:before, header nav ul a:acti
   transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
 }
 
-.hero-img {
-  width: 100%;
+header nav ul .shoppingCart, header nav ul .wishList {
+  margin-right: 2rem;
+  cursor: pointer;
+  -webkit-transition: .5s;
+  transition: .5s;
+}
+
+header nav ul .shoppingCart:hover, header nav ul .wishList:hover {
+  color: #e03f31 !important;
+}
+
+header nav ul .switch-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+header nav ul .switch-container .switch {
+  margin: 0 .25rem;
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+header nav ul .switch-container .switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+header nav ul .switch-container .switch input:checked + .slider {
+  background-color: #e03f31;
+}
+
+header nav ul .switch-container .switch input:focus + .slider {
+  -webkit-box-shadow: 0 0 1px #e03f31;
+          box-shadow: 0 0 1px #e03f31;
+}
+
+header nav ul .switch-container .switch input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+header nav ul .switch-container .switch .slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+header nav ul .switch-container .switch .slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+header nav ul .switch-container .switch .slider.round {
+  border-radius: 34px;
+}
+
+header nav ul .switch-container .switch .slider.round:before {
+  border-radius: 50%;
+  background-color: #e03f31;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+header nav ul .switch-container .switch input:checked + .slider.round:before {
+  background-color: black;
+}
+
+header nav ul .switch-container .iconify {
+  font-size: 1.75rem;
+  -webkit-transition: .5s;
+  transition: .5s;
+}
+
+.lightMode header {
+  background-color: white;
+}
+
+.lightMode header nav ul a {
+  color: black;
+  -webkit-transition: .25s;
+  transition: .25s;
+}
+
+.lightMode header nav ul a:hover {
+  color: white;
+}
+
+.lightMode header nav ul .shoppingCart, .lightMode header nav ul .wishList {
+  color: black;
+}
+
+.lightMode header nav ul .switch-container .iconify {
+  color: black;
+}
+
+.darkMode header {
+  background-color: black;
+}
+
+.darkMode header nav ul a {
+  color: white;
+}
+
+.darkMode header nav ul .shoppingCart, .darkMode header nav ul .wishList {
+  color: white;
+}
+
+.darkMode header nav ul .switch-container .iconify {
+  color: white;
+}
+
+.hero {
+  height: 90vh;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.hero .hero-img {
+  margin: auto;
+  height: 90vh;
+}
+
+.hero .iconify {
+  font-size: 3rem;
+  position: absolute;
+  bottom: 1rem;
+  cursor: pointer;
+}
+
+.lightMode .hero {
+  background-color: white;
+}
+
+.lightMode .hero .iconify {
+  color: #e03f31;
+}
+
+.darkMode .hero {
+  background-color: black;
+}
+
+.darkMode .hero .iconify {
+  color: white;
+}
+
+.gallery {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.item-card .card-img {
+  width: 15rem;
 }
 
 footer {

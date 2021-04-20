@@ -1,0 +1,17 @@
+.item-card {
+  border: solid black 1px;
+}
+
+.item-card .card-img {
+  width: 15rem;
+  border: black solid 1px;
+}
+
+.item-card .card-body .card-title {
+  font-size: 2.5rem;
+}
+
+.item-card .card-body .card-price {
+  font-size: 2rem;
+}
+/*# sourceMappingURL=item.css.map */
