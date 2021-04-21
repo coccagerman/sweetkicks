@@ -1,5 +1,6 @@
 import HeaderLogoDark from '../assets/sweetkicks_logo_header_dark.png'
 import HeaderLogoLight from '../assets/sweetkicks_logo_header_light.png'
+import { useState } from 'react';
 
 function Header ({setDarkMode, darkMode}) {
 
@@ -7,19 +8,23 @@ function Header ({setDarkMode, darkMode}) {
         setDarkMode(!darkMode)
     }
 
+    // Hook used to show and hide the dropdown menu
+    const [showDropdown, setshowDropdown] = useState(false)
+
     return (
         < >
         <header>
             <img className='headerLogo' src={darkMode === false ? HeaderLogoLight : HeaderLogoDark} alt='Company logo' />
             <nav>
                 <ul>
-                    <li><a href="#">Categories</a></li>
-                        <ul>
-                            <li><a href="#"></a>Street</li>
-                            <li><a href="#"></a>Running</li>
-                            <li><a href="#"></a>Basketball</li>
-                            <li><a href="#"></a>Tennis</li>
+                    <li><a href="#" onClick={(e) => setshowDropdown(!showDropdown)}>Categories</a>
+                        <ul className={showDropdown === true ? 'dropdown' : 'hiddenDropdown' }>
+                            <li><a href="#">Street</a></li>
+                            <li><a href="#">Running</a></li>
+                            <li><a href="#">Basketball</a></li>
+                            <li><a href="#">Tennis</a></li>
                         </ul>
+                    </li>
                     <li><a href="#">Sale</a></li>
                     <li><a href="#">Latest releases</a></li>
                     <li><a href="#">About</a></li>

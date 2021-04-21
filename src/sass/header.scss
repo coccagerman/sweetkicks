@@ -53,6 +53,27 @@ header {
                   }
             }
 
+            .hiddenDropdown {
+                display: none;
+            }
+
+            .dropdown {
+                background-color: white;
+                display: block;
+                text-align: center;
+                margin: .75rem 0 0 2rem;
+                flex-direction: column;
+                position: absolute;
+                top: 4rem;
+                z-index: 2;
+
+                a {
+                    margin:0;
+                    padding: 0 3rem;
+                    width: 15rem;
+                }
+}
+
             .shoppingCart, .wishList {
                 margin-right: 2rem;
                 cursor: pointer;
@@ -137,7 +158,7 @@ header {
 
                 .iconify {
                     font-size: 1.75rem;
-                    transition: .5s;
+                    transition: .25ms;
                 }
             }
         }
@@ -183,6 +204,12 @@ header {
                     color: white;
                 }
 
+                .dropdown {
+                    a {
+                        color: black;
+                    }
+                }
+
                 .shoppingCart, .wishList  {
                     color: white;
                 }
@@ -195,25 +222,4 @@ header {
             }
         }
     }
-}
-
-
-/* Hide Dropdowns by Default */
-nav ul ul {
-	display: none;
-	// position: absolute; 
-	// top: 60px; /* the height of the main nav */
-}
-	
-/* Display Dropdowns on Hover */
-nav ul li:hover > ul {
-	display:block;
-}
-	
-/* Fisrt Tier Dropdown */
-nav ul ul li {
-	width:170px;
-	float:none;
-	display:list-item;
-	position: relative;
 }
