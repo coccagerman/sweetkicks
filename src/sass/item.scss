@@ -30,16 +30,31 @@
             font-size: 2rem;
         }
 
-        #wishList {
+        .notWished {
+            color: black;
             font-size: 1.5rem;
             position: absolute;
             top: 1rem;
             right: 1rem;
             transition: .25s;
+            color: black;
 
             &:hover {
                 color: $sweetOrange;
             }
+
+            &:active {
+                font-size: 1.75rem;
+            }
+        }
+
+        .wished {
+            color: $sweetOrange;
+            font-size: 1.5rem;
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            transition: .25s;
 
             &:active {
                 font-size: 1.75rem;

@@ -1,13 +1,13 @@
 import Item from './Item';
 
-function Gallery ({productsArray}) {
+function Gallery ({productsArray, setwishListcounter, wishListcounter}) {
 
     // Function that displays the available items
     const showItems = () => {
 
         return productsArray.map((item) => (
             <article>
-                <Item brand={item.brand} model={item.model} color={item.color} price={item.price} stock={item.stock} imgUrl={item.imgUrl} />
+                <Item brand={item.brand} model={item.model} color={item.color} price={item.price} stock={item.stock} imgUrl={item.imgUrl} wishListcounter={wishListcounter} setwishListcounter={setwishListcounter}/>
             </article>
             )
         )

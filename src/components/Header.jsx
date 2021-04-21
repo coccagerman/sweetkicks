@@ -1,8 +1,9 @@
 import HeaderLogoDark from '../assets/sweetkicks_logo_header_dark.png'
 import HeaderLogoLight from '../assets/sweetkicks_logo_header_light.png'
+import WishlistIcon from './WishlistIcon'
 import { useState } from 'react';
 
-function Header ({setDarkMode, darkMode}) {
+function Header ({setDarkMode, darkMode, wishListcounter}) {
 
     function handleSwitchClick () {
         setDarkMode(!darkMode)
@@ -30,7 +31,7 @@ function Header ({setDarkMode, darkMode}) {
                     <li><a href="#">About</a></li>
                     <li><a href="#">My orders</a></li>
                     <span class="iconify shoppingCart" data-icon="ph:shopping-cart-fill" data-inline="false"></span>
-                    <span class="iconify wishList" data-icon="clarity:heart-solid" data-inline="false"></span>
+                    <WishlistIcon wishListcounter={wishListcounter} />
                     <li className='switch-container'>
                         <span className="iconify" data-icon="ion:sunny-outline" data-inline="false"></span>
                         <label className="switch" >

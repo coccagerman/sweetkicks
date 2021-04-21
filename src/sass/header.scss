@@ -84,6 +84,28 @@ header {
                 }
             }
 
+            .wishList-container {
+                position: relative;
+                display: flex;
+                .wishlist-counter {
+                    position: absolute;
+                    right: 1.5rem;
+                    top: -.5rem;
+                    height: 1.45rem;
+                    width: 1.45rem;
+                    border-radius: 50%;
+                    background-color: $sweetOrange;
+                    display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    
+                    p {
+                        color: white;
+                        font-size: 1.25rem;
+                    }
+                }
+            }
+
             .switch-container {
                 display: flex;
                     justify-content: center;

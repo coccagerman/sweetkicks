@@ -10,6 +10,9 @@ function App() {
   // Hook used to track the dark mode state
   const [darkMode,setDarkMode] = useState(false);
 
+  // Hook used to show the number of items stored on the wish list
+  const [wishListcounter, setwishListcounter] = useState(0)
+
   // Products database
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   function Product (id, brand, model, color, price, stock, imgUrl) {
@@ -48,9 +51,9 @@ function App() {
 
   return (
     <div className={darkMode === false ? 'lightMode' : 'darkMode'}>
-      <Header setDarkMode={setDarkMode} darkMode={darkMode}/>
+      <Header setDarkMode={setDarkMode} darkMode={darkMode} wishListcounter={wishListcounter}/>
       <Hero darkMode={darkMode} />
-      <Gallery darkMode={darkMode} productsArray={productsArray} />
+      <Gallery darkMode={darkMode} productsArray={productsArray} wishListcounter={wishListcounter} setwishListcounter={setwishListcounter} />
       <Footer />
     </div>
   );
