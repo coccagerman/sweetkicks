@@ -5,6 +5,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Karantina', cursive;
+    scroll-behavior: smooth;
 }
 
 $sweetOrange: #e03f31;
@@ -13,4 +14,22 @@ $bitterGray: #131515;
 
 .displayNone {
     display: none;
+}
+
+.btn-primary {
+    background-color: $sweetOrange;
+    color: white;
+    padding: .5rem 0;
+    border: none;
+    cursor: pointer;
+
+    &:hover {
+        opacity: 95%;
+    }
+
+    &:active {
+        opacity: 95%;
+        border: black solid 2px;
+
+    }
 }

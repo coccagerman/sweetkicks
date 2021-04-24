@@ -5,7 +5,7 @@ function Hero ({darkMode}) {
     return (
         <section className='hero'>
             <img src={darkMode === false ? ImageLight : ImageDark} className='hero-img' alt="Shoe background"/>
-            <span class="iconify" data-icon="bx:bx-arrow-from-top" data-inline="false"></span>
+           <a href="#galleryHeader"> <span class="iconify" data-icon="bx:bx-arrow-from-top" data-inline="false"></span> </a>
         </section>
     )
 }

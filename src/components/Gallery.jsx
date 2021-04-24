@@ -1,4 +1,5 @@
 import Item from './Item';
+import GalleryHeader from './GalleryHeader';
 
 function Gallery ({productsArray, setwishListcounter, wishListcounter}) {
 
@@ -15,7 +16,10 @@ function Gallery ({productsArray, setwishListcounter, wishListcounter}) {
 
     return (
         <section className='gallery'>
-            {showItems()}
+            <GalleryHeader />
+            <section className='items-container'>
+                {showItems()}
+            </section>
         </section>
     )
 }
