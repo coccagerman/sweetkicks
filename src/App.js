@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Gallery from './components/Gallery';
+import About from './components/About';
 import Footer from './components/Footer';
 import './App.scss';
 
@@ -52,8 +53,11 @@ function App() {
   return (
     <div className={darkMode === false ? 'lightMode' : 'darkMode'}>
       <Header setDarkMode={setDarkMode} darkMode={darkMode} wishListcounter={wishListcounter}/>
-      <Hero darkMode={darkMode} />
-      <Gallery darkMode={darkMode} productsArray={productsArray} wishListcounter={wishListcounter} setwishListcounter={setwishListcounter} />
+
+      <About />
+
+      {/* <Hero darkMode={darkMode} />
+      <Gallery darkMode={darkMode} productsArray={productsArray} wishListcounter={wishListcounter} setwishListcounter={setwishListcounter} /> */}
       <Footer />
     </div>
   );
