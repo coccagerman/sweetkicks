@@ -17,6 +17,7 @@ function About () {
             <article>
                 <div className='img-container'>
                     <img src={Img0} alt="A basketball and five pairs of feet."/>
+                    <p>See our <br/><span>Adidas</span><br/> collection</p>
                 </div>
                 <div className='text'>
                     <p>Sweetkicks was born in 2008 with the solely purpose of bringing the hottest kicks in the world to your hands, or to your feet actually...</p> 
@@ -29,6 +30,7 @@ function About () {
                 </div>
                 <div className='img-container'>
                     <img src={Img1} alt="A basketball and five pairs of feet."/>
+                    <p>See our <br/><span>Basketball</span><br/> collection</p>
                 </div>
 
             </article>
@@ -36,6 +38,7 @@ function About () {
             <article>
                 <div className='img-container'>
                     <img src={Img2} alt="A basketball and five pairs of feet."/>
+                    <p>See our <br/><span>Jordan</span><br/> collection</p>
                 </div>
                 <div className='text'>
                     <p>So now you know, when you wanna dress your kicks, there's nothing better than SweetKicks. ;)</p>
@@ -45,12 +48,15 @@ function About () {
             <div className='links'>
                 <div className='link-img-container'>
                     <img src={Img3} alt=""/>
+                    <p>See our <br/><span>on sale</span><br/> collection</p>
                 </div>
                 <div className='link-img-container'>
                     <img src={Img4} alt=""/>
+                    <p>I'm<br/><span>feeling lucky</span><br/></p>
                 </div>
                 <div className='link-img-container'>
                     <img src={Img5} alt=""/>
+                    <p>See our <br/><span>Nike</span><br/> collection</p>
                 </div>
             </div>
 

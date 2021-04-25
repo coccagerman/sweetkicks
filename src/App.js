@@ -1,3 +1,5 @@
+
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import { useState } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
@@ -52,13 +54,26 @@ function App() {
 
   return (
     <div className={darkMode === false ? 'lightMode' : 'darkMode'}>
-      <Header setDarkMode={setDarkMode} darkMode={darkMode} wishListcounter={wishListcounter}/>
+        <Router>
+          <Header setDarkMode={setDarkMode} darkMode={darkMode} wishListcounter={wishListcounter}/>
+          <Switch>
+            <Route path='/' exact>
+              <Hero darkMode={darkMode} />
+            </Route>
+            <Route path='/gallery'>
+              <Gallery darkMode={darkMode} productsArray={productsArray} wishListcounter={wishListcounter} setwishListcounter={setwishListcounter} />
+            </Route>
+            <Route path='/about'>
+              <About />
+            </Route>
+          </Switch>
+          <Footer />
+        </Router>
 
-      <About />
+      {/* <About /> */}
 
       {/* <Hero darkMode={darkMode} />
       <Gallery darkMode={darkMode} productsArray={productsArray} wishListcounter={wishListcounter} setwishListcounter={setwishListcounter} /> */}
-      <Footer />
     </div>
   );
 }

@@ -1,7 +1,8 @@
+import { Link } from "react-router-dom";
+import { useState } from 'react';
 import HeaderLogoDark from '../assets/sweetkicks_logo_header_dark.png'
 import HeaderLogoLight from '../assets/sweetkicks_logo_header_light.png'
 import WishlistIcon from './WishlistIcon'
-import { useState } from 'react';
 import { Icon } from '@iconify/react';
 import arrowDownAlt2 from '@iconify-icons/dashicons/arrow-down-alt2';
 
@@ -13,7 +14,7 @@ function Header ({setDarkMode, darkMode, wishListcounter}) {
     return (
         < >
         <header>
-            <img className='headerLogo' src={darkMode === false ? HeaderLogoLight : HeaderLogoDark} alt='Company logo' />
+            <Link to='/'><img className='headerLogo' src={darkMode === false ? HeaderLogoLight : HeaderLogoDark} alt='Company logo' /></Link>
             <nav>
                 <ul>
                     <li><a href="#" onClick={() => setshowDropdown(!showDropdown)} className='categories'>Categories 
@@ -28,7 +29,7 @@ function Header ({setDarkMode, darkMode, wishListcounter}) {
                     </li>
                     <li><a href="#">Sale</a></li>
                     <li><a href="#">Latest releases</a></li>
-                    <li><a href="#">About</a></li>
+                    <li><Link to="/about">About</Link></li>
                     <li><a href="#">My orders</a></li>
                     <span class="iconify shoppingCart" data-icon="ph:shopping-cart-fill" data-inline="false"></span>
                     <WishlistIcon wishListcounter={wishListcounter} />
