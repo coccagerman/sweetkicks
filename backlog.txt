@@ -1,0 +1,5 @@
+- Implementar useContext.
+- Configurar función de búsqueda de productos.
+- Agregar el logo de la marca correspondiente a la tarjeta de cada producto.
+- Agregar animaciones en las transiciones entre páginas y en la búsqueda de productos en la galería.
+- Paginar la galería de productos.

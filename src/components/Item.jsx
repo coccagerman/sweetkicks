@@ -21,7 +21,7 @@ function Item ({brand, model, color, price, stock, imgUrl, wishListcounter, setw
 
     return (
         <article class="item-card">
-            <img src={Foto} class="card-img" alt="Product"/>
+            <img src={imgUrl} class="card-img" alt="Product"/>
             <div class="card-body">
                 <h3 class="card-title">{model}</h3>
                 <p class="card-price">${numberThousandSeparator(price)}</p>
