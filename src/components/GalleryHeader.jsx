@@ -51,7 +51,7 @@ function GalleryHeader () {
                 <button className='btn-primary'>Feeling lucky</button>
             </div>
 
-            <div className='searchResults'>
+            <div className='searchResults' id='searchResults'>
                 <h2>Search results for:</h2>
                 <div className='searchParams'>
                     <p>Brand:</p>

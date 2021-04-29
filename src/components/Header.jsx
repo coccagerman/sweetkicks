@@ -6,10 +6,16 @@ import WishlistIcon from './WishlistIcon'
 import { Icon } from '@iconify/react';
 import arrowDownAlt2 from '@iconify-icons/dashicons/arrow-down-alt2';
 
-function Header ({setDarkMode, darkMode, wishListcounter}) {
+function Header ({setDarkMode, darkMode, wishListcounter, setCategoryToSearch, categoryToSearch}) {
 
     // Hook used to show and hide the dropdown menu
     const [showDropdown, setshowDropdown] = useState(false)
+
+    // Function used to handle the click of category btns
+    function handleCategoryBtnClick (category) {
+        setshowDropdown(!showDropdown)
+        setCategoryToSearch(category)
+    }
 
     return (
         < >
@@ -21,14 +27,14 @@ function Header ({setDarkMode, darkMode, wishListcounter}) {
                             <Icon icon={arrowDownAlt2} className={showDropdown === false ? 'arrowIcon' : 'arrowIcon open' }/> 
                         </a>
                         <ul className={showDropdown === true ? 'dropdown' : 'hiddenDropdown' }>
-                            <li><a href="#">Street</a></li>
-                            <li><a href="#">Running</a></li>
-                            <li><a href="#">Basketball</a></li>
-                            <li><a href="#">Tennis</a></li>
+                            <li><a href="#searchResults" onClick={() => handleCategoryBtnClick('Street')}>Street</a></li>
+                            <li><a href="#searchResults" onClick={() => handleCategoryBtnClick('Running')}>Running</a></li>
+                            <li><a href="#searchResults" onClick={() => handleCategoryBtnClick('Basketball')}>Basketball</a></li>
+                            <li><a href="#searchResults" onClick={() => handleCategoryBtnClick('Tennis')}>Tennis</a></li>
                         </ul>
                     </li>
                     <li><a href="#">Sale</a></li>
-                    <li><a href="#">Latest releases</a></li>
+                    <li><a href="#searchResults">Latest releases</a></li>
                     <li><Link to="/about">About</Link></li>
                     <li><a href="#">My orders</a></li>
                     <span class="iconify shoppingCart" data-icon="ph:shopping-cart-fill" data-inline="false"></span>
