@@ -4,16 +4,15 @@ import JordanIcon from '../assets/icons/jordan-icon.png'
 import PumaIcon from '../assets/icons/puma-icon.png'
 import ReebokIcon from '../assets/icons/reebok-icon.png'
 import UnderArmourIcon from '../assets/icons/underArmour-icon.png'
-
 import { useState } from 'react';
 import { Icon } from '@iconify/react';
 import heartSolid from '@iconify-icons/clarity/heart-solid';
 
 
-function Item ({brand, model, color, price, stock, imgUrl, wishListcounter, setwishListcounter}) {
+function Item ({brand, model, color, price, latestRelease, discount, stock, imgUrl, wishListcounter, setwishListcounter}) {
 
     // Regex used to insert thousand separator in forms' numeric inputs.
-    function numberThousandSeparator(x) {
+    function addNumberThousandSeparator(x) {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     }
 
@@ -26,23 +25,46 @@ function Item ({brand, model, color, price, stock, imgUrl, wishListcounter, setw
     }
 
     // Function used to show the corresponding brand icon in each card
-    function braindIcon () {
+    function showBraindIcon () {
         if (brand === 'Nike') { return NikeIcon}
         else if (brand === 'Adidas') { return AdidasIcon}
         else if (brand === 'Jordan') { return JordanIcon}
         else if (brand === 'Puma') { return PumaIcon}
         else if (brand === 'Reebok') { return ReebokIcon}
         else if (brand === 'Under Armour') { return UnderArmourIcon}
+        else {return null}
+    }
+
+    // Function used to display an icon if the product is a latest release or has discount
+    function showLatestOrSaleIcon() {
+        if (latestRelease) {return <div className='LatestOrSale-icon'><p>Latest release</p></div>}
+        else if (discount !== 0) {return <div className='LatestOrSale-icon'><p>On sale</p></div>}
+        else {return null}
+    }
+
+    // Function used to show the price of the item
+    function showPrice() { 
+        if (discount !== 0) { return (
+            <p className="card-price">
+                <span className='noDiscountPrice'>${addNumberThousandSeparator(price)}</span>
+                ${addNumberThousandSeparator(price-(price*discount/100).toFixed(0))}
+                <span className='discountPercentage'>%{discount} off</span>
+            </p>
+            ) }
+        else { return <p className="card-price">${addNumberThousandSeparator(price)}</p> }
     }
 
     return (
         <article class="item-card">
-            <img src={braindIcon()} className='brand-icon' alt="Brand icon"/>
+            <div className='card-header'>
+                <img src={showBraindIcon()} className='brand-icon' alt="Brand icon"/>
+                {showLatestOrSaleIcon()}
+                <Icon icon={heartSolid} className={wishedItem ? 'wished' : 'notWished'} onClick={() => handleWishClick()}/>
+            </div>
             <img src={imgUrl} className="card-img" alt="Product"/>
-            <div className="card-body">
+            <div className="card-footer">
                 <h3 className="card-title">{model}</h3>
-                <p className="card-price">${numberThousandSeparator(price)}</p>
-                <Icon icon={heartSolid} className={wishedItem === false ? 'notWished' : 'wished'} onClick={() => handleWishClick()}/>
+                {showPrice()}
             </div>
         </article>
     )

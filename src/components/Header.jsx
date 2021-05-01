@@ -27,14 +27,14 @@ function Header ({setDarkMode, darkMode, wishListcounter, productsDataBase, setP
                             <Icon icon={arrowDownAlt2} className={showDropdown === false ? 'arrowIcon' : 'arrowIcon open' }/> 
                         </a>
                         <ul className={showDropdown === true ? 'dropdown' : 'hiddenDropdown' }>
-                            <li><Link to='/gallery' href="" onClick={() => handleCategoryBtnClick('Street')}>Street</Link></li>
+                            <li><Link to='/gallery' href="#searchResults" onClick={() => handleCategoryBtnClick('Street')}>Street</Link></li>
                             <li><Link to='/gallery' href="#searchResults" onClick={() => handleCategoryBtnClick('Running')}>Running</Link></li>
                             <li><Link to='/gallery' href="#searchResults" onClick={() => handleCategoryBtnClick('Basketball')}>Basketball</Link></li>
                             <li><Link to='/gallery' href="#searchResults" onClick={() => handleCategoryBtnClick('Tennis')}>Tennis</Link></li>
                         </ul>
                     </li>
-                    <li><a href="#" className='hover-effect'>Sale</a></li>
-                    <li><a href="#searchResults" className='hover-effect'>Latest releases</a></li>
+                    <li onClick={() => setProductsArray(productsDataBase.filter(item => (item.discount !== 0)))}><Link to='/gallery' href="#searchResults" className='hover-effect'>Sale</Link></li>
+                    <li onClick={() => setProductsArray(productsDataBase.filter(item => (item.latestRelease)))}><Link to='/gallery' href="#searchResults" className='hover-effect'>Latest releases</Link></li>
                     <li><Link to="/about" className='hover-effect'>About</Link></li>
                     <li><a href="#" className='hover-effect'>My orders</a></li>
                     <span class="iconify shoppingCart" data-icon="ph:shopping-cart-fill" data-inline="false"></span>

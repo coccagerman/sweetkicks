@@ -5,5 +5,27 @@
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   font-family: 'Karantina', cursive;
+  scroll-behavior: smooth;
+}
+
+.displayNone {
+  display: none;
+}
+
+.btn-primary {
+  background-color: #e03f31;
+  color: white;
+  padding: .5rem 0;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  opacity: 95%;
+}
+
+.btn-primary:active {
+  opacity: 100%;
+  background-color: #c4372b;
 }
 /*# sourceMappingURL=generalStyles.css.map */
