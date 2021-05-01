@@ -1,4 +1,4 @@
-function GalleryHeader () {
+function GalleryHeader ({productsDataBase, setProductsArray}) {
     return (
         <header className='galleryHeader' id='galleryHeader'>
             <div className="formInputs">
@@ -35,6 +35,14 @@ function GalleryHeader () {
                 </article>
 
                 <article className="formInput">
+                    <label for="color">Color</label>
+                    <select id="color">
+                        <option value=""></option>
+                        <option >Blue</option>
+                    </select>
+                </article>
+
+                <article className="formInput">
                     <label for="order">Order by</label>
                     <select id="order">
                         <option value=""></option>
@@ -48,7 +56,7 @@ function GalleryHeader () {
 
             <div className='btns'>
                 <button className='btn-primary'>Search</button>
-                <button className='btn-primary'>Feeling lucky</button>
+                <button className='btn-primary' onClick={() => setProductsArray([productsDataBase[Math.floor(Math.random() * productsDataBase.length)]])}>Feeling lucky</button>
             </div>
 
             <div className='searchResults' id='searchResults'>

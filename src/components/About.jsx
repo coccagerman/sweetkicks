@@ -5,9 +5,6 @@ import Img3 from '../assets/about/about3.webp'
 import Img4 from '../assets/about/about4.webp'
 import Img5 from '../assets/about/about5.webp'
 
-
-// import Img2 from '../assets/about/about2.webp'
-
 function About () {
     
     return (

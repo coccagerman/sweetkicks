@@ -1,9 +1,9 @@
-
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { useState } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Gallery from './components/Gallery';
+import Wishlist from './components/Wishlist';
 import About from './components/About';
 import Footer from './components/Footer';
 import './App.scss';
@@ -16,13 +16,35 @@ function App() {
   // Hook used to show the number of items stored on the wish list
   const [wishListcounter, setwishListcounter] = useState(0)
 
-  // Hook used to filter the search results based on the different cattegories available
-  const [categoryToSearch, setCategoryToSearch] = useState(null)
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+  // Hooks used to filter the search results based on the different paremeters available
+  // const [categoryToSearch, setCategoryToSearch] = useState(null)
+  // const [brandToSearch, setBrandToSearch] = useState(null)
+  // const [sizeToSearch, setSizeToSearch] = useState(null)
+  // const [priceToSearch, setPriceToSearch] = useState(null)
+  // const [colorToSearch, setColorToSearch] = useState(null)
+  // const [onSaleToSearch, setOnSaleToSearch] = useState(null)
+  // const [latestReleasesToSearch, setLatestReleasesToSearch] = useState(null)
+
+  // function ProductSearchParams (category, brand, size, price, color, onSale, latestReleases) {
+  //   this.category = categoryToSearch
+  //   this.brand = brandToSearch
+  //   this.size = sizeToSearch
+  //   this.price = priceToSearch
+  //   this.color = colorToSearch
+  //   this.onSale = onSaleToSearch
+  //   this.latestReleases = latestReleasesToSearch
+  // }
 
   // Function that filters the products database with the search parameters entered
-  function searchProducts (brand, color, price, cattegory, latestRelease, onSale) {
-    return productsArray.filter(o => (o.brand === brand && o.color === color && o.price <= price && o.cattegory === cattegory && o.latestRelease === latestRelease && o.onSale === onSale))
-  }
+  // function searchProducts (brand, color, price, cattegory, latestRelease, onSale) {
+  //   return productsArray.filter(o => (o.brand === brand && o.color === color && o.price <= price && o.cattegory === cattegory && o.onSale === onSale && o.latestRelease === latestRelease ))
+  // }
 
   // Products database
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -47,13 +69,13 @@ function App() {
   const prodAdidas5 = new Product ("adidas5", "Adidas", "Crazychaos", "Blue", 21999, 'Street', 1, 'products/adidas/adidas5/adidas5_1.jpeg');
   const prodAdidas6 = new Product ("adidas6", "Adidas", "Energyfalcon", "Grey", 21999, 'Running', 1, 'products/adidas/adidas6/adidas6_1.jpeg');
   const prodAdidas7 = new Product ("adidas7", "Adidas", "ORIGINALS ZX 2K BOOST", "Black", 21999, 'Street', 1, 'products/adidas/adidas7/adidas7_1.jpeg');
-  const prodJordan1 = new Product ("jordan1", "Jordan", "Jumpman 2020", "Black", 13549, 'Street', 3, 'products/jordan/jordan1/jordan1_1.jpeg');
+  const prodJordan1 = new Product ("jordan1", "Jordan", "Jumpman 2020", "Black", 13549, 'Basketball', 3, 'products/jordan/jordan1/jordan1_1.jpeg');
   const prodJordan2 = new Product ("jordan2", "Jordan", "Westbrook One Take", "Grey", 15499, 'Basketball', 3, 'products/jordan/jordan2/jordan2_1.jpeg');
-  const prodJordan3 = new Product ("jordan3", "Jordan", "AIR MAX 200", "White", 15499, 'Street', 3, 'products/jordan/jordan3/jordan3_1.jpeg');
-  const prodJordan4 = new Product ("jordan4", "Jordan", "AIR MAX 200", "White", 15499, 'Street', 3, 'products/jordan/jordan4/jordan4_1.jpeg');
-  const prodJordan5 = new Product ("jordan5", "Jordan", "AIR MAX 200", "Black", 15499, 'Street', 3, 'products/jordan/jordan5/jordan5_1.jpeg');
-  const prodJordan6 = new Product ("jordan6", "Jordan", "AIR MAX 200", "Black", 15499, 'Street', 3, 'products/jordan/jordan6/jordan6_1.jpeg');
-  const prodJordan7 = new Product ("jordan7", "Jordan", "AIR MAX 200", "Black", 15499, 'Street', 3, 'products/jordan/jordan7/jordan7_1.jpeg');
+  const prodJordan3 = new Product ("jordan3", "Jordan", "AIR MAX 200", "White", 15499, 'Basketball', 3, 'products/jordan/jordan3/jordan3_1.jpeg');
+  const prodJordan4 = new Product ("jordan4", "Jordan", "AIR MAX 200", "White", 15499, 'Basketball', 3, 'products/jordan/jordan4/jordan4_1.jpeg');
+  const prodJordan5 = new Product ("jordan5", "Jordan", "AIR MAX 200", "Black", 15499, 'Basketball', 3, 'products/jordan/jordan5/jordan5_1.jpeg');
+  const prodJordan6 = new Product ("jordan6", "Jordan", "AIR MAX 200", "Black", 15499, 'Basketball', 3, 'products/jordan/jordan6/jordan6_1.jpeg');
+  const prodJordan7 = new Product ("jordan7", "Jordan", "AIR MAX 200", "Black", 15499, 'Basketball', 3, 'products/jordan/jordan7/jordan7_1.jpeg');
   const prodJordan8 = new Product ("jordan8", "Jordan", "MARS 270 LOW", "Black", 15499, 'Basketball', 3, 'products/jordan/jordan8/jordan8_1.jpeg');
   const prodNike1 = new Product ("nike1", "Nike", "Air Zoom Pegasus 37 FlyEase", "White", 16999, 'Tennis', 3, 'products/nike/nike1/nike1_1.jpeg');
   const prodNike2 = new Product ("nike2", "Nike", "Nike Flex Control Tr4", "Black", 10499, 'Running', 4, 'products/nike/nike2/nike2_1.jpeg');
@@ -93,7 +115,10 @@ function App() {
   const prodUnderArmour1 = new Product ("underArmour1", "Under Armour", "Forge 96", "Grey", 11689, ' Running', 2, 'products/underArmour/underArmour1/underArmour1_1.jpeg');
   const prodUnderArmour2 = new Product ("underArmour2", "Under Armour", "Charged Pursuit 2", "Red", 9799, ' Running', 3, 'products/underArmour/underArmour2/underArmour2_1.jpeg');
 
-  const productsArray = [prodAdidas1, prodAdidas2, prodAdidas3, prodAdidas4, prodAdidas5, prodAdidas6, prodAdidas7, prodJordan1, prodJordan2, prodJordan3, prodJordan4, prodJordan5, prodJordan6, prodJordan7, prodJordan8, prodNike1, prodNike2, prodNike3, prodNike4, prodNike5, prodNike6, prodNike7, prodNike8, prodNike9, prodNike10, prodNike11, prodNike12, prodNike13, prodNike14, prodNike15, prodNike16, prodNike17, prodNike18, prodNike19, prodNike20, prodNike21, prodNike22, prodNike23, prodPuma1, prodPuma2, prodPuma3, prodPuma4, prodPuma5, prodPuma6, prodPuma7, prodReebok1, prodReebok2, prodReebok3, prodReebok4, prodReebok5, prodUnderArmour1, prodUnderArmour2]
+  const productsDataBase = [prodAdidas1, prodAdidas2, prodAdidas3, prodAdidas4, prodAdidas5, prodAdidas6, prodAdidas7, prodJordan1, prodJordan2, prodJordan3, prodJordan4, prodJordan5, prodJordan6, prodJordan7, prodJordan8, prodNike1, prodNike2, prodNike3, prodNike4, prodNike5, prodNike6, prodNike7, prodNike8, prodNike9, prodNike10, prodNike11, prodNike12, prodNike13, prodNike14, prodNike15, prodNike16, prodNike17, prodNike18, prodNike19, prodNike20, prodNike21, prodNike22, prodNike23, prodPuma1, prodPuma2, prodPuma3, prodPuma4, prodPuma5, prodPuma6, prodPuma7, prodReebok1, prodReebok2, prodReebok3, prodReebok4, prodReebok5, prodUnderArmour1, prodUnderArmour2]
+  
+  // hook used to store the array of products that will be shown in the gallery
+  const [productsArray, setProductsArray] = useState (productsDataBase)
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -101,13 +126,16 @@ function App() {
   return (
     <div className={darkMode === false ? 'lightMode' : 'darkMode'}>
         <Router>
-          <Header setDarkMode={setDarkMode} darkMode={darkMode} wishListcounter={wishListcounter} setCategoryToSearch={setCategoryToSearch} categoryToSearch={categoryToSearch} />
+          <Header setDarkMode={setDarkMode} darkMode={darkMode} wishListcounter={wishListcounter} productsDataBase={productsDataBase} setProductsArray={setProductsArray} />
           <Switch>
             <Route path='/' exact>
               <Hero darkMode={darkMode} />
             </Route>
             <Route path='/gallery'>
-              <Gallery darkMode={darkMode} productsArray={productsArray} wishListcounter={wishListcounter} setwishListcounter={setwishListcounter} categoryToSearch={categoryToSearch}/>
+              <Gallery darkMode={darkMode} productsDataBase={productsDataBase} productsArray={productsArray} setProductsArray={setProductsArray} wishListcounter={wishListcounter} setwishListcounter={setwishListcounter}/>
+            </Route>
+            <Route path='/wishlist'>
+              <Wishlist wishListcounter={wishListcounter} />
             </Route>
             <Route path='/about'>
               <About />

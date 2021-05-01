@@ -6,7 +6,7 @@ import WishlistIcon from './WishlistIcon'
 import { Icon } from '@iconify/react';
 import arrowDownAlt2 from '@iconify-icons/dashicons/arrow-down-alt2';
 
-function Header ({setDarkMode, darkMode, wishListcounter, setCategoryToSearch, categoryToSearch}) {
+function Header ({setDarkMode, darkMode, wishListcounter, productsDataBase, setProductsArray}) {
 
     // Hook used to show and hide the dropdown menu
     const [showDropdown, setshowDropdown] = useState(false)
@@ -14,7 +14,7 @@ function Header ({setDarkMode, darkMode, wishListcounter, setCategoryToSearch, c
     // Function used to handle the click of category btns
     function handleCategoryBtnClick (category) {
         setshowDropdown(!showDropdown)
-        setCategoryToSearch(category)
+        setProductsArray(productsDataBase.filter(item => (item.cattegory === category)))
     }
 
     return (
@@ -23,22 +23,22 @@ function Header ({setDarkMode, darkMode, wishListcounter, setCategoryToSearch, c
             <Link to='/'><img className='headerLogo' src={darkMode === false ? HeaderLogoLight : HeaderLogoDark} alt='Company logo' /></Link>
             <nav>
                 <ul>
-                    <li><a href="#" onClick={() => setshowDropdown(!showDropdown)} className='categories'>Categories 
+                    <li><a href="#" onClick={() => setshowDropdown(!showDropdown)} className='categories hover-effect'>Categories 
                             <Icon icon={arrowDownAlt2} className={showDropdown === false ? 'arrowIcon' : 'arrowIcon open' }/> 
                         </a>
                         <ul className={showDropdown === true ? 'dropdown' : 'hiddenDropdown' }>
-                            <li><a href="#searchResults" onClick={() => handleCategoryBtnClick('Street')}>Street</a></li>
-                            <li><a href="#searchResults" onClick={() => handleCategoryBtnClick('Running')}>Running</a></li>
-                            <li><a href="#searchResults" onClick={() => handleCategoryBtnClick('Basketball')}>Basketball</a></li>
-                            <li><a href="#searchResults" onClick={() => handleCategoryBtnClick('Tennis')}>Tennis</a></li>
+                            <li><Link to='/gallery' href="" onClick={() => handleCategoryBtnClick('Street')}>Street</Link></li>
+                            <li><Link to='/gallery' href="#searchResults" onClick={() => handleCategoryBtnClick('Running')}>Running</Link></li>
+                            <li><Link to='/gallery' href="#searchResults" onClick={() => handleCategoryBtnClick('Basketball')}>Basketball</Link></li>
+                            <li><Link to='/gallery' href="#searchResults" onClick={() => handleCategoryBtnClick('Tennis')}>Tennis</Link></li>
                         </ul>
                     </li>
-                    <li><a href="#">Sale</a></li>
-                    <li><a href="#searchResults">Latest releases</a></li>
-                    <li><Link to="/about">About</Link></li>
-                    <li><a href="#">My orders</a></li>
+                    <li><a href="#" className='hover-effect'>Sale</a></li>
+                    <li><a href="#searchResults" className='hover-effect'>Latest releases</a></li>
+                    <li><Link to="/about" className='hover-effect'>About</Link></li>
+                    <li><a href="#" className='hover-effect'>My orders</a></li>
                     <span class="iconify shoppingCart" data-icon="ph:shopping-cart-fill" data-inline="false"></span>
-                    <WishlistIcon wishListcounter={wishListcounter} />
+                    <Link to="/wishlist"><WishlistIcon wishListcounter={wishListcounter} /></Link>
                     <li className='switch-container'>
                         <span className="iconify" data-icon="ion:sunny-outline" data-inline="false"></span>
                         <label className="switch" >
