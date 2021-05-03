@@ -28,7 +28,7 @@ function About ({productsDataBase, setProductsArray}) {
                 <div className='text'>
                     <p>We are a Buenos Aires based company created by a group of friends and shoes junkies. We love shoes, and most of all, we love spreading the shoe love all around.</p>
                 </div>
-                <Link to='/gallery' onClick={() => setProductsArray(productsDataBase.filter(item => (item.cattegory === 'Basketball')))}>
+                <Link to='/gallery' onClick={() => setProductsArray(productsDataBase.filter(item => (item.category === 'Basketball')))}>
                     <div className='img-container' >
                         <img src={Img1} alt="A basketball and five pairs of feet."/>
                         <p>See our <br/><span>Basketball</span><br/> collection</p>

@@ -14,7 +14,7 @@ function Header ({setDarkMode, darkMode, wishListcounter, productsDataBase, setP
     // Function used to handle the click of category btns
     function handleCategoryBtnClick (category) {
         setshowDropdown(!showDropdown)
-        setProductsArray(productsDataBase.filter(item => (item.cattegory === category)))
+        setProductsArray(productsDataBase.filter(item => (item.category === category)))
     }
 
     return (

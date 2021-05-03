@@ -4,3 +4,5 @@
 - Agregar animaciones en las transiciones entre páginas y en la búsqueda de productos en la galería.
 - Paginar la galería de productos.
 - Implementar color picker para formulario de búsqueda.
+- Implementar buscador para que se pueda tipear y buscar el modelo de zapa  directamente.
+- Implementar precio con descuento en base de datos para que en filtro los productos on sale se filtren por el precio descontado.

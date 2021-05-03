@@ -13,7 +13,7 @@ function Gallery ({productsDataBase, productsArray, setProductsArray, setwishLis
 
     return (
         <section className='gallery'>
-            <GalleryHeader productsDataBase={productsDataBase} setProductsArray={setProductsArray} />
+            <GalleryHeader productsDataBase={productsDataBase} setProductsArray={setProductsArray} productsArray={productsArray} />
             <section className='items-container'>
                 {showItemSearchResults()}
             </section>
