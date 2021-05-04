@@ -8,6 +8,7 @@ function GalleryHeader ({productsDataBase, setProductsArray, productsArray}) {
     const [desiredSize,setDesiredSize] = useState('');
     const [desiredMaxPrice,setDesiredMaxPrice] = useState('');
     const [desiredColor,setDesiredColor] = useState('');
+    const [searchParams, setSearchParams] = useState([]);
 
     // Function used to search products according to the params entered in the form
     function searchProducts () {
@@ -54,6 +55,8 @@ function GalleryHeader ({productsDataBase, setProductsArray, productsArray}) {
         if (desiredBrand && !desiredCategory && desiredSize && desiredMaxPrice && desiredColor) {setProductsArray(productsDataBase.filter(item => (item.brand === desiredBrand && item.sizes.includes(desiredSize) && item.price <= desiredMaxPrice && item.color === desiredColor)))}
         if (desiredBrand && desiredCategory && !desiredSize && desiredMaxPrice && desiredColor) {setProductsArray(productsDataBase.filter(item => (item.brand === desiredBrand && item.category === desiredCategory && item.price <= desiredMaxPrice && item.color === desiredColor)))}
         if (desiredBrand && desiredCategory && desiredSize && !desiredMaxPrice && desiredColor) {setProductsArray(productsDataBase.filter(item => (item.brand === desiredBrand && item.category === desiredCategory && item.sizes.includes(desiredSize) && item.color === desiredColor)))}
+
+        setSearchParams([desiredBrand, desiredCategory, desiredSize, desiredMaxPrice, desiredColor])
     }
 
     return (
@@ -123,10 +126,10 @@ function GalleryHeader ({productsDataBase, setProductsArray, productsArray}) {
                     <label for="order">Order by</label>
                     <select id="order">
                         <option value=""></option>
-                        <option >Highest price</option>
-                        <option >Lowest price</option>
-                        <option >Latest releases</option>
-                        <option >On sale</option>
+                        <option>Highest price</option>
+                        <option>Lowest price</option>
+                        <option>Latest releases</option>
+                        <option>On sale</option>
                     </select>
                 </article>
             </div>
@@ -135,17 +138,20 @@ function GalleryHeader ({productsDataBase, setProductsArray, productsArray}) {
                 <button className='btn-primary' onClick={() => searchProducts()}>Search</button>
                 <button className='btn-primary' onClick={() => setProductsArray([productsDataBase[Math.floor(Math.random() * productsDataBase.length)]])}>Feeling lucky</button>
             </div>
-
+        
             <div className='searchResults' id='searchResults'>
                 <h2>Search results for:</h2>
                 <div className='searchParams'>
-                    <p>Brand:</p>
-                    <p>Category:</p>
-                    <p>Size:</p>
+                    <p>Brand: {searchParams[0]}</p>
+                    <p>Category: {searchParams[1]}</p>
+                    <p>Size: {searchParams[2]}</p>
+                    <p>Max price: ${searchParams[3]}</p>
+                    <p>Color: {searchParams[4]}</p>
                     <p>Order by:</p>
                 </div>
                 <p>Number of results: {productsArray.length}</p>
             </div>
+
         </header>
     )
 }
