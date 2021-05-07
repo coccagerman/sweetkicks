@@ -6,7 +6,7 @@ function Gallery ({productsDataBase, productsArray, setProductsArray, setwishLis
     // Function that displays the available items
     const showItemSearchResults = () => productsArray.map((item) => (
         <article>
-            <ItemCard brand={item.brand} model={item.model} color={item.color} price={item.price} latestRelease={item.latestRelease} discount={item.discount} stock={item.stock} imgUrl={item.imgUrl} wishListcounter={wishListcounter} setwishListcounter={setwishListcounter}/>
+            <ItemCard brand={item.brand} model={item.model} category={item.category} color={item.color} price={item.price} latestRelease={item.latestRelease} discount={item.discount} stock={item.stock} imgUrl={item.imgUrl} wishListcounter={wishListcounter} setwishListcounter={setwishListcounter}/>
         </article>
         )
     )

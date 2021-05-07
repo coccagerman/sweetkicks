@@ -8,9 +8,8 @@ import { Link } from "react-router-dom";
 import { useState } from 'react';
 import { Icon } from '@iconify/react';
 import heartSolid from '@iconify-icons/clarity/heart-solid';
-import Item from '../components/Item'
 
-function ItemCard ({brand, model, color, price, latestRelease, discount, stock, imgUrl, wishListcounter, setwishListcounter}) {
+function ItemCard ({brand, model, category, price, latestRelease, discount, stock, imgUrl, wishListcounter, setwishListcounter}) {
 
     // Regex used to insert thousand separator in forms' numeric inputs.
     function addNumberThousandSeparator(x) {
@@ -58,7 +57,15 @@ function ItemCard ({brand, model, color, price, latestRelease, discount, stock, 
     }
 
     return (
-        <Link to='/item'   render={(props) => ( <Item {...props} brand={brand} model={model} price={price} /> )} >
+        <>
+
+
+        <Link to={{
+                pathname:'/item',
+                state: {
+                    brand:{brand}, model:{model}, price:{price}, category:{category}, imgUrl:{imgUrl}
+                }
+            }} >
         <article class="item-card" >
             <div className='card-header'>
                 <img src={showBraindIcon()} className='brand-icon' alt="Brand icon"/>
@@ -72,6 +79,7 @@ function ItemCard ({brand, model, color, price, latestRelease, discount, stock, 
             </div>
         </article>
         </Link>
+        </>
     )
 }
 

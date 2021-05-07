@@ -1,27 +1,40 @@
 import { Icon } from '@iconify/react';
 import heartSolid from '@iconify-icons/clarity/heart-solid';
 import { useState } from 'react';
+import { BrowserRouter as Router, Route, Switch, useLocation } from "react-router-dom";
 
-function Item ({brand, model, price}) {
+function Item () {
+
+    // Regex used to insert thousand separator in forms' numeric inputs.
+    function addNumberThousandSeparator(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    }
 
     // Hook used to store the wish list status
     const [wishedItem, setwishedItem] = useState(false)
-
+    
+    let location = useLocation()
+    let brand = location.state.brand.brand
+    let model = location.state.model.model
+    let price = location.state.price.price
+    let category = location.state.category.category
+    let imgUrl = location.state.imgUrl.imgUrl
+    
     function handleWishClick () {
-        console.log(brand, model, price)
+        console.log("I'll be erased soon.")
     }
 
     return (
         <section className='itemPage'>
                 <div className="item-section_carouselAndInfo">
                     <div className="item-carousel">
-                        <img src="products/adidas/adidas1/adidas1_1.jpeg" alt="product" className='carousel-img'/>
+                        <img src={imgUrl} alt="product" className='carousel-img'/>
                     </div>
 
                     <div className="item-info">
-                        <h2>Shoe name {model} </h2>
-                        <p>Category: {brand} </p>
-                        <p>Price: {price} </p>
+                        <h2>{brand} {model} </h2>
+                        <p>Category: {category}</p>
+                        <p>Price: ${addNumberThousandSeparator(price)} </p>
                         <p>Sizes: </p>
                         <button className='btn-primary'>Add to cart</button>
                         <Icon icon={heartSolid} className={wishedItem ? 'wished' : 'notWished'} onClick={() => handleWishClick()}/>

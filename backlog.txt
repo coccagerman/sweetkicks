@@ -4,6 +4,7 @@
 - Implementar color picker para formulario de búsqueda.
 - Implementar buscador para que se pueda tipear y buscar el modelo de zapa  directamente.
 - Implementar precio con descuento en base de datos para que en filtro los productos on sale se filtren por el precio descontado.
+- Create a 404 page
 - BUG: Cuando se añade producto a wishlist, el corazón queda atado a la tarjeta y no al producto. Si clickeas el corazón, y después hacés una búsqueda, el corazón queda pegado a la misma tarjeta.
 - BUG: Cuando hacés una búsqueda y después ingresás a través del header a una categoría, te sigue mostrando el formulario y los search params de la búsqueda previa, cuando te tendría que mostrar solo el param de la categoría seleccionada.
 - BUG: El dropdown debiese cerrarse cuando se hace click fuera de él.
