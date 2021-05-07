@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Gallery from './components/Gallery';
+import Item from './components/Item';
 import Wishlist from './components/Wishlist';
 import About from './components/About';
 import Footer from './components/Footer';
@@ -107,6 +108,13 @@ function App() {
             <Route path='/gallery'>
               <Gallery darkMode={darkMode} productsDataBase={productsDataBase} productsArray={productsArray} setProductsArray={setProductsArray} wishListcounter={wishListcounter} setwishListcounter={setwishListcounter}/>
             </Route>
+
+
+            <Route path='/item'>
+              <Item  />
+            </Route>
+
+
             <Route path='/wishlist'>
               <Wishlist wishListcounter={wishListcounter} />
             </Route>

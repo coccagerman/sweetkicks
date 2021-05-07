@@ -1,6 +1,4 @@
 - Implementar useContext.
-- Configurar función de búsqueda de productos.
-- Agregar cualidad 'sale' a ciertos productos, y que esos cards tengan el precio tachado y cierto indicador de precio reducido
 - Agregar animaciones en las transiciones entre páginas y en la búsqueda de productos en la galería.
 - Paginar la galería de productos.
 - Implementar color picker para formulario de búsqueda.
