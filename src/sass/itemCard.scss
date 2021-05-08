@@ -12,6 +12,7 @@
     -moz-box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.75);
 
     .card-header {
+        border: none;
         padding-top: .5rem;
         position: relative;
         z-index: 1;
@@ -29,14 +30,18 @@
             background-color: $sweetOrange;
             color: white;
             font-size: 1.25rem;
-            padding: .25rem;
             width: 5rem;
+            height: 2rem;
             position: absolute;
             right: 4.75rem;
             top: .75rem;
             display: flex;
                 justify-content: center;
                 align-items: center;
+            
+            p {
+                margin: auto;
+            }
         }
 
         .notWished {
@@ -75,24 +80,26 @@
         width: 14.5rem;
         padding: 2rem .5rem 0 .5rem;
         transition: .5s;
+        border: none;
 
         &:hover {
             transform: scale(1.05)
         }
     }
      .card-footer{
+         border: none;
          text-align: center;
-         margin-bottom: 1rem;
 
         .card-title{
-            font-size: 1.6rem;
+            font-size: 2rem;
             color: black;
+            margin: 0;
         }
 
         .card-price {
             font-size: 2rem;
             color: black;
-
+            margin-top: -.5rem;
 
             .noDiscountPrice {
                 text-decoration:line-through;
@@ -104,6 +111,7 @@
             .discountPercentage {
                 margin-left: .5rem;
                 font-size: 1.75rem;
+                color: $sweetOrange;
             }
         }
     }

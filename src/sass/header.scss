@@ -128,7 +128,7 @@ header {
             }
 
             .shoppingCart, .wishList {
-                margin-right: 2rem;
+                margin: .65rem 2rem 0 0;
                 cursor: pointer;
                 transition: .5s;
 
@@ -160,6 +160,7 @@ header {
             }
 
             .switch-container {
+                margin: 0 0 .5rem 0;
                 display: flex;
                     justify-content: center;
                     align-items: center;
@@ -257,7 +258,7 @@ header {
 
                 .dropdown {
                     background-color: black;
-    
+                    padding: 0;
                     a {
                         color: white;
                     }
@@ -289,6 +290,7 @@ header {
 
                 .dropdown {
                     background-color: white ;
+                    padding: 0;
                     a {
                         color: black;
                     }

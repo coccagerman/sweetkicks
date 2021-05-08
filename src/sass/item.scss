@@ -10,11 +10,11 @@
         align-items: center;
 
         .item-carousel {
-            max-width: 31rem;
-
+            width: 40rem;
+            
             .carousel-img {
                 width: 30rem;
-                margin: 0 2rem 0 0;
+                margin: auto;
             }
 
             .carousel-indicators {

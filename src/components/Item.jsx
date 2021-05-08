@@ -31,8 +31,7 @@ function Item () {
                 <div className="item-section_carouselAndInfo">
                     <div className="item-carousel">
                         <ItemCarousel mainImage={mainImage} images={images} />
-                        {/* <img src={mainImage} alt="product" className='carousel-img'/> */}
-                    </div>
+\                    </div>
 
                     <div className="item-info">
                         <h2>{brand} {model} </h2>
@@ -41,6 +40,7 @@ function Item () {
                         <p>Sizes: </p>
                         <button className='btn-primary'>Add to cart</button>
                         <Icon icon={heartSolid} className={wishedItem ? 'wished' : 'notWished'} onClick={() => handleWishClick()}/>
+                        <button className='btn-secondary'>Back to search results</button>
                     </div>
                 </div>
 

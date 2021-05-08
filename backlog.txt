@@ -9,4 +9,4 @@
 - BUG: Cuando hacés una búsqueda y después ingresás a través del header a una categoría, te sigue mostrando el formulario y los search params de la búsqueda previa, cuando te tendría que mostrar solo el param de la categoría seleccionada.
 - BUG: El dropdown debiese cerrarse cuando se hace click fuera de él.
 - BUG: cuando se va a url http://localhost:3001/item arroja error, la url cuando se ingresa e ver un item debiese ir acompañada por el ID del item. Si se va a url http://localhost:3001/item debiese mostrar 404.
-
+- BUG: Cuando se toca el boton 'categories' en la página de item, arroja error.

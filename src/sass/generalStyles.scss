@@ -26,11 +26,16 @@ $bitterGray: #131515;
 
     &:hover {
         opacity: 95%;
+        background-color: $sweetOrange;
     }
 
     &:active {
         opacity: 100%;
         background-color: #c4372b;
+    }
+
+    &:focus {
+        background-color: $sweetOrange;
     }
 }
 
