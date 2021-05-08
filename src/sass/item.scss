@@ -9,9 +9,22 @@
         justify-content: center;
         align-items: center;
 
-        .carousel-img {
-            width: 20rem;
-            margin: 0 2rem 0 0;
+        .item-carousel {
+            max-width: 31rem;
+
+            .carousel-img {
+                width: 30rem;
+                margin: 0 2rem 0 0;
+            }
+
+            .carousel-indicators {
+
+                button {
+                    border-radius: 50%;
+                    height: .5rem;
+                    width: .5rem;
+                }
+            }
         }
 
         .item-info {

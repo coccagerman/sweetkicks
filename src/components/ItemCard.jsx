@@ -9,7 +9,7 @@ import { useState } from 'react';
 import { Icon } from '@iconify/react';
 import heartSolid from '@iconify-icons/clarity/heart-solid';
 
-function ItemCard ({brand, model, category, price, latestRelease, discount, stock, imgUrl, wishListcounter, setwishListcounter}) {
+function ItemCard ({brand, model, category, price, latestRelease, discount, stock, mainImage, images, wishListcounter, setwishListcounter}) {
 
     // Regex used to insert thousand separator in forms' numeric inputs.
     function addNumberThousandSeparator(x) {
@@ -63,7 +63,7 @@ function ItemCard ({brand, model, category, price, latestRelease, discount, stoc
         <Link to={{
                 pathname:'/item',
                 state: {
-                    brand:{brand}, model:{model}, price:{price}, category:{category}, imgUrl:{imgUrl}
+                    brand:{brand}, model:{model}, price:{price}, category:{category}, mainImage:{mainImage}, images:{images}
                 }
             }} >
         <article class="item-card" >
@@ -72,7 +72,7 @@ function ItemCard ({brand, model, category, price, latestRelease, discount, stoc
                 {showLatestOrSaleIcon()}
                 <Icon icon={heartSolid} className={wishedItem ? 'wished' : 'notWished'} onClick={() => handleWishClick()}/>
             </div>
-            <img src={imgUrl} className="card-img" alt="Product"/>
+            <img src={mainImage} className="card-img" alt="Product"/>
             <div className="card-footer">
                 <h3 className="card-title">{model}</h3>
                 {showPrice()}

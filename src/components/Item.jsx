@@ -1,7 +1,8 @@
 import { Icon } from '@iconify/react';
 import heartSolid from '@iconify-icons/clarity/heart-solid';
 import { useState } from 'react';
-import { BrowserRouter as Router, Route, Switch, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import ItemCarousel from './ItemCarousel';
 
 function Item () {
 
@@ -18,7 +19,8 @@ function Item () {
     let model = location.state.model.model
     let price = location.state.price.price
     let category = location.state.category.category
-    let imgUrl = location.state.imgUrl.imgUrl
+    let mainImage = location.state.mainImage.mainImage
+    let images = location.state.images.images
     
     function handleWishClick () {
         console.log("I'll be erased soon.")
@@ -28,7 +30,8 @@ function Item () {
         <section className='itemPage'>
                 <div className="item-section_carouselAndInfo">
                     <div className="item-carousel">
-                        <img src={imgUrl} alt="product" className='carousel-img'/>
+                        <ItemCarousel mainImage={mainImage} images={images} />
+                        {/* <img src={mainImage} alt="product" className='carousel-img'/> */}
                     </div>
 
                     <div className="item-info">
