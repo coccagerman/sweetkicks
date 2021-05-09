@@ -1,8 +1,9 @@
+import { useState } from 'react';
+import { Link, useLocation } from "react-router-dom";
 import { Icon } from '@iconify/react';
 import heartSolid from '@iconify-icons/clarity/heart-solid';
-import { useState } from 'react';
-import { useLocation } from "react-router-dom";
 import ItemCarousel from './ItemCarousel';
+
 
 function Item () {
 
@@ -31,7 +32,7 @@ function Item () {
                 <div className="item-section_carouselAndInfo">
                     <div className="item-carousel">
                         <ItemCarousel mainImage={mainImage} images={images} />
-\                    </div>
+                    </div>
 
                     <div className="item-info">
                         <h2>{brand} {model} </h2>
@@ -40,7 +41,7 @@ function Item () {
                         <p>Sizes: </p>
                         <button className='btn-primary'>Add to cart</button>
                         <Icon icon={heartSolid} className={wishedItem ? 'wished' : 'notWished'} onClick={() => handleWishClick()}/>
-                        <button className='btn-secondary'>Back to search results</button>
+                        <Link to='/gallery' href="#searchResults"><button className='btn-secondary'>Back to search results</button></Link>
                     </div>
                 </div>
 

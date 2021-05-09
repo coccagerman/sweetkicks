@@ -1,6 +1,5 @@
 import { Icon } from '@iconify/react';
 import heartSolid from '@iconify-icons/clarity/heart-solid';
-import { useState } from 'react';
 
 function WishlistIcon ({wishListcounter}) {
     

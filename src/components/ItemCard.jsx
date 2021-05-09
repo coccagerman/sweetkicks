@@ -1,16 +1,25 @@
+import { Link } from "react-router-dom";
+import { useState, useContext } from 'react';
 import NikeIcon from '../assets/icons/nike-icon.png'
 import AdidasIcon from '../assets/icons/adidas-icon.png'
 import JordanIcon from '../assets/icons/jordan-icon.png'
 import PumaIcon from '../assets/icons/puma-icon.png'
 import ReebokIcon from '../assets/icons/reebok-icon.png'
 import UnderArmourIcon from '../assets/icons/underArmour-icon.png'
-import { Link } from "react-router-dom";
-import { useState } from 'react';
 import { Icon } from '@iconify/react';
 import heartSolid from '@iconify-icons/clarity/heart-solid';
+import Context from './Context';
 
-function ItemCard ({brand, model, category, price, latestRelease, discount, stock, mainImage, images, wishListcounter, setwishListcounter}) {
+function ItemCard ({id, brand, model, category, price, latestRelease, discount, stock, mainImage, images, wishListcounter, setwishListcounter}) {
 
+    function runTest () {
+        console.log(wishList)
+        console.log(wishList)
+    }
+
+    // Hook used to access wishlist and modify it
+    const {wishList, setwishList} = useContext(Context)
+    
     // Regex used to insert thousand separator in forms' numeric inputs.
     function addNumberThousandSeparator(x) {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
@@ -19,9 +28,13 @@ function ItemCard ({brand, model, category, price, latestRelease, discount, stoc
     // Hook used to store the wish list status
     const [wishedItem, setwishedItem] = useState(false)
 
-    function handleWishClick () {
+    function handleWishClick (id) {
         setwishedItem(!wishedItem)
         wishedItem === false ? setwishListcounter(wishListcounter+1) : setwishListcounter(wishListcounter-1)
+        
+        wishList.includes(id) ? wishList.splice(wishList.indexOf(id), 1) : setwishList(wishList.push(id))
+        
+        console.log(wishList)
     }
 
     // Function used to show the corresponding brand icon in each card
@@ -57,29 +70,30 @@ function ItemCard ({brand, model, category, price, latestRelease, discount, stoc
     }
 
     return (
-        <>
 
+        <article class="item-card" >
+            <div className='card-header'>
 
-        <Link to={{
+                <button onClick={() => runTest()}>Test</button>
+
+                <img src={showBraindIcon()} className='brand-icon' alt="Brand icon"/>
+                {showLatestOrSaleIcon()}
+                <Icon icon={heartSolid} className={wishedItem ? 'wished' : 'notWished'} onClick={() => handleWishClick(id)}/>
+            </div>
+            <Link to={{
                 pathname:'/item',
                 state: {
                     brand:{brand}, model:{model}, price:{price}, category:{category}, mainImage:{mainImage}, images:{images}
                 }
             }} >
-        <article class="item-card" >
-            <div className='card-header'>
-                <img src={showBraindIcon()} className='brand-icon' alt="Brand icon"/>
-                {showLatestOrSaleIcon()}
-                <Icon icon={heartSolid} className={wishedItem ? 'wished' : 'notWished'} onClick={() => handleWishClick()}/>
-            </div>
-            <img src={mainImage} className="card-img" alt="Product"/>
-            <div className="card-footer">
-                <h3 className="card-title">{model}</h3>
-                {showPrice()}
-            </div>
+                <img src={mainImage} className="card-img" alt="Product"/>
+                <div className="card-footer">
+                    <h3 className="card-title">{model}</h3>
+                    {showPrice()}
+                </div>
+            </Link>
         </article>
-        </Link>
-        </>
+
     )
 }
 

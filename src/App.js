@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Context from './components/Context';
 import { useState } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
@@ -16,6 +17,8 @@ function App() {
 
   // Hook used to show the number of items stored on the wish list
   const [wishListcounter, setwishListcounter] = useState(0)
+
+
 
   // Products database
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -53,7 +56,7 @@ function App() {
   const prodJordan7 = new Product ("jordan7", "Jordan", "AIR MAX 200", "Black", 15499, 'Basketball', false, 0, 9, [6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5], 'products/jordan/jordan7/jordan7_1.jpeg', ['products/jordan/jordan7/jordan7_2.jpeg', 'products/jordan/jordan7/jordan7_3.jpeg', 'products/jordan/jordan7/jordan7_4.jpeg', 'products/jordan/jordan7/jordan7_5.jpeg', 'products/jordan/jordan7/jordan7_6.jpeg']);
   const prodJordan8 = new Product ("jordan8", "Jordan", "MARS 270 LOW", "Black", 15499, 'Basketball', true, 0, 8, [8, 8.5], 'products/jordan/jordan8/jordan8_1.jpeg', ['products/jordan/jordan8/jordan8_2.jpeg', 'products/jordan/jordan8/jordan8_3.jpeg', 'products/jordan/jordan8/jordan8_4.jpeg', 'products/jordan/jordan8/jordan8_5.jpeg', 'products/jordan/jordan8/jordan8_6.jpeg']);
   const prodNike1 = new Product ("nike1", "Nike", "Air Zoom Pegasus 37", "White", 16999, 'Tennis', false, 5, 3, [8.5, 9, 9.5], 'products/nike/nike1/nike1_1.jpeg', ['products/nike/nike1/nike1_2.jpeg', 'products/nike/nike1/nike1_3.jpeg', 'products/nike/nike1/nike1_4.jpeg', 'products/nike/nike1/nike1_5.jpeg', 'products/nike/nike1/nike1_6.jpeg']);
-  const prodNike2 = new Product ("nike2", "Nike", "Nike Flex Control Tr4", "Black", 10499, 'Running', false, 0, 4, [6, 6.5, 8, 8.5], 'products/nike/nike2/nike2_1.jpeg', ['products/nike/nike2/nike2_2.jpeg', 'products/nike/nike2/nike2_3.jpeg', 'products/nike/nike2/nike2_4.jpeg', 'products/nike/nike2/nike2_5.jpeg', 'products/nike/nike2/nike2_6.jpeg', 'products/nike/nike2/nike2_7.jpeg', 'products/nike/nike2/nike2_8.jpeg']);
+  const prodNike2 = new Product ("nike2", "Nike", "Flex Control Tr4", "Black", 10499, 'Running', false, 0, 4, [6, 6.5, 8, 8.5], 'products/nike/nike2/nike2_1.jpeg', ['products/nike/nike2/nike2_2.jpeg', 'products/nike/nike2/nike2_3.jpeg', 'products/nike/nike2/nike2_4.jpeg', 'products/nike/nike2/nike2_5.jpeg', 'products/nike/nike2/nike2_6.jpeg', 'products/nike/nike2/nike2_7.jpeg', 'products/nike/nike2/nike2_8.jpeg']);
   const prodNike3 = new Product ("nike3", "Nike", "Air Max Oketo", "Grey", 11499, 'Street', false, 0, 10, [6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5], 'products/nike/nike3/nike3_1.jpeg', ['products/nike/nike3/nike3_2.jpeg', 'products/nike/nike3/nike3_3.jpeg', 'products/nike/nike3/nike3_4.jpeg', 'products/nike/nike3/nike3_5.jpeg', 'products/nike/nike3/nike3_6.jpeg']);
   const prodNike4 = new Product ("nike4", "Nike", "Air Max Excee", "White", 13999, 'Street', true, 0, 8, [6, 6.5, 7, 7.5, 9, 9.5], 'products/nike/nike4/nike4_1.jpeg', ['products/nike/nike4/nike4_2.jpeg', 'products/nike/nike4/nike4_3.jpeg', 'products/nike/nike4/nike4_4.jpeg', 'products/nike/nike4/nike4_5.jpeg', 'products/nike/nike4/nike4_6.jpeg']);
   const prodNike5 = new Product ("nike5", "Nike", "Air Max Alpha Trainer 2", "Grey", 12999, 'Running', true, 0, 6, [7.5, 8, 8.5, 9, 9.5], 'products/nike/nike5/nike5_1.jpeg', ['products/nike/nike4/nike4_2.jpeg', 'products/nike/nike4/nike4_3.jpeg', 'products/nike/nike4/nike4_4.jpeg', 'products/nike/nike4/nike4_5.jpeg', 'products/nike/nike4/nike4_6.jpeg']);
@@ -98,32 +101,44 @@ function App() {
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+
+  // hook used to store the array of products that will be shown in the gallery
+  const [wishList, setwishList] = useState ([])
+  
   return (
     <div className={darkMode === false ? 'lightMode' : 'darkMode'}>
         <Router>
-          <Header setDarkMode={setDarkMode} darkMode={darkMode} wishListcounter={wishListcounter} productsDataBase={productsDataBase} setProductsArray={setProductsArray} />
-          <Switch>
-            <Route path='/' exact>
-              <Hero darkMode={darkMode} productsDataBase={productsDataBase} setProductsArray={setProductsArray} />
-            </Route>
-            <Route path='/gallery'>
-              <Gallery darkMode={darkMode} productsDataBase={productsDataBase} productsArray={productsArray} setProductsArray={setProductsArray} wishListcounter={wishListcounter} setwishListcounter={setwishListcounter}/>
-            </Route>
 
+          <Context.Provider value={{wishList, setwishList}} >
 
-            <Route path='/item'>
-              <Item  />
-            </Route>
+            <Header setDarkMode={setDarkMode} darkMode={darkMode} wishListcounter={wishListcounter} productsDataBase={productsDataBase} setProductsArray={setProductsArray} />
+            
+            <Switch>
+              <Route path='/' exact>
+                <Hero darkMode={darkMode} productsDataBase={productsDataBase} setProductsArray={setProductsArray} />
+              </Route>
 
+              <Route path='/gallery'>
+                <Gallery darkMode={darkMode} productsDataBase={productsDataBase} productsArray={productsArray} setProductsArray={setProductsArray} wishListcounter={wishListcounter} setwishListcounter={setwishListcounter}/>
+              </Route>
 
-            <Route path='/wishlist'>
-              <Wishlist wishListcounter={wishListcounter} />
-            </Route>
-            <Route path='/about'>
-              <About productsDataBase={productsDataBase} setProductsArray={setProductsArray} />
-            </Route>
-          </Switch>
-          <Footer />
+              <Route path='/item'>
+                <Item  />
+              </Route>
+
+              <Route path='/wishlist'>
+                <Wishlist wishListcounter={wishListcounter} />
+              </Route>
+
+              <Route path='/about'>
+                <About productsDataBase={productsDataBase} setProductsArray={setProductsArray} />
+              </Route>
+            </Switch>
+
+            <Footer />
+
+          </Context.Provider>
+
         </Router>
     </div>
   );

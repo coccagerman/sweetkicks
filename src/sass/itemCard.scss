@@ -5,7 +5,6 @@
     margin: 1rem;
     border: solid $sweetGray 1px;
     border-radius: 1rem;
-    cursor: pointer;
     position: relative;
     box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.75);
     -webkit-box-shadow: 0px 5px 10px 0px rgba(0,0,0,0.75);
@@ -45,6 +44,7 @@
         }
 
         .notWished {
+            cursor: pointer;
             color: black;
             font-size: 1.5rem;
             position: absolute;
@@ -63,6 +63,7 @@
         }
 
         .wished {
+            cursor: pointer;
             color: $sweetOrange;
             font-size: 1.5rem;
             position: absolute;
