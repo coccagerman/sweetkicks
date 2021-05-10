@@ -5,6 +5,7 @@ import Header from './components/Header';
 import Hero from './components/Hero';
 import Gallery from './components/Gallery';
 import Item from './components/Item';
+import ShoppingCart from './components/ShoppingCart';
 import Wishlist from './components/Wishlist';
 import About from './components/About';
 import Footer from './components/Footer';
@@ -112,7 +113,7 @@ function App() {
           <Context.Provider value={{wishList, setwishList}} >
 
             <Header setDarkMode={setDarkMode} darkMode={darkMode} wishListcounter={wishListcounter} productsDataBase={productsDataBase} setProductsArray={setProductsArray} />
-            
+
             <Switch>
               <Route path='/' exact>
                 <Hero darkMode={darkMode} productsDataBase={productsDataBase} setProductsArray={setProductsArray} />
@@ -124,6 +125,10 @@ function App() {
 
               <Route path='/item'>
                 <Item  />
+              </Route>
+
+              <Route path='/shoppingcart'>
+                <ShoppingCart />
               </Route>
 
               <Route path='/wishlist'>

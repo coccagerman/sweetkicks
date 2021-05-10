@@ -3,8 +3,11 @@ import { useState } from 'react';
 import HeaderLogoDark from '../assets/sweetkicks_logo_header_dark.png'
 import HeaderLogoLight from '../assets/sweetkicks_logo_header_light.png'
 import WishlistIcon from './WishlistIcon'
+import ShoppingCartIcon from './ShoppingCartIcon'
 import { Icon } from '@iconify/react';
 import arrowDownAlt2 from '@iconify-icons/dashicons/arrow-down-alt2';
+
+
 
 function Header ({setDarkMode, darkMode, wishListcounter, productsDataBase, setProductsArray}) {
 
@@ -37,8 +40,10 @@ function Header ({setDarkMode, darkMode, wishListcounter, productsDataBase, setP
                     <li onClick={() => setProductsArray(productsDataBase.filter(item => (item.latestRelease)))}><Link to='/gallery' href="#searchResults" className='hover-effect'>Latest releases</Link></li>
                     <li><Link to="/about" className='hover-effect'>About</Link></li>
                     <li><a href="#" className='hover-effect'>My orders</a></li>
-                    <span class="iconify shoppingCart" data-icon="ph:shopping-cart-fill" data-inline="false"></span>
+
+                    <Link to="/shoppingcart"><ShoppingCartIcon /></Link>
                     <Link to="/wishlist"><WishlistIcon wishListcounter={wishListcounter} /></Link>
+
                     <li className='switch-container'>
                         <span className="iconify" data-icon="ion:sunny-outline" data-inline="false"></span>
                         <label className="switch" >

@@ -1,0 +1,37 @@
+.wishlist {
+    display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .wishlist-item{
+            margin: 1rem 0;
+            width: 50rem;
+            border-bottom: #ccc solid 1px;
+            display: flex;
+                justify-content: space-around;
+                align-items: flex-end;
+
+            img {
+                width: 8rem;
+            }
+
+            p {
+                font-size: 2rem;
+                padding-bottom: 1rem;
+            }
+
+            .icon {
+                font-size: 2rem;
+                margin-bottom: 2.5rem;
+                cursor: pointer;
+                color: black;
+                transition: .5s;
+
+                &:hover {
+                    color: $sweetOrange;
+                }
+            }
+
+        }
+}

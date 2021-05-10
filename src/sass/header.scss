@@ -137,10 +137,10 @@ header {
                 }
             }
 
-            .wishList-container {
+            .shoppingCart-container, .wishList-container {
                 position: relative;
                 display: flex;
-                .wishlist-counter {
+                .shoppingCart-counter, .wishlist-counter {
                     position: absolute;
                     right: 1.5rem;
                     top: 0rem;

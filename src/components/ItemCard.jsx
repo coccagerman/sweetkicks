@@ -10,12 +10,7 @@ import { Icon } from '@iconify/react';
 import heartSolid from '@iconify-icons/clarity/heart-solid';
 import Context from './Context';
 
-function ItemCard ({id, brand, model, category, price, latestRelease, discount, stock, mainImage, images, wishListcounter, setwishListcounter}) {
-
-    function runTest () {
-        console.log(wishList)
-        console.log(wishList)
-    }
+function ItemCard ({item, id, brand, model, category, price, latestRelease, discount, stock, mainImage, images, wishListcounter, setwishListcounter}) {
 
     // Hook used to access wishlist and modify it
     const {wishList, setwishList} = useContext(Context)
@@ -28,13 +23,14 @@ function ItemCard ({id, brand, model, category, price, latestRelease, discount, 
     // Hook used to store the wish list status
     const [wishedItem, setwishedItem] = useState(false)
 
-    function handleWishClick (id) {
-        setwishedItem(!wishedItem)
-        wishedItem === false ? setwishListcounter(wishListcounter+1) : setwishListcounter(wishListcounter-1)
+    function handleWishClick (item) {
+        // setwishedItem(!wishedItem)
+        // wishedItem === false ? setwishListcounter(wishListcounter+1) : setwishListcounter(wishListcounter-1)
         
-        wishList.includes(id) ? wishList.splice(wishList.indexOf(id), 1) : setwishList(wishList.push(id))
+        wishList.includes(item) ? setwishList(wishList.splice(wishList.indexOf(item), 1)) : setwishList([...wishList, item])
         
         console.log(wishList)
+        console.log(wishList.includes(item))
     }
 
     // Function used to show the corresponding brand icon in each card
@@ -74,11 +70,9 @@ function ItemCard ({id, brand, model, category, price, latestRelease, discount, 
         <article class="item-card" >
             <div className='card-header'>
 
-                <button onClick={() => runTest()}>Test</button>
-
                 <img src={showBraindIcon()} className='brand-icon' alt="Brand icon"/>
                 {showLatestOrSaleIcon()}
-                <Icon icon={heartSolid} className={wishedItem ? 'wished' : 'notWished'} onClick={() => handleWishClick(id)}/>
+                <Icon icon={heartSolid} className={wishList.includes(item) ? 'wished' : 'notWished'} onClick={() => handleWishClick(item)}/>
             </div>
             <Link to={{
                 pathname:'/item',
