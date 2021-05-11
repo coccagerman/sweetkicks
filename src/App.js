@@ -103,14 +103,18 @@ function App() {
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-  // hook used to store the array of products that will be shown in the gallery
+  // hook used to store the array of products in the wish list
   const [wishList, setwishList] = useState ([])
+
+    // hook used to store the array of products in shopping cart
+    const [shoppingCart, setShoppingCart] = useState ([])
+
   
   return (
     <div className={darkMode === false ? 'lightMode' : 'darkMode'}>
         <Router>
 
-          <Context.Provider value={{wishList, setwishList}} >
+          <Context.Provider value={{wishList, setwishList, shoppingCart, setShoppingCart}} >
 
             <Header setDarkMode={setDarkMode} darkMode={darkMode} wishListcounter={wishListcounter} productsDataBase={productsDataBase} setProductsArray={setProductsArray} />
 

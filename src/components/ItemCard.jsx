@@ -23,14 +23,10 @@ function ItemCard ({item, id, brand, model, category, price, latestRelease, disc
     // Hook used to store the wish list status
     const [wishedItem, setwishedItem] = useState(false)
 
-    function handleWishClick (item) {
-        // setwishedItem(!wishedItem)
-        // wishedItem === false ? setwishListcounter(wishListcounter+1) : setwishListcounter(wishListcounter-1)
-        
+    function handleAddToWishlist (item) {
         wishList.includes(item) ? setwishList(wishList.splice(wishList.indexOf(item), 1)) : setwishList([...wishList, item])
-        
         console.log(wishList)
-        console.log(wishList.includes(item))
+        console.log(wishList.lenght)
     }
 
     // Function used to show the corresponding brand icon in each card
@@ -72,12 +68,12 @@ function ItemCard ({item, id, brand, model, category, price, latestRelease, disc
 
                 <img src={showBraindIcon()} className='brand-icon' alt="Brand icon"/>
                 {showLatestOrSaleIcon()}
-                <Icon icon={heartSolid} className={wishList.includes(item) ? 'wished' : 'notWished'} onClick={() => handleWishClick(item)}/>
+                <Icon icon={heartSolid} className={wishList.includes(item) ? 'wished' : 'notWished'} onClick={() => handleAddToWishlist(item)}/>
             </div>
             <Link to={{
                 pathname:'/item',
                 state: {
-                    brand:{brand}, model:{model}, price:{price}, category:{category}, mainImage:{mainImage}, images:{images}
+                    item:{item}, brand:{brand}, model:{model}, price:{price}, category:{category}, mainImage:{mainImage}, images:{images}
                 }
             }} >
                 <img src={mainImage} className="card-img" alt="Product"/>

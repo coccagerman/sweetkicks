@@ -1,10 +1,10 @@
-.wishlist {
+.wishlist, .shoppingCart {
     display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
 
-        .wishlist-item{
+        .wishlist-item, .shoppingCart-item{
             margin: 1rem 0;
             width: 50rem;
             border-bottom: #ccc solid 1px;

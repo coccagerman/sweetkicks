@@ -1,21 +1,23 @@
-import { useState } from 'react';
+import { useContext } from 'react';
 import { Link, useLocation } from "react-router-dom";
 import { Icon } from '@iconify/react';
 import heartSolid from '@iconify-icons/clarity/heart-solid';
 import ItemCarousel from './ItemCarousel';
-
+import Context from './Context';
 
 function Item () {
+
+    // Hook used to access wishlist and modify it
+    const {wishList, setwishList, shoppingCart, setShoppingCart} = useContext(Context)
 
     // Regex used to insert thousand separator in forms' numeric inputs.
     function addNumberThousandSeparator(x) {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     }
 
-    // Hook used to store the wish list status
-    const [wishedItem, setwishedItem] = useState(false)
-    
-    let location = useLocation()
+    // Variables that store the props received from the item card
+    let location = useLocation() 
+    let item = location.state.item.item
     let brand = location.state.brand.brand
     let model = location.state.model.model
     let price = location.state.price.price
@@ -23,8 +25,17 @@ function Item () {
     let mainImage = location.state.mainImage.mainImage
     let images = location.state.images.images
     
-    function handleWishClick () {
-        console.log("I'll be erased soon.")
+    function handleAddToWishlist () {
+        wishList.includes(item) ? setwishList(wishList.splice(wishList.indexOf(item), 1)) : setwishList([...wishList, item])
+        console.log(wishList.includes(item))
+        console.log(wishList)
+        console.log(wishList.lenght)
+    }
+
+    function handleAddToShoppingCart () {
+        shoppingCart.includes(item) ? setShoppingCart(shoppingCart.splice(shoppingCart.indexOf(item), 1)) : setShoppingCart([...shoppingCart, item])
+        console.log(shoppingCart)
+        console.log(shoppingCart.lenght)
     }
 
     return (
@@ -39,8 +50,8 @@ function Item () {
                         <p>Category: {category}</p>
                         <p>Price: ${addNumberThousandSeparator(price)} </p>
                         <p>Sizes: </p>
-                        <button className='btn-primary'>Add to cart</button>
-                        <Icon icon={heartSolid} className={wishedItem ? 'wished' : 'notWished'} onClick={() => handleWishClick()}/>
+                        <button className='btn-primary' onClick={() => handleAddToShoppingCart()}>Add to cart</button>
+                        <Icon icon={heartSolid} className={wishList.includes(item) ? 'wished' : 'notWished'} onClick={() => handleAddToWishlist()}/>
                         <Link to='/gallery' href="#searchResults"><button className='btn-secondary'>Back to search results</button></Link>
                     </div>
                 </div>
