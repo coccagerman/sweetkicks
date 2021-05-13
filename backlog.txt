@@ -8,9 +8,10 @@
 - FEATURE: Implementar pop up que diga 'Se agregó producto a la wishlist' cuando se agrega prod. a wishlist.
 - FEATURE: Implementar reducer para gestionar estado de wishlist y carrito.
 - FEATURE: Implementar useMemo para evitar volver a renderizar componentes de manera innecesaria por useContext.
+- FEATURE: Añadir seccion inicial con hero, animaciones y un botón animado que te invite a clickear para ir a ver las zapas.
 - BUG: Cuando se añade producto a wishlist, el corazón queda atado a la tarjeta y no al producto. Si clickeas el corazón, y después hacés una búsqueda, el corazón queda pegado a la misma tarjeta.
 - BUG: Cuando hacés una búsqueda y después ingresás a través del header a una categoría, te sigue mostrando el formulario y los search params de la búsqueda previa, cuando te tendría que mostrar solo el param de la categoría seleccionada.
 - BUG: El dropdown debiese cerrarse cuando se hace click fuera de él.
 - BUG: cuando se va a url http://localhost:3001/item arroja error, la url cuando se ingresa e ver un item debiese ir acompañada por el ID del item. Si se va a url http://localhost:3001/item debiese mostrar 404.
 - BUG: Cuando se toca el boton 'categories' en la página de item, arroja error.
-- BUG: Cuando en la tarjeta del producto se clickea el corazón para añadir a la wishlist, te envía a la página del producto.
+- BUG: Corregir alineación y estilos de wishlist y shopping cart.

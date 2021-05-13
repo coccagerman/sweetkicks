@@ -7,34 +7,29 @@ import Context from './Context';
 
 function Item () {
 
-    // Hook used to access wishlist and modify it
+    // Hook used to access context
     const context = useContext(Context)
-
-    // Regex used to insert thousand separator in forms' numeric inputs.
-    function addNumberThousandSeparator(x) {
-        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-    }
 
     // Variables that store the props received from the item card
     let location = useLocation() 
     let item = location.state.item.item
-    let brand = location.state.brand.brand
-    let model = location.state.model.model
-    let price = location.state.price.price
-    let category = location.state.category.category
-    let mainImage = location.state.mainImage.mainImage
-    let images = location.state.images.images
+    let brand = location.state.item.item.brand
+    let model = location.state.item.item.model
+    let price = location.state.item.item.price
+    let category = location.state.item.item.category
+    let mainImage = location.state.item.item.mainImage
+    let images = location.state.item.item.images
     
+    // Functions that execute when the item is added to the wishlist or shopping cart
     function handleWishlistClick (item) {
         context.wishList.includes(item) ? context.wishlistSubstract(item) : context.wishlistAdd(item)
         console.log(context.wishList)
     }
 
-    // function handleAddToShoppingCart () {
-    //     contextFunctions.shoppingCart.includes(item) ? contextFunctions.setShoppingCart(contextFunctions.shoppingCart.splice(contextFunctions.shoppingCart.indexOf(item), 1)) : contextFunctions.setShoppingCart([...contextFunctions.shoppingCart, item])
-    //     console.log(contextFunctions.shoppingCart)
-    //     console.log(contextFunctions.shoppingCart.lenght)
-    // }
+    function handleShoppingCartClick (item) {
+        context.shoppingCart.includes(item) ? context.shoppingCartSubstract(item) : context.shoppingCartAdd(item)
+        console.log(context.shoppingCart)
+    }
 
     return (
         <section className='itemPage'>
@@ -46,10 +41,10 @@ function Item () {
                     <div className="item-info">
                         <h2>{brand} {model} </h2>
                         <p>Category: {category}</p>
-                        <p>Price: ${addNumberThousandSeparator(price)} </p>
+                        <p>Price: ${context.addNumberThousandSeparator(price)} </p>
                         <p>Sizes: </p>
-                        {/* <button className='btn-primary' onClick={() => handleAddToShoppingCart()}>Add to cart</button> */}
-                        <Icon icon={heartSolid} className={context.wishList.includes(item) ? 'wished' : 'notWished'} onClick={() => handleWishlistClick()}/>
+                        <button className='btn-primary' onClick={() => handleShoppingCartClick(item)}>Add to cart</button>
+                        <Icon icon={heartSolid} className={context.wishList.includes(item) ? 'wished' : 'notWished'} onClick={() => handleWishlistClick(item)}/>
                         <Link to='/gallery' href="#searchResults"><button className='btn-secondary'>Back to search results</button></Link>
                     </div>
                 </div>

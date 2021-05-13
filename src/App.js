@@ -58,7 +58,7 @@ function App() {
   const prodNike2 = new Product ("nike2", "Nike", "Flex Control Tr4", "Black", 10499, 'Running', false, 0, 4, [6, 6.5, 8, 8.5], 'products/nike/nike2/nike2_1.jpeg', ['products/nike/nike2/nike2_2.jpeg', 'products/nike/nike2/nike2_3.jpeg', 'products/nike/nike2/nike2_4.jpeg', 'products/nike/nike2/nike2_5.jpeg', 'products/nike/nike2/nike2_6.jpeg', 'products/nike/nike2/nike2_7.jpeg', 'products/nike/nike2/nike2_8.jpeg']);
   const prodNike3 = new Product ("nike3", "Nike", "Air Max Oketo", "Grey", 11499, 'Street', false, 0, 10, [6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5], 'products/nike/nike3/nike3_1.jpeg', ['products/nike/nike3/nike3_2.jpeg', 'products/nike/nike3/nike3_3.jpeg', 'products/nike/nike3/nike3_4.jpeg', 'products/nike/nike3/nike3_5.jpeg', 'products/nike/nike3/nike3_6.jpeg']);
   const prodNike4 = new Product ("nike4", "Nike", "Air Max Excee", "White", 13999, 'Street', true, 0, 8, [6, 6.5, 7, 7.5, 9, 9.5], 'products/nike/nike4/nike4_1.jpeg', ['products/nike/nike4/nike4_2.jpeg', 'products/nike/nike4/nike4_3.jpeg', 'products/nike/nike4/nike4_4.jpeg', 'products/nike/nike4/nike4_5.jpeg', 'products/nike/nike4/nike4_6.jpeg']);
-  const prodNike5 = new Product ("nike5", "Nike", "Air Max Alpha Trainer 2", "Grey", 12999, 'Running', true, 0, 6, [7.5, 8, 8.5, 9, 9.5], 'products/nike/nike5/nike5_1.jpeg', ['products/nike/nike4/nike4_2.jpeg', 'products/nike/nike4/nike4_3.jpeg', 'products/nike/nike4/nike4_4.jpeg', 'products/nike/nike4/nike4_5.jpeg', 'products/nike/nike4/nike4_6.jpeg']);
+  const prodNike5 = new Product ("nike5", "Nike", "Air Max Alpha Trainer 2", "Grey", 12999, 'Running', true, 0, 6, [7.5, 8, 8.5, 9, 9.5], 'products/nike/nike5/nike5_1.jpeg', ['products/nike/nike5/nike5_2.jpeg', 'products/nike/nike5/nike5_3.jpeg', 'products/nike/nike5/nike5_4.jpeg', 'products/nike/nike5/nike5_5.jpeg', 'products/nike/nike5/nike5_6.jpeg']);
   const prodNike6 = new Product ("nike6", "Nike", "NIGHTGAZER", "Black", 12999, 'Street', false, 0, 6, [6, 7.5, 8, 8.5, 9, 9.5], 'products/nike/nike6/nike6_1.jpeg', ['products/nike/nike6/nike6_2.jpeg', 'products/nike/nike6/nike6_3.jpeg', 'products/nike/nike6/nike6_4.jpeg']);
   const prodNike7 = new Product ("nike7", "Nike", "ZOOM WINFLO 6", "Black", 12999, 'Running', false, 10, 6, [6, 6.5, 7, 7.5, 8], 'products/nike/nike7/nike7_1.jpeg', ['products/nike/nike7/nike7_2.jpeg', 'products/nike/nike7/nike7_3.jpeg', 'products/nike/nike7/nike7_4.jpeg']);
   const prodNike8 = new Product ("nike8", "Nike", "Air Max Excee", "White", 15000, 'Street', false, 0, 6, [6, 6.5, 8, 8.5, 9, 9.5], 'products/nike/nike8/nike8_1.jpeg', ['products/nike/nike8/nike8_2.jpeg', 'products/nike/nike8/nike8_3.jpeg', 'products/nike/nike8/nike8_4.jpeg']);
@@ -100,23 +100,26 @@ function App() {
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+  // Regex used to insert thousand separator in forms' numeric inputs.
+  function addNumberThousandSeparator(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  }
 
-    // hook used to store the array of products in the wish list
-    const [wishList, setwishList] = useState ([])
+  // hooks used to store the arrays of products in the wishlist and shopping cart
+  const [wishList, setwishList] = useState ([])
+  const [shoppingCart, setShoppingCart] = useState ([])
 
-    // hook used to store the array of products in shopping cart
-    // const [shoppingCart, setShoppingCart] = useState ([])
+  // functions used to add and substract item from the wishlist and shopping cart
+  const wishlistAdd = (itemToAdd) => setwishList([...wishList, itemToAdd]);
+  const wishlistSubstract = (itemToSubstract) => setwishList(wishList.filter(item => (item !== itemToSubstract)));
+  const shoppingCartAdd = (itemToAdd) => setShoppingCart([...shoppingCart, itemToAdd]);
+  const shoppingCartSubstract = (itemToSubstract) => setShoppingCart(shoppingCart.filter(item => (item !== itemToSubstract)));
 
-    // const [test, setTest] = useState ([' Soy test 1 '], [' Soy test 2 '], [' Soy test 3 '])
-
-    const wishlistAdd = (itemToAdd) => setwishList([...wishList, itemToAdd]);
-    const wishlistSubstract = (itemToSubstract) => setwishList(wishList.filter(item => (item !== itemToSubstract)));
-  
   return (
     <div className={darkMode === false ? 'lightMode' : 'darkMode'}>
         <Router>
 
-          <Context.Provider value={{ wishList: wishList, wishlistAdd: wishlistAdd, wishlistSubstract: wishlistSubstract }}>
+          <Context.Provider value={{ wishList: wishList, wishlistAdd: wishlistAdd, wishlistSubstract: wishlistSubstract, shoppingCart: shoppingCart, shoppingCartAdd: shoppingCartAdd, shoppingCartSubstract: shoppingCartSubstract, addNumberThousandSeparator: addNumberThousandSeparator }}>
 
             <Header setDarkMode={setDarkMode} darkMode={darkMode} wishListcounter={wishListcounter} productsDataBase={productsDataBase} setProductsArray={setProductsArray} />
 
