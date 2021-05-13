@@ -13,7 +13,7 @@ import Context from './Context';
 function ItemCard ({item, id, brand, model, category, price, latestRelease, discount, stock, mainImage, images, wishListcounter, setwishListcounter}) {
 
     // Hook used to access wishlist and modify it
-    const {wishList, setwishList} = useContext(Context)
+    const context = useContext(Context)
     
     // Regex used to insert thousand separator in forms' numeric inputs.
     function addNumberThousandSeparator(x) {
@@ -23,10 +23,10 @@ function ItemCard ({item, id, brand, model, category, price, latestRelease, disc
     // Hook used to store the wish list status
     const [wishedItem, setwishedItem] = useState(false)
 
-    function handleAddToWishlist (item) {
-        wishList.includes(item) ? setwishList(wishList.splice(wishList.indexOf(item), 1)) : setwishList([...wishList, item])
-        console.log(wishList)
-        console.log(wishList.lenght)
+    function handleWishlistClick (item) {
+        context.wishList.includes(item) ? context.wishlistSubstract(item) : context.wishlistAdd(item)
+        console.log(context.wishList)
+        console.log(context.wishList.length)
     }
 
     // Function used to show the corresponding brand icon in each card
@@ -65,10 +65,10 @@ function ItemCard ({item, id, brand, model, category, price, latestRelease, disc
 
         <article class="item-card" >
             <div className='card-header'>
-
+                {/* <button onClick={() => console.log(context.wishList.some(item => item.id === id))}>Test</button> */}
                 <img src={showBraindIcon()} className='brand-icon' alt="Brand icon"/>
                 {showLatestOrSaleIcon()}
-                <Icon icon={heartSolid} className={wishList.includes(item) ? 'wished' : 'notWished'} onClick={() => handleAddToWishlist(item)}/>
+                <Icon icon={heartSolid} className={context.wishList.includes(item) ? 'wished' : 'notWished'} onClick={() => handleWishlistClick(item)}/>
             </div>
             <Link to={{
                 pathname:'/item',

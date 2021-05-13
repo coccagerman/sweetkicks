@@ -8,7 +8,7 @@ import Context from './Context';
 function Item () {
 
     // Hook used to access wishlist and modify it
-    const {wishList, setwishList, shoppingCart, setShoppingCart} = useContext(Context)
+    const context = useContext(Context)
 
     // Regex used to insert thousand separator in forms' numeric inputs.
     function addNumberThousandSeparator(x) {
@@ -25,18 +25,16 @@ function Item () {
     let mainImage = location.state.mainImage.mainImage
     let images = location.state.images.images
     
-    function handleAddToWishlist () {
-        wishList.includes(item) ? setwishList(wishList.splice(wishList.indexOf(item), 1)) : setwishList([...wishList, item])
-        console.log(wishList.includes(item))
-        console.log(wishList)
-        console.log(wishList.lenght)
+    function handleWishlistClick (item) {
+        context.wishList.includes(item) ? context.wishlistSubstract(item) : context.wishlistAdd(item)
+        console.log(context.wishList)
     }
 
-    function handleAddToShoppingCart () {
-        shoppingCart.includes(item) ? setShoppingCart(shoppingCart.splice(shoppingCart.indexOf(item), 1)) : setShoppingCart([...shoppingCart, item])
-        console.log(shoppingCart)
-        console.log(shoppingCart.lenght)
-    }
+    // function handleAddToShoppingCart () {
+    //     contextFunctions.shoppingCart.includes(item) ? contextFunctions.setShoppingCart(contextFunctions.shoppingCart.splice(contextFunctions.shoppingCart.indexOf(item), 1)) : contextFunctions.setShoppingCart([...contextFunctions.shoppingCart, item])
+    //     console.log(contextFunctions.shoppingCart)
+    //     console.log(contextFunctions.shoppingCart.lenght)
+    // }
 
     return (
         <section className='itemPage'>
@@ -50,8 +48,8 @@ function Item () {
                         <p>Category: {category}</p>
                         <p>Price: ${addNumberThousandSeparator(price)} </p>
                         <p>Sizes: </p>
-                        <button className='btn-primary' onClick={() => handleAddToShoppingCart()}>Add to cart</button>
-                        <Icon icon={heartSolid} className={wishList.includes(item) ? 'wished' : 'notWished'} onClick={() => handleAddToWishlist()}/>
+                        {/* <button className='btn-primary' onClick={() => handleAddToShoppingCart()}>Add to cart</button> */}
+                        <Icon icon={heartSolid} className={context.wishList.includes(item) ? 'wished' : 'notWished'} onClick={() => handleWishlistClick()}/>
                         <Link to='/gallery' href="#searchResults"><button className='btn-secondary'>Back to search results</button></Link>
                     </div>
                 </div>

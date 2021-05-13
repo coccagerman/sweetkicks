@@ -19,8 +19,6 @@ function App() {
   // Hook used to show the number of items stored on the wish list
   const [wishListcounter, setwishListcounter] = useState(0)
 
-
-
   // Products database
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -103,18 +101,22 @@ function App() {
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-  // hook used to store the array of products in the wish list
-  const [wishList, setwishList] = useState ([])
+    // hook used to store the array of products in the wish list
+    const [wishList, setwishList] = useState ([])
 
     // hook used to store the array of products in shopping cart
-    const [shoppingCart, setShoppingCart] = useState ([])
+    // const [shoppingCart, setShoppingCart] = useState ([])
 
+    // const [test, setTest] = useState ([' Soy test 1 '], [' Soy test 2 '], [' Soy test 3 '])
+
+    const wishlistAdd = (itemToAdd) => setwishList([...wishList, itemToAdd]);
+    const wishlistSubstract = (itemToSubstract) => setwishList(wishList.filter(item => (item !== itemToSubstract)));
   
   return (
     <div className={darkMode === false ? 'lightMode' : 'darkMode'}>
         <Router>
 
-          <Context.Provider value={{wishList, setwishList, shoppingCart, setShoppingCart}} >
+          <Context.Provider value={{ wishList: wishList, wishlistAdd: wishlistAdd, wishlistSubstract: wishlistSubstract }}>
 
             <Header setDarkMode={setDarkMode} darkMode={darkMode} wishListcounter={wishListcounter} productsDataBase={productsDataBase} setProductsArray={setProductsArray} />
 
