@@ -9,7 +9,7 @@ import arrowDownAlt2 from '@iconify-icons/dashicons/arrow-down-alt2';
 
 
 
-function Header ({setDarkMode, darkMode, wishListcounter, productsDataBase, setProductsArray}) {
+function Header ({setDarkMode, darkMode, productsDataBase, setProductsArray}) {
 
     // Hook used to show and hide the dropdown menu
     const [showDropdown, setshowDropdown] = useState(false)
@@ -42,7 +42,7 @@ function Header ({setDarkMode, darkMode, wishListcounter, productsDataBase, setP
                     <li><a href="#" className='hover-effect'>My orders</a></li>
 
                     <Link to="/shoppingcart"><ShoppingCartIcon /></Link>
-                    <Link to="/wishlist"><WishlistIcon wishListcounter={wishListcounter} /></Link>
+                    <Link to="/wishlist"><WishlistIcon /></Link>
 
                     <li className='switch-container'>
                         <span className="iconify" data-icon="ion:sunny-outline" data-inline="false"></span>

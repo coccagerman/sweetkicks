@@ -44,7 +44,7 @@ function Item () {
                         <p>Price: ${context.addNumberThousandSeparator(price)} </p>
                         <p>Sizes: </p>
                         <button className='btn-primary' onClick={() => handleShoppingCartClick(item)}>Add to cart</button>
-                        <Icon icon={heartSolid} className={context.wishList.includes(item) ? 'wished' : 'notWished'} onClick={() => handleWishlistClick(item)}/>
+                        <Icon icon={heartSolid} className={context.findInWishlist(item.id) ? 'wished' : 'notWished'} onClick={() => handleWishlistClick(item)}/>
                         <Link to='/gallery' href="#searchResults"><button className='btn-secondary'>Back to search results</button></Link>
                     </div>
                 </div>

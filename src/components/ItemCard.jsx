@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useState, useContext } from 'react';
+import { useContext } from 'react';
 import NikeIcon from '../assets/icons/nike-icon.png'
 import AdidasIcon from '../assets/icons/adidas-icon.png'
 import JordanIcon from '../assets/icons/jordan-icon.png'
@@ -10,7 +10,7 @@ import { Icon } from '@iconify/react';
 import heartSolid from '@iconify-icons/clarity/heart-solid';
 import Context from './Context';
 
-function ItemCard ({item, id, brand, model, category, price, latestRelease, discount, stock, mainImage, images, wishListcounter, setwishListcounter}) {
+function ItemCard ({item, brand, model, price, latestRelease, discount, mainImage}) {
 
     // Hook used to access context
     const context = useContext(Context)
@@ -58,7 +58,7 @@ function ItemCard ({item, id, brand, model, category, price, latestRelease, disc
             <div className='card-header'>
                 <img src={showBraindIcon()} className='brand-icon' alt="Brand icon"/>
                 {showLatestOrSaleIcon()}
-                <Icon icon={heartSolid} className={context.wishList.includes(item) ? 'wished' : 'notWished'} onClick={() => handleWishlistClick(item)}/>
+                <Icon icon={heartSolid} className={context.findInWishlist(item.id) ? 'wished' : 'notWished'} onClick={() => handleWishlistClick(item)}/>
             </div>
             <Link to={{
                 pathname:'/item',

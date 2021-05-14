@@ -1,12 +1,12 @@
 import ItemCard from './ItemCard';
 import GalleryHeader from './GalleryHeader';
 
-function Gallery ({productsDataBase, productsArray, setProductsArray, setwishListcounter, wishListcounter}) {
+function Gallery ({productsDataBase, productsArray, setProductsArray}) {
 
     // Function that displays the available items
     const showItemSearchResults = () => productsArray.map((item) => (
         <article>
-            <ItemCard item={item} id={item.id} brand={item.brand} model={item.model} category={item.category} color={item.color} price={item.price} latestRelease={item.latestRelease} discount={item.discount} stock={item.stock} mainImage={item.mainImage} images={item.images} wishListcounter={wishListcounter} setwishListcounter={setwishListcounter} />
+            <ItemCard item={item} brand={item.brand} model={item.model} price={item.price} latestRelease={item.latestRelease} discount={item.discount} mainImage={item.mainImage}/>
         </article>
         )
     )

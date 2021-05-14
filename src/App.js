@@ -16,9 +16,6 @@ function App() {
   // Hook used to track the dark mode state
   const [darkMode,setDarkMode] = useState(false);
 
-  // Hook used to show the number of items stored on the wish list
-  const [wishListcounter, setwishListcounter] = useState(0)
-
   // Products database
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -115,13 +112,22 @@ function App() {
   const shoppingCartAdd = (itemToAdd) => setShoppingCart([...shoppingCart, itemToAdd]);
   const shoppingCartSubstract = (itemToSubstract) => setShoppingCart(shoppingCart.filter(item => (item !== itemToSubstract)));
 
+  // Function used to identify items that were added to the wishlist
+  function findInWishlist (id) {
+    for (let i = 0; i < wishList.length; i++) {
+      if (wishList[i].id === id) {
+          return true
+      }
+    }
+  }
+
   return (
     <div className={darkMode === false ? 'lightMode' : 'darkMode'}>
         <Router>
 
-          <Context.Provider value={{ wishList: wishList, wishlistAdd: wishlistAdd, wishlistSubstract: wishlistSubstract, shoppingCart: shoppingCart, shoppingCartAdd: shoppingCartAdd, shoppingCartSubstract: shoppingCartSubstract, addNumberThousandSeparator: addNumberThousandSeparator }}>
+          <Context.Provider value={{ wishList: wishList, wishlistAdd: wishlistAdd, wishlistSubstract: wishlistSubstract, shoppingCart: shoppingCart, shoppingCartAdd: shoppingCartAdd, shoppingCartSubstract: shoppingCartSubstract, addNumberThousandSeparator: addNumberThousandSeparator, findInWishlist: findInWishlist }}>
 
-            <Header setDarkMode={setDarkMode} darkMode={darkMode} wishListcounter={wishListcounter} productsDataBase={productsDataBase} setProductsArray={setProductsArray} />
+            <Header setDarkMode={setDarkMode} darkMode={darkMode} productsDataBase={productsDataBase} setProductsArray={setProductsArray} />
 
             <Switch>
               <Route path='/' exact>
@@ -129,7 +135,7 @@ function App() {
               </Route>
 
               <Route path='/gallery'>
-                <Gallery darkMode={darkMode} productsDataBase={productsDataBase} productsArray={productsArray} setProductsArray={setProductsArray} wishListcounter={wishListcounter} setwishListcounter={setwishListcounter}/>
+                <Gallery darkMode={darkMode} productsDataBase={productsDataBase} productsArray={productsArray} setProductsArray={setProductsArray} />
               </Route>
 
               <Route path='/item'>
@@ -141,7 +147,7 @@ function App() {
               </Route>
 
               <Route path='/wishlist'>
-                <Wishlist wishListcounter={wishListcounter} />
+                <Wishlist />
               </Route>
 
               <Route path='/about'>
