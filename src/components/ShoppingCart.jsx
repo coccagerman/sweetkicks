@@ -15,9 +15,20 @@ function ShoppingCart () {
 
     return (
         <section className='shoppingCart'>
-            {context.shoppingCart.length === 0 ? 'Sorry mate, you have no items in your shopping cart yet.' : showShoppingCartItem()}
-            {context.shoppingCart.length !== 0 ? <p>Total items: {context.shoppingCart.length}</p> : null}
-            <p>Total price: </p>
+            {context.shoppingCart.length !== 0 ?
+                <>
+                    <h1>Buy and walk your dreams.</h1>
+                    {showShoppingCartItem()}
+                    <div>
+                        <p>Total items: {context.shoppingCart.length}</p>
+                        <p>Total price: </p>
+                        <button>Check out</button>
+                        <button>Keep buying</button>
+                        <button>Empty cart</button>
+                    </div>
+                </> : 
+                <h1>Sorry mate, you have no items in your shopping cart yet.</h1>
+            }
         </section>
     )
 }

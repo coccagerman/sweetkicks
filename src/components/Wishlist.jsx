@@ -15,8 +15,10 @@ function Wishlist () {
 
     return (
         <section className='wishlist'>
-            {context.wishList.length === 0 ? 'Sorry mate, you have no items in your wish list yet.' : showWishlistItem()}
-            {context.wishList.length !== 0 ? <p>Wished items: {context.wishList.length}</p> : null}
+            {context.wishList.length !== 0 ? <h1>Stop wishing, start enjoying.</h1> : <h1>Sorry mate, you have no items in your wish list yet.</h1> }
+            {showWishlistItem()}
+            {/* {context.wishList.length === 0 ? <p className='details'>Sorry mate, you have no items in your wish list yet.</p> : showWishlistItem()} */}
+            {context.wishList.length !== 0 ? <p className='details'>Wished items: {context.wishList.length}</p> : null}
         </section>
     )
 }

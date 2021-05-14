@@ -4,10 +4,17 @@
         justify-content: center;
         align-items: center;
 
+        h1 {
+            font-size: 4rem;
+            margin-top: 1rem;
+        }
+
         .wishlist-item, .shoppingCart-item{
             margin: 1rem 0;
             width: 50rem;
             border-bottom: #ccc solid 1px;
+            background-color: white;
+            color: black;
             display: flex;
                 justify-content: space-around;
                 align-items: flex-end;
@@ -34,4 +41,22 @@
             }
 
         }
+
+        .details {
+            font-size: 3rem;
+        }
+}
+
+.lightMode {
+    .wishlist, .shoppingCart {
+        background-color: white;
+        color: black;
+    }
+}
+
+.darkMode {
+    .wishlist, .shoppingCart {
+        background-color: $bitterGray;
+        color: white;
+    }
 }

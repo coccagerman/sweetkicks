@@ -5,12 +5,13 @@
     align-items: center;
 
     .item-section_carouselAndInfo{
+        padding: 2rem 0;
         display: flex;
         justify-content: center;
         align-items: center;
 
         .item-carousel {
-            width: 40rem;
+            width: 31rem;
             
             .carousel-img {
                 width: 30rem;
@@ -18,7 +19,6 @@
             }
 
             .carousel-indicators {
-
                 button {
                     border-radius: 50%;
                     height: .5rem;
@@ -49,10 +49,8 @@
 
             .notWished {
                 cursor: pointer;
-                color: black;
                 font-size: 2.5rem;
                 transition: .25s;
-                color: black;
     
                 &:hover {
                     color: $sweetOrange;
@@ -82,6 +80,27 @@
         font-size: 1.25rem;
         max-width: 50rem;
         margin: 2rem 0;
+        }
+    }
+}
+
+.lightMode {
+    .itemPage {
+        background-color: white;
+
+        .notWished {
+            color: black;
+        }
+    }
+}
+
+.darkMode {
+    .itemPage {
+        background-color: $bitterGray;
+        color: white;
+
+        .notWished {
+            color: white;
         }
     }
 }
