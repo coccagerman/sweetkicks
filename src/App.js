@@ -32,6 +32,7 @@ function App() {
     this.discount = discount;
     this.stock = stock;
     this.sizes = sizes;
+    this.finalPrice = Math.round(this.price-(this.price*(this.discount/100)));
     this.mainImage = mainImage;
     this.images = images;
 }
@@ -102,15 +103,19 @@ function App() {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   }
 
+  // hook that stores the product seach parameters
+  const [searchParams, setSearchParams] = useState([]);
+
   // hooks used to store the arrays of products in the wishlist and shopping cart
   const [wishList, setwishList] = useState ([])
   const [shoppingCart, setShoppingCart] = useState ([])
 
-  // functions used to add and substract item from the wishlist and shopping cart
+  // functions used to add and substract items from the wishlist and shopping cart
   const wishlistAdd = (itemToAdd) => setwishList([...wishList, itemToAdd]);
   const wishlistSubstract = (itemToSubstract) => setwishList(wishList.filter(item => (item !== itemToSubstract)));
   const shoppingCartAdd = (itemToAdd) => setShoppingCart([...shoppingCart, itemToAdd]);
   const shoppingCartSubstract = (itemToSubstract) => setShoppingCart(shoppingCart.filter(item => (item !== itemToSubstract)));
+  const emptyShoppingCart = () => setShoppingCart([])
 
   // Function used to identify items that were added to the wishlist
   function findInWishlist (id) {
@@ -125,7 +130,7 @@ function App() {
     <div className={darkMode === false ? 'lightMode' : 'darkMode'}>
         <Router>
 
-          <Context.Provider value={{ wishList: wishList, wishlistAdd: wishlistAdd, wishlistSubstract: wishlistSubstract, shoppingCart: shoppingCart, shoppingCartAdd: shoppingCartAdd, shoppingCartSubstract: shoppingCartSubstract, addNumberThousandSeparator: addNumberThousandSeparator, findInWishlist: findInWishlist }}>
+          <Context.Provider value={{ wishList: wishList, wishlistAdd: wishlistAdd, wishlistSubstract: wishlistSubstract, shoppingCart: shoppingCart, shoppingCartAdd: shoppingCartAdd, shoppingCartSubstract: shoppingCartSubstract, emptyShoppingCart: emptyShoppingCart, addNumberThousandSeparator: addNumberThousandSeparator, findInWishlist: findInWishlist, searchParams: searchParams, setSearchParams: setSearchParams }}>
 
             <Header setDarkMode={setDarkMode} darkMode={darkMode} productsDataBase={productsDataBase} setProductsArray={setProductsArray} />
 

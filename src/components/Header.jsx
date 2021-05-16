@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState } from 'react';
+import { useContext } from 'react';
+import Context from './Context';
 import HeaderLogoDark from '../assets/sweetkicks_logo_header_dark.png'
 import HeaderLogoLight from '../assets/sweetkicks_logo_header_light.png'
 import WishlistIcon from './WishlistIcon'
@@ -7,9 +9,10 @@ import ShoppingCartIcon from './ShoppingCartIcon'
 import { Icon } from '@iconify/react';
 import arrowDownAlt2 from '@iconify-icons/dashicons/arrow-down-alt2';
 
-
-
 function Header ({setDarkMode, darkMode, productsDataBase, setProductsArray}) {
+
+    // Hook used to access context
+    const context = useContext(Context)
 
     // Hook used to show and hide the dropdown menu
     const [showDropdown, setshowDropdown] = useState(false)
@@ -18,6 +21,7 @@ function Header ({setDarkMode, darkMode, productsDataBase, setProductsArray}) {
     function handleCategoryBtnClick (category) {
         setshowDropdown(!showDropdown)
         setProductsArray(productsDataBase.filter(item => (item.category === category)))
+        context.setSearchParams([])
     }
 
     return (

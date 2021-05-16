@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Karantina:wght@300;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -6,6 +7,10 @@
           box-sizing: border-box;
   font-family: 'Karantina', cursive;
   scroll-behavior: smooth;
+}
+
+a {
+  text-decoration: none;
 }
 
 .displayNone {
@@ -22,11 +27,61 @@
 
 .btn-primary:hover {
   opacity: 95%;
+  background-color: #e03f31;
 }
 
 .btn-primary:active {
   opacity: 100%;
   background-color: #c4372b;
+}
+
+.btn-primary:focus {
+  background-color: #e03f31;
+}
+
+.btn-secondary {
+  background-color: gray;
+  color: white;
+  padding: .5rem 0;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  opacity: 95%;
+  background-color: gray;
+}
+
+.btn-secondary:active {
+  opacity: 100%;
+  background-color: #686767;
+}
+
+.btn-secondary:focus {
+  background-color: gray;
+}
+
+.btn-tertiary {
+  background-color: black;
+  border: white solid 1px;
+  color: white;
+  padding: .5rem 0;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-tertiary:hover {
+  opacity: 95%;
+  background-color: #181818;
+}
+
+.btn-tertiary:active {
+  opacity: 100%;
+  background-color: #181818;
+}
+
+.btn-tertiary:focus {
+  background-color: #181818;
 }
 
 header {
@@ -192,7 +247,7 @@ header nav ul .hiddenDropdown {
 }
 
 header nav ul .shoppingCart, header nav ul .wishList {
-  margin-right: 2rem;
+  margin: .65rem 2rem 0 0;
   cursor: pointer;
   -webkit-transition: .5s;
   transition: .5s;
@@ -202,17 +257,17 @@ header nav ul .shoppingCart:hover, header nav ul .wishList:hover {
   color: #e03f31 !important;
 }
 
-header nav ul .wishList-container {
+header nav ul .shoppingCart-container, header nav ul .wishList-container {
   position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
 
-header nav ul .wishList-container .wishlist-counter {
+header nav ul .shoppingCart-container .shoppingCart-counter, header nav ul .shoppingCart-container .wishlist-counter, header nav ul .wishList-container .shoppingCart-counter, header nav ul .wishList-container .wishlist-counter {
   position: absolute;
   right: 1.5rem;
-  top: -.5rem;
+  top: 0rem;
   height: 1.45rem;
   width: 1.45rem;
   border-radius: 50%;
@@ -228,12 +283,14 @@ header nav ul .wishList-container .wishlist-counter {
           align-items: center;
 }
 
-header nav ul .wishList-container .wishlist-counter p {
+header nav ul .shoppingCart-container .shoppingCart-counter p, header nav ul .shoppingCart-container .wishlist-counter p, header nav ul .wishList-container .shoppingCart-counter p, header nav ul .wishList-container .wishlist-counter p {
   color: white;
   font-size: 1.25rem;
+  margin: 0;
 }
 
 header nav ul .switch-container {
+  margin: 0 0 .5rem 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -334,6 +391,7 @@ header nav ul .switch-container .iconify {
 
 .lightMode header nav ul .dropdown {
   background-color: black;
+  padding: 0;
 }
 
 .lightMode header nav ul .dropdown a {
@@ -358,6 +416,7 @@ header nav ul .switch-container .iconify {
 
 .darkMode header nav ul .dropdown {
   background-color: white;
+  padding: 0;
 }
 
 .darkMode header nav ul .dropdown a {
@@ -399,7 +458,7 @@ header nav ul .switch-container .iconify {
   color: white;
   font-size: 3rem;
   position: absolute;
-  bottom: 1rem;
+  bottom: 2.5rem;
   cursor: pointer;
 }
 
@@ -554,22 +613,93 @@ header nav ul .switch-container .iconify {
 .item-card {
   background-color: white;
   width: 15rem;
+  height: 22rem;
   margin: 1rem;
   border: solid #ccc 1px;
   border-radius: 1rem;
-  cursor: pointer;
   position: relative;
   box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.75);
   -webkit-box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.75);
 }
 
-.item-card .brand-icon {
+.item-card .card-header {
+  border: none;
+  padding-top: .5rem;
+  position: relative;
+  z-index: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.item-card .card-header .brand-icon {
   width: 2rem;
   position: absolute;
-  top: 1rem;
   left: 1rem;
-  z-index: 1;
+  top: 1rem;
+}
+
+.item-card .card-header .LatestOrSale-icon {
+  background-color: #e03f31;
+  color: white;
+  font-size: 1.25rem;
+  width: 5rem;
+  height: 2rem;
+  position: absolute;
+  right: 4.75rem;
+  top: .75rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.item-card .card-header .LatestOrSale-icon p {
+  margin: auto;
+}
+
+.item-card .card-header .notWished {
+  cursor: pointer;
+  color: black;
+  font-size: 1.5rem;
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  -webkit-transition: .25s;
+  transition: .25s;
+  color: black;
+}
+
+.item-card .card-header .notWished:hover {
+  color: #e03f31;
+}
+
+.item-card .card-header .notWished:active {
+  font-size: 1.75rem;
+}
+
+.item-card .card-header .wished {
+  cursor: pointer;
+  color: #e03f31;
+  font-size: 1.5rem;
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  -webkit-transition: .25s;
+  transition: .25s;
+}
+
+.item-card .card-header .wished:active {
+  font-size: 1.75rem;
 }
 
 .item-card .card-img {
@@ -577,6 +707,7 @@ header nav ul .switch-container .iconify {
   padding: 2rem .5rem 0 .5rem;
   -webkit-transition: .5s;
   transition: .5s;
+  border: none;
 }
 
 .item-card .card-img:hover {
@@ -584,50 +715,269 @@ header nav ul .switch-container .iconify {
           transform: scale(1.05);
 }
 
-.item-card .card-body {
+.item-card .card-footer {
+  border: none;
   text-align: center;
-  margin-bottom: 1rem;
 }
 
-.item-card .card-body .card-title {
-  font-size: 1.6rem;
-}
-
-.item-card .card-body .card-price {
+.item-card .card-footer .card-title {
   font-size: 2rem;
-}
-
-.item-card .card-body .notWished {
   color: black;
-  font-size: 1.5rem;
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  -webkit-transition: .25s;
-  transition: .25s;
+  margin: 0;
+}
+
+.item-card .card-footer .card-price {
+  font-size: 2rem;
   color: black;
+  margin-top: -.5rem;
 }
 
-.item-card .card-body .notWished:hover {
-  color: #e03f31;
-}
-
-.item-card .card-body .notWished:active {
+.item-card .card-footer .card-price .noDiscountPrice {
+  text-decoration: line-through;
+  color: gray;
+  margin-right: .5rem;
   font-size: 1.75rem;
 }
 
-.item-card .card-body .wished {
+.item-card .card-footer .card-price .discountPercentage {
+  margin-left: .5rem;
+  font-size: 1.75rem;
   color: #e03f31;
-  font-size: 1.5rem;
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
+}
+
+.itemPage {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.itemPage .item-section_carouselAndInfo {
+  padding: 2rem 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.itemPage .item-section_carouselAndInfo .item-carousel {
+  width: 31rem;
+}
+
+.itemPage .item-section_carouselAndInfo .item-carousel .carousel-img {
+  width: 30rem;
+  margin: auto;
+}
+
+.itemPage .item-section_carouselAndInfo .item-carousel .carousel-indicators button {
+  border-radius: 50%;
+  height: .5rem;
+  width: .5rem;
+}
+
+.itemPage .item-section_carouselAndInfo .item-info {
+  font-size: 2rem;
+  margin: 0 0 0 2rem;
+}
+
+.itemPage .item-section_carouselAndInfo .item-info h2 {
+  margin-bottom: 2rem;
+}
+
+.itemPage .item-section_carouselAndInfo .item-info button {
+  margin: 2rem 1rem 1rem 0;
+  font-size: 2rem;
+  width: 12rem;
+}
+
+.itemPage .item-section_carouselAndInfo .item-info .btn-secondary {
+  display: block;
+  margin: 0;
+  width: 16rem;
+}
+
+.itemPage .item-section_carouselAndInfo .item-info .notWished {
+  cursor: pointer;
+  font-size: 2.5rem;
   -webkit-transition: .25s;
   transition: .25s;
 }
 
-.item-card .card-body .wished:active {
+.itemPage .item-section_carouselAndInfo .item-info .notWished:hover {
+  color: #e03f31;
+}
+
+.itemPage .item-section_carouselAndInfo .item-info .notWished:active {
+  font-size: 3rem;
+}
+
+.itemPage .item-section_carouselAndInfo .item-info .wished {
+  cursor: pointer;
+  color: #e03f31;
+  font-size: 2.5rem;
+  -webkit-transition: .25s;
+  transition: .25s;
+}
+
+.itemPage .item-section_carouselAndInfo .item-info .wished:active {
+  font-size: 3rem;
+}
+
+.itemPage .item-description p {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.25rem;
+  max-width: 50rem;
+  margin: 2rem 0;
+}
+
+.lightMode .itemPage {
+  background-color: white;
+}
+
+.lightMode .itemPage .notWished {
+  color: black;
+}
+
+.darkMode .itemPage {
+  background-color: #131515;
+  color: white;
+}
+
+.darkMode .itemPage .notWished {
+  color: white;
+}
+
+.wishlist, .shoppingCart {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.wishlist h1, .shoppingCart h1 {
+  font-size: 4rem;
+  margin-top: 1rem;
+}
+
+.wishlist .wishlist-item, .wishlist .shoppingCart-item, .shoppingCart .wishlist-item, .shoppingCart .shoppingCart-item {
+  width: 60rem;
+  position: relative;
+  margin: .5rem 0;
+  padding: 0 2rem;
+  border-bottom: #ccc solid 1px;
+  background-color: white;
+  color: black;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
+.wishlist .wishlist-item img, .wishlist .shoppingCart-item img, .shoppingCart .wishlist-item img, .shoppingCart .shoppingCart-item img {
+  width: 8rem;
+}
+
+.wishlist .wishlist-item p, .wishlist .shoppingCart-item p, .shoppingCart .wishlist-item p, .shoppingCart .shoppingCart-item p {
+  font-size: 2rem;
+  padding-bottom: 1rem;
+}
+
+.wishlist .wishlist-item .icon, .wishlist .shoppingCart-item .icon, .shoppingCart .wishlist-item .icon, .shoppingCart .shoppingCart-item .icon {
   font-size: 1.75rem;
+  margin-bottom: 2.5rem;
+  cursor: pointer;
+  color: black;
+  -webkit-transition: .5s;
+  transition: .5s;
+}
+
+.wishlist .wishlist-item .icon:hover, .wishlist .shoppingCart-item .icon:hover, .shoppingCart .wishlist-item .icon:hover, .shoppingCart .shoppingCart-item .icon:hover {
+  color: #e03f31;
+}
+
+.wishlist .wishlist-item .item-name, .wishlist .shoppingCart-item .item-name, .shoppingCart .wishlist-item .item-name, .shoppingCart .shoppingCart-item .item-name {
+  position: absolute;
+  left: 15rem;
+}
+
+.wishlist .wishlist-item .item-price, .wishlist .shoppingCart-item .item-price, .shoppingCart .wishlist-item .item-price, .shoppingCart .shoppingCart-item .item-price {
+  position: absolute;
+  left: 35rem;
+}
+
+.wishlist .wishlist-item .buy-icon, .wishlist .shoppingCart-item .buy-icon, .shoppingCart .wishlist-item .buy-icon, .shoppingCart .shoppingCart-item .buy-icon {
+  position: absolute;
+  right: 11rem;
+  bottom: 0rem;
+}
+
+.wishlist .details, .shoppingCart .details {
+  margin-top: 2rem;
+  font-size: 3rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.wishlist .details p, .shoppingCart .details p {
+  margin: 0 2rem;
+}
+
+.wishlist .btns, .shoppingCart .btns {
+  font-size: 2.5rem;
+  margin-bottom: 4rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.wishlist .btns .btn-tertiary, .wishlist .btns .btn-secondary, .wishlist .btns .btn-primary, .shoppingCart .btns .btn-tertiary, .shoppingCart .btns .btn-secondary, .shoppingCart .btns .btn-primary {
+  margin: 0 1rem;
+  padding: 0 1rem;
+}
+
+.lightMode .wishlist, .lightMode .shoppingCart {
+  background-color: white;
+  color: black;
+}
+
+.darkMode .wishlist, .darkMode .shoppingCart {
+  background-color: #131515;
+  color: #ccc;
 }
 
 .aboutUs {
@@ -726,11 +1076,6 @@ header nav ul .switch-container .iconify {
 
 .aboutUs .links .link-img-container img {
   width: 28.3rem;
-}
-
-.aboutUs .link-img-container:hover, .aboutUs .img-container:hover {
-  -webkit-filter: gray;
-          filter: gray;
 }
 
 .aboutUs .link-img-container p, .aboutUs .img-container p {

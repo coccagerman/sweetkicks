@@ -10,7 +10,7 @@ function WishlistIcon () {
 
     return (
         <div className='wishList-container'>
-            <Icon icon={heartSolid} className='wishList' /> 
+            <Icon icon={heartSolid} className='wishList-icon' /> 
             <span className={context.wishList.length !== 0 ? 'wishlist-counter' : 'displayNone'}><p>{context.wishList.length}</p></span>
         </div>
     )

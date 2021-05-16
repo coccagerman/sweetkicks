@@ -9,27 +9,29 @@
             margin-top: 1rem;
         }
 
-        .wishlist-item, .shoppingCart-item{
-            margin: 1rem 0;
-            width: 50rem;
+        .wishlist-item, .shoppingCart-item {
+            width: 60rem;
+            position: relative;
+            margin: .5rem 0;
+            padding: .5rem 2rem;
             border-bottom: #ccc solid 1px;
-            background-color: white;
             color: black;
             display: flex;
-                justify-content: space-around;
+                justify-content: space-between;
                 align-items: flex-end;
 
             img {
                 width: 8rem;
+                border-radius: 1rem;
             }
 
             p {
-                font-size: 2rem;
+                font-size: 2.5rem;
                 padding-bottom: 1rem;
             }
 
             .icon {
-                font-size: 2rem;
+                font-size: 2.25rem;
                 margin-bottom: 2.5rem;
                 cursor: pointer;
                 color: black;
@@ -40,10 +42,42 @@
                 }
             }
 
+            .item-name {
+                position: absolute;
+                left: 15rem;
+            }
+
+            .item-price {
+                position: absolute;
+                left: 35rem;
+            }
+
+            .buy-icon {
+                position: absolute;
+                right: 11rem;
+                bottom: .5rem;
+            }
         }
 
         .details {
+            margin-top: 2rem;
             font-size: 3rem;
+            display: flex;
+            p {
+                margin: 0 2rem;
+            }
+        }
+
+        .btns {
+            font-size: 2.5rem;
+            margin: 1rem 0 4rem 0;
+            display: flex;
+                justify-content: center;
+                align-items: center;
+
+                .btn-tertiary, .btn-secondary, .btn-primary {
+                    margin: 0 1rem;
+                }
         }
 }
 
@@ -52,11 +86,20 @@
         background-color: white;
         color: black;
     }
+
+    .wishlist-item, .shoppingCart-item {
+        transition: .5s;
+        background-color: white;
+    }
 }
 
 .darkMode {
     .wishlist, .shoppingCart {
         background-color: $bitterGray;
         color: white;
+    }
+    .wishlist-item, .shoppingCart-item {
+        transition: .5s;
+        background-color: #ccc;
     }
 }

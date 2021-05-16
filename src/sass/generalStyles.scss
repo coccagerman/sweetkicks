@@ -9,6 +9,10 @@
     scroll-behavior: smooth;
 }
 
+a {
+    text-decoration: none;
+}
+
 $sweetOrange: #e03f31;
 $sweetGray: #ccc;
 $bitterGray: #131515;
@@ -19,8 +23,9 @@ $bitterGray: #131515;
 
 .btn-primary {
     background-color: $sweetOrange;
+    font-size: 2.5rem;
     color: white;
-    padding: .5rem 0;
+    padding: 0 1rem;
     border: none;
     cursor: pointer;
 
@@ -41,8 +46,9 @@ $bitterGray: #131515;
 
 .btn-secondary {
     background-color: gray;
+    font-size: 2.5rem;
     color: white;
-    padding: .5rem 0;
+    padding: 0 1rem;
     border: none;
     cursor: pointer;
 
@@ -61,6 +67,26 @@ $bitterGray: #131515;
     }
 }
 
-a {
-    text-decoration: none;
+.btn-tertiary {
+    background-color: black;
+    font-size: 2.5rem;
+    border: white solid 1px;
+    color: white;
+    padding: 0 1rem;
+    border: none;
+    cursor: pointer;
+
+    &:hover {
+        opacity: 95%;
+        background-color: rgb(24, 24, 24);
+    }
+
+    &:active {
+        opacity: 100%;
+        background-color: rgb(24, 24, 24);
+    }
+
+    &:focus {
+        background-color: rgb(24, 24, 24);
+    }
 }

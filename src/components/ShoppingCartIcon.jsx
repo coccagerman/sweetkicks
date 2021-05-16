@@ -10,7 +10,7 @@ function ShoppingCartIcon () {
 
     return (
         <div className='shoppingCart-container'>
-            <Icon className='shoppingCart' icon={shoppingCart} />
+            <Icon className='shoppingCart-icon' icon={shoppingCart} />
             <span className={context.shoppingCart.length !== 0 ? 'shoppingCart-counter' : 'displayNone'}><p>{context.shoppingCart.length}</p></span>
         </div>
     )

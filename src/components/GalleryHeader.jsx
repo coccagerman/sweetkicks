@@ -1,6 +1,11 @@
 import { useState } from 'react';
+import { useContext } from 'react';
+import Context from './Context';
 
 function GalleryHeader ({productsDataBase, setProductsArray, productsArray}) {
+
+    // Hook used to access context
+    const context = useContext(Context)
 
     // Hooks used to store the search parameters entered in the form
     const [desiredBrand,setDesiredBrand] = useState('');
@@ -8,7 +13,6 @@ function GalleryHeader ({productsDataBase, setProductsArray, productsArray}) {
     const [desiredSize,setDesiredSize] = useState('');
     const [desiredMaxPrice,setDesiredMaxPrice] = useState('');
     const [desiredColor,setDesiredColor] = useState('');
-    const [searchParams, setSearchParams] = useState([]);
 
     // Function used to search products according to the params entered in the form
     function searchProducts () {
@@ -16,13 +20,13 @@ function GalleryHeader ({productsDataBase, setProductsArray, productsArray}) {
         // Empty form
         if (!desiredBrand && !desiredCategory && !desiredSize && !desiredMaxPrice && !desiredColor) {setProductsArray(productsDataBase)}
         // Complete form
-        if (desiredBrand && desiredCategory && desiredSize && desiredMaxPrice && desiredColor) {setProductsArray(productsDataBase.filter(item => (item.brand === desiredBrand && item.category === desiredCategory && item.sizes.includes(desiredSize) && item.price <= desiredMaxPrice && item.color === desiredColor )))}
+        if (desiredBrand && desiredCategory && desiredSize && desiredMaxPrice && desiredColor) {setProductsArray(productsDataBase.filter(item => (item.brand === desiredBrand && item.category === desiredCategory && item.sizes.includes(desiredSize) && item.finalPrice <= desiredMaxPrice && item.color === desiredColor )))}
         // Only brand
         if (desiredBrand && !desiredCategory && !desiredSize && !desiredMaxPrice && !desiredColor) {setProductsArray(productsDataBase.filter(item => (item.brand === desiredBrand)))}
         // Only category
         if (!desiredBrand && desiredCategory && !desiredSize && !desiredMaxPrice && !desiredColor) {setProductsArray(productsDataBase.filter(item => (item.category === desiredCategory)))}
         // Only price
-        if (!desiredBrand && !desiredCategory && !desiredSize && desiredMaxPrice && !desiredColor) {setProductsArray(productsDataBase.filter(item => (item.price <= desiredMaxPrice)))}
+        if (!desiredBrand && !desiredCategory && !desiredSize && desiredMaxPrice && !desiredColor) {setProductsArray(productsDataBase.filter(item => (item.finalPrice <= desiredMaxPrice)))}
         // Only size
         if (!desiredBrand && !desiredCategory && desiredSize && !desiredMaxPrice && !desiredColor) {setProductsArray(productsDataBase.filter(item => (item.sizes.includes(desiredSize))))}
         // Only color
@@ -30,33 +34,33 @@ function GalleryHeader ({productsDataBase, setProductsArray, productsArray}) {
         // Combinations of 2
         if (desiredBrand && desiredCategory && !desiredSize && !desiredMaxPrice && !desiredColor) {setProductsArray(productsDataBase.filter(item => (item.brand === desiredBrand && item.category === desiredCategory)))}
         if (desiredBrand && !desiredCategory && desiredSize && !desiredMaxPrice && !desiredColor) {setProductsArray(productsDataBase.filter(item => (item.brand === desiredBrand && item.sizes.includes(desiredSize))))}
-        if (desiredBrand && !desiredCategory && !desiredSize && desiredMaxPrice && !desiredColor) {setProductsArray(productsDataBase.filter(item => (item.brand === desiredBrand && item.price <= desiredMaxPrice)))}
+        if (desiredBrand && !desiredCategory && !desiredSize && desiredMaxPrice && !desiredColor) {setProductsArray(productsDataBase.filter(item => (item.brand === desiredBrand && item.finalPrice <= desiredMaxPrice)))}
         if (desiredBrand && !desiredCategory && !desiredSize && !desiredMaxPrice && desiredColor) {setProductsArray(productsDataBase.filter(item => (item.brand === desiredBrand && item.color === desiredColor)))}
         if (!desiredBrand && desiredCategory && desiredSize && !desiredMaxPrice && !desiredColor) {setProductsArray(productsDataBase.filter(item => (item.category === desiredCategory && item.sizes.includes(desiredSize))))}
-        if (!desiredBrand && desiredCategory && !desiredSize && desiredMaxPrice && !desiredColor) {setProductsArray(productsDataBase.filter(item => (item.category === desiredCategory && item.price <= desiredMaxPrice)))}
+        if (!desiredBrand && desiredCategory && !desiredSize && desiredMaxPrice && !desiredColor) {setProductsArray(productsDataBase.filter(item => (item.category === desiredCategory && item.finalPrice <= desiredMaxPrice)))}
         if (!desiredBrand && desiredCategory && !desiredSize && !desiredMaxPrice && desiredColor) {setProductsArray(productsDataBase.filter(item => (item.category === desiredCategory && item.color === desiredColor)))}
-        if (!desiredBrand && !desiredCategory && desiredSize && desiredMaxPrice && !desiredColor) {setProductsArray(productsDataBase.filter(item => (item.sizes.includes(desiredSize) && item.price <= desiredMaxPrice)))}
+        if (!desiredBrand && !desiredCategory && desiredSize && desiredMaxPrice && !desiredColor) {setProductsArray(productsDataBase.filter(item => (item.sizes.includes(desiredSize) && item.finalPrice <= desiredMaxPrice)))}
         if (!desiredBrand && !desiredCategory && desiredSize && !desiredMaxPrice && desiredColor) {setProductsArray(productsDataBase.filter(item => (item.sizes.includes(desiredSize) && item.color === desiredColor)))}
-        if (!desiredBrand && !desiredCategory && !desiredSize && desiredMaxPrice && desiredColor) {setProductsArray(productsDataBase.filter(item => (item.price <= desiredMaxPrice && item.color === desiredColor)))}
+        if (!desiredBrand && !desiredCategory && !desiredSize && desiredMaxPrice && desiredColor) {setProductsArray(productsDataBase.filter(item => (item.finalPrice <= desiredMaxPrice && item.color === desiredColor)))}
         // Combinations of 3
         if (desiredBrand && desiredCategory && desiredSize && !desiredMaxPrice && !desiredColor) {setProductsArray(productsDataBase.filter(item => (item.brand === desiredBrand && item.category === desiredCategory && item.sizes.includes(desiredSize))))}
-        if (desiredBrand && desiredCategory && !desiredSize && desiredMaxPrice && !desiredColor) {setProductsArray(productsDataBase.filter(item => (item.brand === desiredBrand && item.category === desiredCategory && item.price <= desiredMaxPrice)))}
+        if (desiredBrand && desiredCategory && !desiredSize && desiredMaxPrice && !desiredColor) {setProductsArray(productsDataBase.filter(item => (item.brand === desiredBrand && item.category === desiredCategory && item.finalPrice <= desiredMaxPrice)))}
         if (desiredBrand && desiredCategory && !desiredSize && !desiredMaxPrice && desiredColor) {setProductsArray(productsDataBase.filter(item => (item.brand === desiredBrand && item.category === desiredCategory && item.color === desiredColor)))}
-        if (desiredBrand && !desiredCategory && desiredSize && desiredMaxPrice && !desiredColor) {setProductsArray(productsDataBase.filter(item => (item.brand === desiredBrand && item.sizes.includes(desiredSize) && item.price <= desiredMaxPrice)))}
+        if (desiredBrand && !desiredCategory && desiredSize && desiredMaxPrice && !desiredColor) {setProductsArray(productsDataBase.filter(item => (item.brand === desiredBrand && item.sizes.includes(desiredSize) && item.finalPrice <= desiredMaxPrice)))}
         if (desiredBrand && !desiredCategory && desiredSize && !desiredMaxPrice && desiredColor) {setProductsArray(productsDataBase.filter(item => (item.brand === desiredBrand && item.sizes.includes(desiredSize) && item.color === desiredColor)))}
-        if (desiredBrand && !desiredCategory && !desiredSize && desiredMaxPrice && desiredColor) {setProductsArray(productsDataBase.filter(item => (item.brand === desiredBrand && item.price <= desiredMaxPrice && item.color === desiredColor)))}
-        if (!desiredBrand && desiredCategory && desiredSize && desiredMaxPrice && !desiredColor) {setProductsArray(productsDataBase.filter(item => (item.category === desiredCategory && item.sizes.includes(desiredSize) && item.price <= desiredMaxPrice)))}
+        if (desiredBrand && !desiredCategory && !desiredSize && desiredMaxPrice && desiredColor) {setProductsArray(productsDataBase.filter(item => (item.brand === desiredBrand && item.finalPrice <= desiredMaxPrice && item.color === desiredColor)))}
+        if (!desiredBrand && desiredCategory && desiredSize && desiredMaxPrice && !desiredColor) {setProductsArray(productsDataBase.filter(item => (item.category === desiredCategory && item.sizes.includes(desiredSize) && item.finalPrice <= desiredMaxPrice)))}
         if (!desiredBrand && desiredCategory && desiredSize && !desiredMaxPrice && desiredColor) {setProductsArray(productsDataBase.filter(item => (item.category === desiredCategory && item.sizes.includes(desiredSize) && item.color === desiredColor)))}
-        if (!desiredBrand && !desiredCategory && desiredSize && desiredMaxPrice && desiredColor) {setProductsArray(productsDataBase.filter(item => (item.sizes.includes(desiredSize) && item.price <= desiredMaxPrice && item.color === desiredColor)))}
-        if (!desiredBrand && desiredCategory && !desiredSize && desiredMaxPrice && desiredColor) {setProductsArray(productsDataBase.filter(item => (item.category === desiredCategory && item.price <= desiredMaxPrice && item.color === desiredColor)))}
+        if (!desiredBrand && !desiredCategory && desiredSize && desiredMaxPrice && desiredColor) {setProductsArray(productsDataBase.filter(item => (item.sizes.includes(desiredSize) && item.finalPrice <= desiredMaxPrice && item.color === desiredColor)))}
+        if (!desiredBrand && desiredCategory && !desiredSize && desiredMaxPrice && desiredColor) {setProductsArray(productsDataBase.filter(item => (item.category === desiredCategory && item.finalPrice <= desiredMaxPrice && item.color === desiredColor)))}
         // Combinations of 4
-        if (desiredBrand && desiredCategory && desiredSize && desiredMaxPrice && !desiredColor) {setProductsArray(productsDataBase.filter(item => (item.brand === desiredBrand && item.category === desiredCategory && item.sizes.includes(desiredSize) && item.price <= desiredMaxPrice)))}
-        if (!desiredBrand && desiredCategory && desiredSize && desiredMaxPrice && desiredColor) {setProductsArray(productsDataBase.filter(item => (item.category === desiredCategory && item.sizes.includes(desiredSize) && item.price <= desiredMaxPrice && item.color === desiredColor)))}
-        if (desiredBrand && !desiredCategory && desiredSize && desiredMaxPrice && desiredColor) {setProductsArray(productsDataBase.filter(item => (item.brand === desiredBrand && item.sizes.includes(desiredSize) && item.price <= desiredMaxPrice && item.color === desiredColor)))}
-        if (desiredBrand && desiredCategory && !desiredSize && desiredMaxPrice && desiredColor) {setProductsArray(productsDataBase.filter(item => (item.brand === desiredBrand && item.category === desiredCategory && item.price <= desiredMaxPrice && item.color === desiredColor)))}
+        if (desiredBrand && desiredCategory && desiredSize && desiredMaxPrice && !desiredColor) {setProductsArray(productsDataBase.filter(item => (item.brand === desiredBrand && item.category === desiredCategory && item.sizes.includes(desiredSize) && item.finalPrice <= desiredMaxPrice)))}
+        if (!desiredBrand && desiredCategory && desiredSize && desiredMaxPrice && desiredColor) {setProductsArray(productsDataBase.filter(item => (item.category === desiredCategory && item.sizes.includes(desiredSize) && item.finalPrice <= desiredMaxPrice && item.color === desiredColor)))}
+        if (desiredBrand && !desiredCategory && desiredSize && desiredMaxPrice && desiredColor) {setProductsArray(productsDataBase.filter(item => (item.brand === desiredBrand && item.sizes.includes(desiredSize) && item.finalPrice <= desiredMaxPrice && item.color === desiredColor)))}
+        if (desiredBrand && desiredCategory && !desiredSize && desiredMaxPrice && desiredColor) {setProductsArray(productsDataBase.filter(item => (item.brand === desiredBrand && item.category === desiredCategory && item.finalPrice <= desiredMaxPrice && item.color === desiredColor)))}
         if (desiredBrand && desiredCategory && desiredSize && !desiredMaxPrice && desiredColor) {setProductsArray(productsDataBase.filter(item => (item.brand === desiredBrand && item.category === desiredCategory && item.sizes.includes(desiredSize) && item.color === desiredColor)))}
 
-        setSearchParams([desiredBrand, desiredCategory, desiredSize, desiredMaxPrice, desiredColor])
+        context.setSearchParams([desiredBrand, desiredCategory, desiredSize, desiredMaxPrice, desiredColor])
     }
 
     return (
@@ -142,11 +146,11 @@ function GalleryHeader ({productsDataBase, setProductsArray, productsArray}) {
             <div className='searchResults' id='searchResults'>
                 <h2>Search results for:</h2>
                 <div className='searchParams'>
-                    <p>Brand: {searchParams[0]}</p>
-                    <p>Category: {searchParams[1]}</p>
-                    <p>Size: {searchParams[2]}</p>
-                    <p>Max price: ${searchParams[3]}</p>
-                    <p>Color: {searchParams[4]}</p>
+                    <p>Brand: {context.searchParams[0]}</p>
+                    <p>Category: {context.searchParams[1]}</p>
+                    <p>Size: {context.searchParams[2]}</p>
+                    <p>Max price: ${context.searchParams[3]}</p>
+                    <p>Color: {context.searchParams[4]}</p>
                     <p>Order by:</p>
                 </div>
                 <p>Number of results: {productsArray.length}</p>

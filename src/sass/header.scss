@@ -127,7 +127,7 @@ header {
                 display: none;
             }
 
-            .shoppingCart, .wishList {
+            .shoppingCart-icon, .wishList-icon {
                 margin: .65rem 2rem 0 0;
                 cursor: pointer;
                 transition: .5s;
@@ -265,7 +265,7 @@ header {
                     }
                 }
 
-                .shoppingCart, .wishList  {
+                .shoppingCart-icon, .wishList-icon {
                     color: black;
                 }
 
@@ -297,7 +297,7 @@ header {
                     }
                 }
 
-                .shoppingCart, .wishList  {
+                .shoppingCart-icon, .wishList-icon {
                     color: white;
                 }
                 
