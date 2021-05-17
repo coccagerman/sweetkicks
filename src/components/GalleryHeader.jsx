@@ -149,7 +149,7 @@ function GalleryHeader ({productsDataBase, setProductsArray, productsArray}) {
                     <p>Brand: {context.searchParams[0]}</p>
                     <p>Category: {context.searchParams[1]}</p>
                     <p>Size: {context.searchParams[2]}</p>
-                    <p>Max price: ${context.searchParams[3]}</p>
+                    <p>Max price: ${context.searchParams[3] ? context.addNumberThousandSeparator(context.searchParams[3]) : null}</p>
                     <p>Color: {context.searchParams[4]}</p>
                     <p>Order by:</p>
                 </div>
