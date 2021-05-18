@@ -33,18 +33,19 @@
 
             h2 {
                 margin-bottom: 2rem;
+                font-size: 5rem;
             }
 
             button {
                 margin: 2rem 1rem 1rem 0;
                 font-size: 2rem;
-                width: 12rem;
+                width: 16rem;
             }
 
             .btn-secondary {
                 display: block;
                 margin: 0;
-                width: 16rem;
+                width: 20rem;
             }
 
             .notWished {
@@ -69,6 +70,66 @@
     
                 &:active {
                     font-size: 3rem;
+                }
+            }
+            
+            .quantityContainer {
+                display: flex;
+
+                .operator {
+                    width: 2rem;
+                    height: 2.5rem;
+                    line-height: 2.5rem;
+                    font-size: 2.25rem;
+                    margin: 0 .5rem 0 .5rem;
+                    border-radius: .5rem;
+                    background-color: #ccc;
+                    text-align: center;
+                    cursor: pointer;
+                    transition: .5s;
+
+                    &:hover  {
+                        background-color: $sweetOrange;
+                        color: white;
+                    }
+
+                    &:active {
+                        transform: scale(1.15)
+                    }
+                }
+
+                .selectedQuantity {
+                    margin: 0 .5rem;
+                }
+            }
+            
+            .sizesContainer{
+                display: flex;
+                align-items: center;
+                .availableSizes {
+                    display: flex;
+                    margin-left: 1rem;
+                    .size {
+                        font-size: 1.75rem;
+                        text-align: center;
+                        width: 2rem;
+                        height: 2.5rem;
+                        margin: 0 .25rem 1rem .25rem;
+                        padding: 0 .5rem;
+                        background-color: #ccc;
+                        color: black;
+                        cursor: pointer;
+                        transition: .5s;
+
+                        &.selectedSize, &:hover  {
+                            background-color: $sweetOrange;
+                            color: white;
+                        }
+
+                        &:active {
+                            transform: scale(1.15)
+                        }
+                    }
                 }
             }
         }

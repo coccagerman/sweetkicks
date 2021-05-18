@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { Link, useLocation } from "react-router-dom";
 import { Icon } from '@iconify/react';
 import heartSolid from '@iconify-icons/clarity/heart-solid';
@@ -10,6 +10,11 @@ function Item () {
     // Hook used to access context
     const context = useContext(Context)
 
+    // Hook used to store the shoe size selected
+    const [selectedSize, setSelectedSize] = useState (null)
+    // Hook used to store the shoe quantity selected
+    const [selectedQuantity, setSelectedQuantity] = useState (1)
+
     // Variables that store the props received from the item card
     let location = useLocation() 
     let item = location.state.item.item
@@ -19,16 +24,25 @@ function Item () {
     let category = location.state.item.item.category
     let mainImage = location.state.item.item.mainImage
     let images = location.state.item.item.images
+    let sizes = location.state.item.item.sizes
     
     // Functions that execute when the item is added to the wishlist or shopping cart
     function handleWishlistClick (item) {
         context.wishList.includes(item) ? context.wishlistSubstract(item) : context.wishlistAdd(item)
-        console.log(context.wishList)
     }
 
     function handleShoppingCartClick (item) {
         context.shoppingCart.includes(item) ? context.shoppingCartSubstract(item) : context.shoppingCartAdd(item)
-        console.log(context.shoppingCart)
+    }
+
+    // Functions that execute when the user selects item quantity and size
+    function handleQuantityChange (operation) {
+        if (operation === 'substract' && selectedQuantity >= 1) { setSelectedQuantity(selectedQuantity-1) }
+        if (operation === 'add') { setSelectedQuantity(selectedQuantity+1) }
+    }
+
+    function handleSizeSelection (size) {
+        size === selectedSize ? setSelectedSize(null) : setSelectedSize(size)
     }
 
     return (
@@ -42,7 +56,21 @@ function Item () {
                         <h2>{brand} {model} </h2>
                         <p>Category: {category}</p>
                         <p>Price: ${context.addNumberThousandSeparator(price)} </p>
-                        <p>Sizes: </p>
+                        
+                        <div className='quantityContainer'>
+                            <p>Quantity:</p>
+                            <p className='operator' onClick={() => handleQuantityChange('subtract')}>-</p>
+                            <p className='selectedQuantity'>{selectedQuantity}</p>
+                            <p className='operator' onClick={() => handleQuantityChange('add')}>+</p>
+                        </div>
+
+                        <div className='sizesContainer'>
+                            <p>Sizes: </p> 
+                            <div className='availableSizes'>
+                                {sizes.map(size => <p className={size === selectedSize ? 'size selectedSize' : 'size'} onClick={() => handleSizeSelection(size)}>{size}</p>)}
+                            </div>
+                        </div>
+
                         <button className='btn-primary' onClick={() => handleShoppingCartClick(item)}>Add to cart</button>
                         <Icon icon={heartSolid} className={context.findInWishlist(item.id) ? 'wished' : 'notWished'} onClick={() => handleWishlistClick(item)}/>
                         <Link to='/gallery' href="#searchResults"><button className='btn-secondary'>Back to search results</button></Link>

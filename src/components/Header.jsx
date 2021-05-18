@@ -27,13 +27,13 @@ function Header ({setDarkMode, darkMode, productsDataBase, setProductsArray}) {
     return (
         < >
         <header>
-            <Link to='/'><img className='headerLogo' src={darkMode === false ? HeaderLogoLight : HeaderLogoDark} alt='Company logo' /></Link>
+            <Link to='/'><img className='headerLogo' src={darkMode ? HeaderLogoDark : HeaderLogoLight} alt='Company logo' /></Link>
             <nav>
                 <ul>
                     <li><a href="#" onClick={() => setshowDropdown(!showDropdown)} className='categories hover-effect'>Categories 
                             <Icon icon={arrowDownAlt2} className={showDropdown === false ? 'arrowIcon' : 'arrowIcon open' }/> 
                         </a>
-                        <ul className={showDropdown === true ? 'dropdown' : 'hiddenDropdown' }>
+                        <ul className={showDropdown ? 'dropdown' : 'hiddenDropdown' }>
                             <li><Link to='/gallery' href="#searchResults" onClick={() => handleCategoryBtnClick('Street')}>Street</Link></li>
                             <li><Link to='/gallery' href="#searchResults" onClick={() => handleCategoryBtnClick('Running')}>Running</Link></li>
                             <li><Link to='/gallery' href="#searchResults" onClick={() => handleCategoryBtnClick('Basketball')}>Basketball</Link></li>
