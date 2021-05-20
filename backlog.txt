@@ -7,7 +7,7 @@
 - FEATURE: Implementar pop up que diga 'Se agregó producto a la wishlist' cuando se agrega prod. a wishlist.
 - FEATURE: Implementar reducer para gestionar estado de wishlist y carrito.
 - FEATURE: Implementar useMemo para evitar volver a renderizar componentes de manera innecesaria por useContext.
-- FEATURE: Implementar contador de cantidad y selector de sizes en página de items y carrito (posibilidad de modificar en carrito).
+- FEATURE: Implementar posibilidad de modificar cantidad y sizes en carrito.
 - BUG: Cuando hacés una búsqueda y después ingresás a través del header a una categoría, te sigue mostrando el formulario y los search params de la búsqueda previa, cuando te tendría que mostrar solo el param de la categoría seleccionada.
 - BUG: El dropdown debiese cerrarse cuando se hace click fuera de él.
 - BUG: cuando se va a url http://localhost:3001/item arroja error, la url cuando se ingresa e ver un item debiese ir acompañada por el ID del item. Si se va a url http://localhost:3001/item debiese mostrar 404.

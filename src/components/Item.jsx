@@ -66,10 +66,6 @@ function Item () {
         size === selectedSize ? setSelectedSize(null) : setSelectedSize(size)
     }
 
-    function test() {
-        console.log(context.shoppingCart)
-    }
-
     return (
         <section className='itemPage'>
                 <div className="item-section_carouselAndInfo">
@@ -98,7 +94,6 @@ function Item () {
                         </div>
 
                         <p className='errorMessage'>{sizeErrorMessage}{shoppingCartErrorMessage}</p>
-                        <button onClick={()=> test()}>test</button>
                         <button className='btn-primary' onClick={() => handleShoppingCartClick(item)}>Add to cart</button>
                         <Icon icon={heartSolid} className={context.findInWishlist(item.id) ? 'wished' : 'notWished'} onClick={() => handleWishlistClick(item)}/>
                         <Link to='/gallery' href="#searchResults"><button className='btn-secondary'>Back to search results</button></Link>
