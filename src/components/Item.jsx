@@ -10,10 +10,23 @@ function Item () {
     // Hook used to access context
     const context = useContext(Context)
 
-    // Hook used to store the shoe size selected
+    // Hooks used to store the shoe size and quantity selected
     const [selectedSize, setSelectedSize] = useState (null)
-    // Hook used to store the shoe quantity selected
     const [selectedQuantity, setSelectedQuantity] = useState (1)
+
+    // Hooks used to display quantity, stock and size errors
+    const [quantityErrorMessage, setQuantityErrorMessage] = useState (null)
+    const [stockErrorMessage, setStockErrorMessage] = useState (null)
+    const [sizeErrorMessage, setSizeErrorMessage] = useState (null)
+    const [shoppingCartErrorMessage, setshoppingCartErrorMessage] = useState (null)
+
+    
+    function cleanUpErrors() {
+        setQuantityErrorMessage(null)
+        setStockErrorMessage(null)
+        setSizeErrorMessage(null)
+        setshoppingCartErrorMessage(null)
+    }
 
     // Variables that store the props received from the item card
     let location = useLocation() 
@@ -25,24 +38,36 @@ function Item () {
     let mainImage = location.state.item.item.mainImage
     let images = location.state.item.item.images
     let sizes = location.state.item.item.sizes
+    let stock = location.state.item.item.stock
     
     // Functions that execute when the item is added to the wishlist or shopping cart
     function handleWishlistClick (item) {
+        cleanUpErrors()
         context.wishList.includes(item) ? context.wishlistSubstract(item) : context.wishlistAdd(item)
     }
 
     function handleShoppingCartClick (item) {
-        context.shoppingCart.includes(item) ? context.shoppingCartSubstract(item) : context.shoppingCartAdd(item)
+        cleanUpErrors()
+        selectedSize === null ? setSizeErrorMessage('Please select the shoe size you want.') :
+        context.shoppingCart.includes(item) ? setshoppingCartErrorMessage('You already have this shoes in your shopping cart.') : context.shoppingCartAdd(item, selectedQuantity, selectedSize)
     }
 
     // Functions that execute when the user selects item quantity and size
     function handleQuantityChange (operation) {
-        if (operation === 'substract' && selectedQuantity >= 1) { setSelectedQuantity(selectedQuantity-1) }
-        if (operation === 'add') { setSelectedQuantity(selectedQuantity+1) }
+        cleanUpErrors()
+        if (operation === 'substract' && selectedQuantity === 1) { setQuantityErrorMessage("You can't buy less than a pair, bro.") }
+        if (operation === 'substract' && selectedQuantity > 1) { setSelectedQuantity(selectedQuantity-1) }
+        if (operation === 'add' && selectedQuantity === stock) { setStockErrorMessage('Sorry bro, we dont have more stock of this one.') }
+        if (operation === 'add' && selectedQuantity < stock) { setSelectedQuantity(selectedQuantity+1) }
     }
 
     function handleSizeSelection (size) {
+        cleanUpErrors()
         size === selectedSize ? setSelectedSize(null) : setSelectedSize(size)
+    }
+
+    function test() {
+        console.log(context.shoppingCart)
     }
 
     return (
@@ -59,9 +84,10 @@ function Item () {
                         
                         <div className='quantityContainer'>
                             <p>Quantity:</p>
-                            <p className='operator' onClick={() => handleQuantityChange('subtract')}>-</p>
+                            <btn className='operator' onClick={() => handleQuantityChange('substract')}>-</btn>
                             <p className='selectedQuantity'>{selectedQuantity}</p>
-                            <p className='operator' onClick={() => handleQuantityChange('add')}>+</p>
+                            <btn className='operator' onClick={() => handleQuantityChange('add')}>+</btn>
+                            <p className='errorMessage'>{quantityErrorMessage}{stockErrorMessage}</p>
                         </div>
 
                         <div className='sizesContainer'>
@@ -71,6 +97,8 @@ function Item () {
                             </div>
                         </div>
 
+                        <p className='errorMessage'>{sizeErrorMessage}{shoppingCartErrorMessage}</p>
+                        <button onClick={()=> test()}>test</button>
                         <button className='btn-primary' onClick={() => handleShoppingCartClick(item)}>Add to cart</button>
                         <Icon icon={heartSolid} className={context.findInWishlist(item.id) ? 'wished' : 'notWished'} onClick={() => handleWishlistClick(item)}/>
                         <Link to='/gallery' href="#searchResults"><button className='btn-secondary'>Back to search results</button></Link>

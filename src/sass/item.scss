@@ -78,12 +78,13 @@
 
                 .operator {
                     width: 2rem;
-                    height: 2.5rem;
-                    line-height: 2.5rem;
+                    height: 2rem;
+                    line-height: 2rem;
                     font-size: 2.25rem;
-                    margin: 0 .5rem 0 .5rem;
+                    margin: .5rem .5rem 0 .5rem;
                     border-radius: .5rem;
                     background-color: #ccc;
+                    color: black;
                     text-align: center;
                     cursor: pointer;
                     transition: .5s;

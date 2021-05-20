@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useContext } from 'react';
 import Context from './Context';
 
-function ShoppingCartItem ({item, brand, model, price, mainImage}) {
+function ShoppingCartItem ({shoppingCartItem, item, brand, model, price, mainImage, quantity, size}) {
     
     // Hook used to access wishlist and modify it
     const context = useContext(Context)
@@ -19,7 +19,9 @@ function ShoppingCartItem ({item, brand, model, price, mainImage}) {
             </Link>
             <p className='item-name'>{brand} {model}</p>
             <p className='item-price'>${context.addNumberThousandSeparator(price)}</p>
-            <Icon className='icon eliminate-icon' icon={cancelIcon} onClick={() => context.shoppingCartSubstract(item)} />
+            <p className='item-quantity'>Quantity: {quantity}</p>
+            <p className='item-size'>Size: {size}</p>
+            <Icon className='icon eliminate-icon' icon={cancelIcon} onClick={() => context.shoppingCartSubstract(shoppingCartItem)} />
         </article>
     )
 }

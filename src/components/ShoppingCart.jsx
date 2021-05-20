@@ -10,7 +10,7 @@ function ShoppingCart () {
 
     // Function that displays the items in the shopping cart
     const showShoppingCartItem = () => context.shoppingCart.map((item) => (
-        <ShoppingCartItem item={item} brand={item.brand} model={item.model} price={item.price} mainImage={item.mainImage} />
+        <ShoppingCartItem shoppingCartItem={item} item={item.item} brand={item.item.brand} model={item.item.model} price={item.item.price} mainImage={item.item.mainImage} quantity={item.quantity} size={item.size}/>
         )
     )
     
@@ -23,7 +23,7 @@ function ShoppingCart () {
                     <div>
                         <div className='details'>
                             <p>Total items: {context.shoppingCart.length}</p>
-                            <p>Total price: ${context.addNumberThousandSeparator(context.shoppingCart.map((item) => (item.price)).reduce((a, b) => a + b, 0))}</p>
+                            <p>Total price: ${context.addNumberThousandSeparator(context.shoppingCart.map((item) => (item.item.price)).reduce((a, b) => a + b, 0))}</p>
                         </div>
                         <div className='btns'>
                             <button className='btn-tertiary'onClick={() => context.emptyShoppingCart()}>Empty cart</button>
