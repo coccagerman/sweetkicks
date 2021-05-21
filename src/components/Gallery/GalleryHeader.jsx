@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useContext } from 'react';
-import Context from './Context';
+import Context from '../../Context';
 
 function GalleryHeader ({productsDataBase, setProductsArray, productsArray}) {
 

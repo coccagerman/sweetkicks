@@ -2,7 +2,7 @@ import { Icon } from '@iconify/react';
 import cancelIcon from '@iconify-icons/topcoat/cancel';
 import { Link } from "react-router-dom";
 import { useContext } from 'react';
-import Context from './Context';
+import Context from '../../../Context';
 
 function ShoppingCartItem ({shoppingCartItem, item, brand, model, price, mainImage, quantity, size}) {
     

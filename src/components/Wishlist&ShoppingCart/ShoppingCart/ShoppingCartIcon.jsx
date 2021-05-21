@@ -1,7 +1,7 @@
 import { Icon } from '@iconify/react';
 import { useContext } from 'react';
 import shoppingCart from '@iconify-icons/fa-solid/shopping-cart';
-import Context from './Context';
+import Context from '../../../Context';
 
 function ShoppingCartIcon () {
     

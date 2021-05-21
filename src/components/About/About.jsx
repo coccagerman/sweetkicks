@@ -1,9 +1,9 @@
-import Img0 from '../assets/about/about0.webp'
-import Img1 from '../assets/about/about1.webp'
-import Img2 from '../assets/about/about2.webp'
-import Img3 from '../assets/about/about3.webp'
-import Img4 from '../assets/about/about4.webp'
-import Img5 from '../assets/about/about5.webp'
+import Img0 from '../../assets/about/about0.webp'
+import Img1 from '../../assets/about/about1.webp'
+import Img2 from '../../assets/about/about2.webp'
+import Img3 from '../../assets/about/about3.webp'
+import Img4 from '../../assets/about/about4.webp'
+import Img5 from '../../assets/about/about5.webp'
 import { Link } from "react-router-dom";
 
 function About ({productsDataBase, setProductsArray}) {

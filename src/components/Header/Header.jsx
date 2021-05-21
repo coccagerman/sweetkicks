@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 import { useState } from 'react';
 import { useContext } from 'react';
-import Context from './Context';
-import HeaderLogoDark from '../assets/sweetkicks_logo_header_dark.png'
-import HeaderLogoLight from '../assets/sweetkicks_logo_header_light.png'
-import WishlistIcon from './WishlistIcon'
-import ShoppingCartIcon from './ShoppingCartIcon'
+import Context from '../../Context';
+import HeaderLogoDark from '../../assets/sweetkicks_logo_header_dark.png'
+import HeaderLogoLight from '../../assets/sweetkicks_logo_header_light.png'
+import WishlistIcon from '../Wishlist&ShoppingCart/Wishlist/WishlistIcon'
+import ShoppingCartIcon from '../Wishlist&ShoppingCart/ShoppingCart/ShoppingCartIcon'
 import { Icon } from '@iconify/react';
 import arrowDownAlt2 from '@iconify-icons/dashicons/arrow-down-alt2';
 
@@ -31,7 +31,7 @@ function Header ({setDarkMode, darkMode, productsDataBase, setProductsArray}) {
             <nav>
                 <ul>
                     <li><a href="#" onClick={() => setshowDropdown(!showDropdown)} className='categories hover-effect'>Categories 
-                            <Icon icon={arrowDownAlt2} className={showDropdown === false ? 'arrowIcon' : 'arrowIcon open' }/> 
+                            <Icon icon={arrowDownAlt2} className={!showDropdown ? 'arrowIcon' : 'arrowIcon open' }/> 
                         </a>
                         <ul className={showDropdown ? 'dropdown' : 'hiddenDropdown' }>
                             <li><Link to='/gallery' href="#searchResults" onClick={() => handleCategoryBtnClick('Street')}>Street</Link></li>

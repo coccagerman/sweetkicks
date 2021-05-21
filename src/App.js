@@ -1,42 +1,42 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Context from './components/Context';
+import Context from './Context';
 import { useState } from 'react';
-import Header from './components/Header';
-import Hero from './components/Hero';
-import Gallery from './components/Gallery';
-import Item from './components/Item';
-import ShoppingCart from './components/ShoppingCart';
-import Wishlist from './components/Wishlist';
-import About from './components/About';
-import Footer from './components/Footer';
+import Header from './components/Header/Header';
+import Hero from './components/Hero/Hero';
+import Gallery from './components/Gallery/Gallery';
+import Item from './components/Item/Item';
+import ShoppingCart from './components/Wishlist&ShoppingCart/ShoppingCart/ShoppingCart';
+import Wishlist from './components/Wishlist&ShoppingCart/Wishlist/Wishlist';
+import About from './components/About/About';
+import Footer from './components/Footer/Footer';
 import productsDataBase from './ProductsDB';
 import './App.scss';
 
 function App() {
 
   // Hook used to track the dark mode state
-  const [darkMode,setDarkMode] = useState(false);
+  const [darkMode,setDarkMode] = useState(false)
 
   // hook used to store the array of products that will be shown in the gallery
   const [productsArray, setProductsArray] = useState (productsDataBase)
 
   // Regex used to insert thousand separator in prices
   function addNumberThousandSeparator(x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
   }
 
-  // hook that stores the product seach parameters
-  const [searchParams, setSearchParams] = useState([]);
+  // hook that stores the product search parameters
+  const [searchParams, setSearchParams] = useState([])
 
   // hooks used to store the arrays of products in the wishlist and shopping cart
   const [wishList, setwishList] = useState ([])
   const [shoppingCart, setShoppingCart] = useState ([])
 
   // functions used to add and substract items from the wishlist and shopping cart
-  const wishlistAdd = (itemToAdd) => setwishList([...wishList, itemToAdd]);
-  const wishlistSubstract = (itemToSubstract) => setwishList(wishList.filter(item => (item !== itemToSubstract)));
-  const shoppingCartAdd = (item, quantity, size) => setShoppingCart([...shoppingCart, {item, quantity, size}]);
-  const shoppingCartSubstract = (itemToSubstract) => setShoppingCart(shoppingCart.filter(item => (item !== itemToSubstract)));
+  const wishlistAdd = (itemToAdd) => setwishList([...wishList, itemToAdd])
+  const wishlistSubstract = (itemToSubstract) => setwishList(wishList.filter(item => (item !== itemToSubstract)))
+  const shoppingCartAdd = (item, quantity, size) => setShoppingCart([...shoppingCart, {item, quantity, size}])
+  const shoppingCartSubstract = (itemToSubstract) => setShoppingCart(shoppingCart.filter(item => (item !== itemToSubstract)))
   const emptyShoppingCart = () => setShoppingCart([])
 
   // Function used to identify items that were added to the wishlist

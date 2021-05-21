@@ -1,14 +1,14 @@
 import { Link } from "react-router-dom";
 import { useContext } from 'react';
-import NikeIcon from '../assets/icons/nike-icon.png'
-import AdidasIcon from '../assets/icons/adidas-icon.png'
-import JordanIcon from '../assets/icons/jordan-icon.png'
-import PumaIcon from '../assets/icons/puma-icon.png'
-import ReebokIcon from '../assets/icons/reebok-icon.png'
-import UnderArmourIcon from '../assets/icons/underArmour-icon.png'
+import NikeIcon from '../../../assets/icons/nike-icon.png'
+import AdidasIcon from '../../../assets/icons/adidas-icon.png'
+import JordanIcon from '../../../assets/icons/jordan-icon.png'
+import PumaIcon from '../../../assets/icons/puma-icon.png'
+import ReebokIcon from '../../../assets/icons/reebok-icon.png'
+import UnderArmourIcon from '../../../assets/icons/underArmour-icon.png'
 import { Icon } from '@iconify/react';
 import heartSolid from '@iconify-icons/clarity/heart-solid';
-import Context from './Context';
+import Context from '../../../Context';
 
 function ItemCard ({item, brand, model, price, latestRelease, discount, mainImage}) {
 

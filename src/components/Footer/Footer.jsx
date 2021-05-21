@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import FooterLogo from '../assets/sweetkicks_logo_footer.png'
+import FooterLogo from '../../assets/sweetkicks_logo_footer.png'
 
 function Footer () {
     return (

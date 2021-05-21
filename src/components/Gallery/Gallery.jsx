@@ -1,4 +1,4 @@
-import ItemCard from './ItemCard';
+import ItemCard from './ItemCard/ItemCard';
 import GalleryHeader from './GalleryHeader';
 
 function Gallery ({productsDataBase, productsArray, setProductsArray}) {

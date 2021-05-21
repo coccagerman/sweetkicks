@@ -3,7 +3,7 @@ import cancelIcon from '@iconify-icons/topcoat/cancel';
 import shoppingCart from '@iconify-icons/fa-solid/shopping-cart';
 import { Link } from "react-router-dom";
 import { useContext } from 'react';
-import Context from './Context';
+import Context from '../../../Context';
 
 function WishlistItem ({item, brand, model, price, mainImage}) {
 

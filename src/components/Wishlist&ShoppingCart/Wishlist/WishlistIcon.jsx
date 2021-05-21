@@ -1,7 +1,7 @@
 import { Icon } from '@iconify/react';
 import heartSolid from '@iconify-icons/clarity/heart-solid';
 import { useContext } from 'react';
-import Context from './Context';
+import Context from '../../../Context';
 
 function WishlistIcon () {
     

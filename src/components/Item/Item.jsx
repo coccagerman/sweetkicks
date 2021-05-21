@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Icon } from '@iconify/react';
 import heartSolid from '@iconify-icons/clarity/heart-solid';
 import ItemCarousel from './ItemCarousel';
-import Context from './Context';
+import Context from '../../Context';
 
 function Item () {
 

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import ImageDark from '../assets/hero/hero-img-dark.png'
-import ImageLight from '../assets/hero/hero-img-light.png'
+import ImageDark from '../../assets/hero/hero-img-dark.png'
+import ImageLight from '../../assets/hero/hero-img-light.png'
 
 function Hero ({darkMode, productsDataBase, setProductsArray}) {
     return (
