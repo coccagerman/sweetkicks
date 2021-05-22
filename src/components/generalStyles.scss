@@ -90,3 +90,40 @@ $bitterGray: #131515;
         background-color: rgb(24, 24, 24);
     }
 }
+
+.modal {
+    .modal-header {
+        border: none;
+
+        .eliminate-icon {
+            position: absolute;
+            right: 1rem;
+            top: .75rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: .5s;
+            
+            &:hover {
+                color: $sweetOrange;
+            }
+    
+        }
+    }
+
+    .modal-body {
+        border: none;
+
+        .modal-text {
+            font-size: 3rem;
+            text-align: center;
+            margin: auto;
+            max-width: 38rem;
+        }
+    }
+
+
+    .modal-footer {
+        border: none;
+        margin: auto;
+    }
+}

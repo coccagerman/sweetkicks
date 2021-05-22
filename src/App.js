@@ -37,7 +37,7 @@ function App() {
   // functions used to add and substract items from the wishlist and shopping cart
   const wishlistAdd = (itemToAdd) => setwishList([...wishList, itemToAdd])
   const wishlistSubstract = (itemToSubstract) => setwishList(wishList.filter(item => (item !== itemToSubstract)))
-  const shoppingCartAdd = (item, quantity, size) => setShoppingCart([...shoppingCart, {item, quantity, size}])
+  const shoppingCartAdd = (item) => setShoppingCart([...shoppingCart, item])
   const shoppingCartSubstract = (itemToSubstract) => setShoppingCart(shoppingCart.filter(item => (item !== itemToSubstract)))
   const emptyShoppingCart = () => setShoppingCart([])
 

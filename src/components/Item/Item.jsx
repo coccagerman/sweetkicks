@@ -1,8 +1,9 @@
 import { useContext, useState } from 'react';
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Icon } from '@iconify/react';
 import heartSolid from '@iconify-icons/clarity/heart-solid';
 import ItemCarousel from './ItemCarousel';
+import ItemModal from './ItemModal';
 import Context from '../../Context';
 
 function Item () {
@@ -18,14 +19,11 @@ function Item () {
     const [quantityErrorMessage, setQuantityErrorMessage] = useState (null)
     const [stockErrorMessage, setStockErrorMessage] = useState (null)
     const [sizeErrorMessage, setSizeErrorMessage] = useState (null)
-    const [shoppingCartErrorMessage, setshoppingCartErrorMessage] = useState (null)
-
     
     function cleanUpErrors() {
         setQuantityErrorMessage(null)
         setStockErrorMessage(null)
         setSizeErrorMessage(null)
-        setshoppingCartErrorMessage(null)
     }
 
     // Variables that store the props received from the item card
@@ -46,10 +44,29 @@ function Item () {
         context.wishList.includes(item) ? context.wishlistSubstract(item) : context.wishlistAdd(item)
     }
 
+    function containsObject(obj, list) {
+        for (let i = 0; i < list.length; i++) {
+            if (list[i].item === obj) {
+                return true;
+            }
+        } return false;
+    }
+
     function handleShoppingCartClick (item) {
         cleanUpErrors()
-        selectedSize === null ? setSizeErrorMessage('Please select the shoe size you want.') :
-        context.shoppingCart.includes(item) ? setshoppingCartErrorMessage('You already have this shoes in your shopping cart.') : context.shoppingCartAdd(item, selectedQuantity, selectedSize)
+        let selectedProduct = {item, selectedQuantity, selectedSize}
+        if (!selectedSize) {
+            setSizeErrorMessage('Please select the shoe size you want.')
+        } else if (containsObject(item, context.shoppingCart)) {
+            setModalContent('repeatedItem')
+            setModalShow(true)
+        } else {
+            setModalContent('itemAdded')
+            context.shoppingCartAdd(selectedProduct)
+            setModalShow(true)
+        }
+
+        console.log(modalContent)
     }
 
     // Functions that execute when the user selects item quantity and size
@@ -65,6 +82,11 @@ function Item () {
         cleanUpErrors()
         size === selectedSize ? setSelectedSize(null) : setSelectedSize(size)
     }
+
+    // Hook used to control modal display
+    const [modalShow, setModalShow] = useState(false);
+    // Hook used to control modal content
+    const [modalContent, setModalContent] = useState('itemAdded');
 
     return (
         <section className='itemPage'>
@@ -83,7 +105,7 @@ function Item () {
                             <btn className='operator' onClick={() => handleQuantityChange('substract')}>-</btn>
                             <p className='selectedQuantity'>{selectedQuantity}</p>
                             <btn className='operator' onClick={() => handleQuantityChange('add')}>+</btn>
-                            <p className='errorMessage'>{quantityErrorMessage}{stockErrorMessage}</p>
+                            <p className={quantityErrorMessage || stockErrorMessage ? 'errorMessage' : 'displayNone'}>{quantityErrorMessage}{stockErrorMessage}</p>
                         </div>
 
                         <div className='sizesContainer'>
@@ -93,12 +115,14 @@ function Item () {
                             </div>
                         </div>
 
-                        <p className='errorMessage'>{sizeErrorMessage}{shoppingCartErrorMessage}</p>
+                        <p className={sizeErrorMessage ? 'errorMessage' : 'displayNone'}>{sizeErrorMessage}</p>
                         <button className='btn-primary' onClick={() => handleShoppingCartClick(item)}>Add to cart</button>
                         <Icon icon={heartSolid} className={context.findInWishlist(item.id) ? 'wished' : 'notWished'} onClick={() => handleWishlistClick(item)}/>
                         <Link to='/gallery' href="#searchResults"><button className='btn-secondary'>Back to search results</button></Link>
                     </div>
                 </div>
+
+                <ItemModal show={modalShow} modalContent={modalContent} onHide={() => setModalShow(false)} />
 
                 <div className='item-description'>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem obcaecati ipsum earum fugiat maiores mollitia ipsa a voluptates modi dolore quam vel dolorum quibusdam totam facilis, voluptate dolorem tenetur ea aperiam rem deleniti! Labore at eos debitis dignissimos totam dolores dicta ea nemo asperiores vel ipsum cupiditate omnis, rem aperiam, sunt soluta. Magni, odio dolorum sequi nisi obcaecati temporibus dolores ipsum nihil aliquid sed odit itaque laudantium quas. Voluptas enim, vitae soluta repellendus esse veniam provident modi eligendi officiis ducimus excepturi tenetur itaque labore mollitia cum deleniti laborum impedit ratione dicta. Nobis sed unde provident ipsa, quasi velit magnam eum.</p>

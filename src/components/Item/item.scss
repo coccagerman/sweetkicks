@@ -133,6 +133,12 @@
                     }
                 }
             }
+
+            .errorMessage {
+                background-color: $sweetOrange;
+                color: white;
+                padding: 0 1rem;
+            }
         }
     }
 
