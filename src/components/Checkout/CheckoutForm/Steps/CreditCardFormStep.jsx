@@ -11,15 +11,18 @@ function CreditCardFormStep () {
                 <input id="creditCardNumber" type="text" className="textBox"/>
             </article>
 
-            <article className="formInput">
-                <label for="dueDate">Due date</label>
-                <input id="dueDate" type="text" className="textBox"/>
-            </article>
+            <div className='dueDate-securityCode'>
+                <article className="formInput">
+                    <label for="dueDate">Due date</label>
+                    <input id="dueDate" type="text" className="textBox"/>
+                </article>
 
-            <article className="formInput">
-                <label for="securityCode">Security code</label>
-                <input id="securityCode" type="text" className="textBox"/>
-            </article>
+                <article className="formInput">
+                    <label for="securityCode">Security code</label>
+                    <input id="securityCode" type="text" className="textBox"/>
+                </article>
+            </div>
+
 
             <article className="formInput">
                 <label for="installments">Installments</label>

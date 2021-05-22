@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as useRouteMatch, Route, Switch } from "react-router-dom";
 import PersonalDataFormStep from './Steps/PersonalDataFormStep'
 import AddressFormStep from './Steps/AddressFormStep'
 import CreditCardFormStep from './Steps/CreditCardFormStep'
@@ -12,6 +12,7 @@ function CheckoutForm () {
     const [fullName, setFullName] = useState(null)
     const [telephone, setTelephone] = useState(null)
     const [email, setEmail] = useState(null)
+    const [validationEmail, setValidationEmail] = useState(null)
     const [address, setAddress] = useState(null)
     const [city, setCity] = useState(null)
     const [location, setLocation] = useState(null)
@@ -21,8 +22,13 @@ function CheckoutForm () {
     // Object that stores the purchase data states
     const purchaseData = {
         fullName: fullName,
+        setFullName: setFullName,
         telephone: telephone,
+        setTelephone: setTelephone,
         email: email,
+        setEmail: setEmail,
+        validationEmail: validationEmail,
+        setValidationEmail: setValidationEmail,
         address: address,
         city: city,
         location: location,
@@ -31,29 +37,29 @@ function CheckoutForm () {
     }
 
     return (
-        <Router>
-            <Switch>
-                <Route path='/checkout/personalDataFormStep'>
-                    <PersonalDataFormStep setFullName={setFullName} setTelephone={setTelephone} setEmail={setEmail} />
-                </Route>
 
-                <Route path='/checkout/addressFormStep'>
-                    <AddressFormStep setAddress={setAddress} setCity={setCity} setLocation={setLocation} />
-                </Route>
+        <Switch>
+            <Route path='/checkout/personalDataFormStep'>
+                <PersonalDataFormStep  purchaseData={purchaseData} />
+            </Route>
 
-                <Route path='/checkout/creditCardFormStep'>
-                    <CreditCardFormStep setCardNumber={setCardNumber} setInstallments={setInstallments} />
-                </Route>
+            <Route path='/checkout/addressFormStep'>
+                <AddressFormStep setAddress={setAddress} setCity={setCity} setLocation={setLocation} />
+            </Route>
 
-                <Route path='/checkout/confirmationFormStep'>
-                    <ConfirmationFormStep purchaseData={purchaseData} />
-                </Route>
+            <Route path='/checkout/creditCardFormStep'>
+                <CreditCardFormStep setCardNumber={setCardNumber} setInstallments={setInstallments} />
+            </Route>
 
-                <Route path='/checkout/completionFormStep'>
-                    <CompletionFormStep />
-                </Route>
-            </Switch>   
-        </Router>
+            <Route path='/checkout/confirmationFormStep'>
+                <ConfirmationFormStep purchaseData={purchaseData} />
+            </Route>
+
+            <Route path='/checkout/completionFormStep'>
+                <CompletionFormStep />
+            </Route>
+        </Switch>
+
     )
 }
 

@@ -1,167 +1,178 @@
 .checkout {
+    h1 {
+        text-align: center;
+        padding-top: 1rem;
+    }
+    .containersContainer{
     display: flex;
 
-    .showShoppingContainer {
-        width: 50%;
-
-        .shoppingCart-item {
-            width: 70rem;
-            position: relative;
-            margin: auto auto;
-            padding: .25rem 2rem;
-            border-bottom: #ccc solid 1px;
-            max-width: 50rem;
-            color: black;
-            display: flex;
-                justify-content: space-between;
-                align-items: flex-end;
-        
-            img {
-                width: 8rem;
-                border-radius: 1rem;
-            }
-        
-            p {
-                font-size: 2rem;
-                padding-bottom: .75rem;
-            }
-        
-            .icon {
-                display: none;
-            }
-        
-            .item-name {
-                position: absolute;
-                left: 13rem;
-            }
-        
-            .item-price {
-                position: absolute;
-                left: 30rem;
-            }
-        
-            .item-quantity{
-                position: absolute;
-                left: 36rem;
-            }
-        
-            .item-size{
-                position: absolute;
-                left: 43rem;
-            }
-        
-            .buy-icon {
-                display: none;
-            }
-        }
-
-        .details {
-            font-size: 2rem;
-            display: flex;
-                justify-content: center;
-                align-items: center;
-
-            p {
-                margin: 0 2rem;
-            }
-        }
-    }
-
-    .checkoutFormContainer {
-        position: relative;
-        width: 50%;
-
-        .checkoutForm {
-            background-color: black;
-            color: white;
-            width: 35rem;
-            margin: 2rem auto;
+        .showShoppingContainer {
+            width: 50%;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
 
-            h1 {
-                text-align: center;
-                margin: 2rem 0;
+            .shoppingCart-item {
+                width: 70rem;
+                position: relative;
+                margin: .5rem auto;
+                padding: .25rem 2rem;
+                border-bottom: #ccc solid 1px;
+                max-width: 50rem;
+                color: black;
+                display: flex;
+                    justify-content: space-between;
+                    align-items: flex-end;
+            
+                img {
+                    width: 8rem;
+                    border-radius: 1rem;
+                }
+            
+                p {
+                    font-size: 2rem;
+                    padding-bottom: 1.25rem;
+                }
+            
+                .icon {
+                    display: none;
+                }
+            
+                .item-name {
+                    position: absolute;
+                    left: 13rem;
+                }
+            
+                .item-price {
+                    position: absolute;
+                    left: 30rem;
+                }
+            
+                .item-quantity{
+                    position: absolute;
+                    left: 36rem;
+                }
+            
+                .item-size{
+                    position: absolute;
+                    left: 43rem;
+                }
+            
+                .buy-icon {
+                    display: none;
+                }
             }
+        }
 
-            .formInput {
-                font-size: 1.75rem;
-                width: 20rem;
+        .checkoutFormContainer {
+            position: relative;
+            width: 50%;
+
+            .checkoutForm {
+                background-color: black;
+                color: white;
+                width: 35rem;
+                margin: 2rem auto;
                 display: flex;
                 flex-direction: column;
-            }
-            
-            .btn-container {
-                display: flex;
-                margin: 2rem 0;
+                justify-content: center;
+                align-items: center;
 
-                button {
-                    margin: 0 1rem;
-                    width: 8rem;
+                h1 {
+                    text-align: center;
+                    margin: 2rem 0;
+                }
+
+                .formInput {
+                    font-size: 1.75rem;
+                    width: 20rem;
+                    display: flex;
+                    flex-direction: column;
+                }
+                
+                .btn-container {
+                    display: flex;
+                    margin: 2rem 0;
+
+                    button {
+                        margin: 0 1rem;
+                        width: 8rem;
+                    }
+                }
+
+                select {
+                    font-size: 1rem;
+                    height: 3rem;
+                }
+
+                h2 {
+                    margin: 1rem auto;
+                    text-align: center;
+                    width: 18rem;
+                }
+
+                .shippingDetails, .paymentDetails, .confirmationDetails {
+                    background-color: #ccc;
+                    color: black;
+                    width: 18rem;
+                    font-size: 1.5rem;
+                    display: flex;
+                        justify-content: space-evenly;
+                        align-items: center;
+
+                        p {
+                            margin: 0;
+                            padding: 1rem 0;
+                        }
+                }
+
+                .dueDate-securityCode {
+                    display: flex;
+                    justify-content: space-between !important;
+                    align-items: center !important;
+
+                    .formInput {
+                        width: 9rem;
+                        margin: 0 1rem;
+                    }
                 }
             }
 
-            select {
-                font-size: 1rem;
-                height: 3rem;
-            }
-
-            h2 {
-                margin: 1rem auto;
-                text-align: center;
-                width: 18rem;
-            }
-
-            .shippingDetails, .paymentDetails, .confirmationDetails {
+            .confirmationStep {
                 background-color: #ccc;
                 color: black;
-                width: 18rem;
-                font-size: 1.5rem;
-                display: flex;
-                    justify-content: space-evenly;
-                    align-items: center;
+
+                h1 {
+                    margin: 2rem 0 0 0;
+                }
+
+                h2 {
+                    margin: 1rem 0 0 0;
+                    text-align: left;
+                    width: 20rem;
+                }
+
+                .confirmationDetails{
+                    background-color: white;
+                    display: block;
+                    border: black solid 2px;
+                    width: 22rem;
 
                     p {
-                        margin: 0;
-                        padding: 1rem 0;
+                        padding: 0 0 0 1rem;
                     }
-            }
-        }
-
-        .confirmationStep {
-            background-color: #ccc;
-            color: black;
-
-            h1 {
-                margin: 2rem 0 0 0;
-            }
-
-            h2 {
-                margin: 1rem 0 0 0;
-                text-align: left;
-                width: 20rem;
-            }
-
-            .confirmationDetails{
-                background-color: white;
-                display: block;
-                border: black solid 2px;
-                width: 22rem;
-
-                p {
-                    padding: 0 0 0 1rem;
                 }
             }
-        }
 
-        .completionStep {
-            p {
-                font-size: 1.75rem;
+            .completionStep {
+                p {
+                    font-size: 1.75rem;
+                }
             }
         }
     }
+    
 }
 
 .lightMode {

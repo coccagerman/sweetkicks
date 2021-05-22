@@ -50,11 +50,6 @@ function AddressFormStep () {
                 </select>
             </article>
 
-            <article className="formInput">
-                <label for="extraDetails">Please provide any extra details you like</label>
-                <input id="extraDetails" type="text" className="textBox"/>
-            </article>
-
             <h2>Shipping costs and times will vary depending on your location.</h2>
             <div className='shippingDetails'>
                 <p>Shipping cost:</p>
