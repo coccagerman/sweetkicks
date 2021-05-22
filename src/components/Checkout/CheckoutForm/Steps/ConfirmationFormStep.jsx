@@ -35,10 +35,10 @@ function ConfirmationFormStep () {
             </div>
 
             <div className='btn-container'>
-                <Link to={{ pathname:'/checkout/creditCardFormStep', }} >
+                <Link to='/checkout/creditCardFormStep' >
                     <button className='btn-tertiary'>Go back</button>
                 </Link>
-                <Link to={{ pathname:'/checkout/completionFormStep', }} >
+                <Link to='/checkout/completionFormStep' >
                     <button className='btn-primary'>Confirm</button>
                 </Link>
             </div>

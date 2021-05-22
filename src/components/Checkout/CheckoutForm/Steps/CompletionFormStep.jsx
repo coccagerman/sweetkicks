@@ -8,10 +8,10 @@ function CompletionFormStep () {
             <p>Your purchase number is:</p>
             <p>You can see purchase details in "My orders" section.</p>
             <div className='btn-container'>
-                <Link to="/orders" >
+                <Link to="orders" exact >
                     <button className='btn-secondary'>My orders</button>
                 </Link>
-                <Link to="/gallery" >
+                <Link to="/gallery" exact >
                     <button className='btn-primary'>Explore</button>
                 </Link>
             </div>

@@ -27,7 +27,7 @@ function PersonalDataFormStep () {
             </article>
 
             <div className='btn-container'>
-                <Link to={{ pathname:'/checkout/addressFormStep', }} >
+                <Link to='/checkout/addressFormStep' >
                     <button className='btn-primary'>Confirm</button>
                 </Link>
             </div>

@@ -39,10 +39,10 @@ function CreditCardFormStep () {
             </div>
 
             <div className='btn-container'>
-                <Link to={{ pathname:'/checkout/addressFormStep', }} >
+                <Link to='/checkout/addressFormStep' >
                     <button className='btn-secondary'>Go back</button>
                 </Link>
-                <Link to={{ pathname:'/checkout/confirmationFormStep', }} >
+                <Link to='/checkout/confirmationFormStep' >
                     <button className='btn-primary'>Confirm</button>
                 </Link>
             </div>

@@ -62,10 +62,10 @@ function AddressFormStep () {
             </div>
             
             <div className='btn-container'>
-                <Link to={{ pathname:'/checkout/personalDataFormStep', }} >
+                <Link to='/checkout/personalDataFormStep' >
                     <button className='btn-secondary'>Go back</button>
                 </Link>
-                <Link to={{ pathname:'/checkout/creditCardFormStep', }} >
+                <Link to='/checkout/creditCardFormStep' >
                     <button className='btn-primary'>Confirm</button>
                 </Link>
             </div>
