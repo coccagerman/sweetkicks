@@ -15,7 +15,7 @@ function Wishlist () {
     )
 
     return (
-        <section className='wishlist'>
+        <section className={context.wishList.length !== 0 ? 'wishlist' : 'wishlist occupyMinHeight'}>
             {context.wishList.length !== 0 ? 
                 <>
                     <h1>Stop wishing, start enjoying.</h1>

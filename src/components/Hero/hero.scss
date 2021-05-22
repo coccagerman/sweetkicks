@@ -1,5 +1,5 @@
 .hero {
-    height: 90vh;
+    height: 78.3vh;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -7,8 +7,9 @@
         align-items: center;
 
     .hero-img {
-        margin: auto;
-        height: 90vh;
+        margin: 0 auto 0 auto;
+        height: 85vh;
+        // border: black 1px solid;
     }
 
     .iconify {
@@ -23,7 +24,7 @@
         position: absolute;
         width: 10rem;
         height: 5rem;
-        top: 75%;
+        top: 72%;
         left: 43%;
         z-index: 1;
 

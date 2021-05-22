@@ -43,7 +43,7 @@ function Header ({setDarkMode, darkMode, productsDataBase, setProductsArray}) {
                     <li onClick={() => setProductsArray(productsDataBase.filter(item => (item.discount !== 0)))}><Link to='/gallery' href="#searchResults" className='hover-effect'>Sale</Link></li>
                     <li onClick={() => setProductsArray(productsDataBase.filter(item => (item.latestRelease)))}><Link to='/gallery' href="#searchResults" className='hover-effect'>Latest releases</Link></li>
                     <li><Link to="/about" className='hover-effect'>About</Link></li>
-                    <li><a href="#" className='hover-effect'>My orders</a></li>
+                    <li><Link to="/orders" className='hover-effect'>My orders</Link></li>
 
                     <Link to="/shoppingcart"><ShoppingCartIcon /></Link>
                     <Link to="/wishlist"><WishlistIcon /></Link>

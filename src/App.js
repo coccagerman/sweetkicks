@@ -7,6 +7,8 @@ import Gallery from './components/Gallery/Gallery';
 import Item from './components/Item/Item';
 import ShoppingCart from './components/Wishlist&ShoppingCart/ShoppingCart/ShoppingCart';
 import Wishlist from './components/Wishlist&ShoppingCart/Wishlist/Wishlist';
+import Checkout from './components/Checkout/Checkout';
+import MyOrders from './components/MyOrders/MyOrders';
 import About from './components/About/About';
 import Footer from './components/Footer/Footer';
 import productsDataBase from './ProductsDB';
@@ -75,6 +77,14 @@ function App() {
 
               <Route path='/wishlist'>
                 <Wishlist />
+              </Route>
+
+              <Route path='/checkout'>
+                <Checkout />
+              </Route>
+
+              <Route path='/orders'>
+                <MyOrders />
               </Route>
 
               <Route path='/about'>

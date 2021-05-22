@@ -15,7 +15,7 @@ function ShoppingCart () {
     )
     
     return (
-        <section className='shoppingCart'>
+        <section className={context.shoppingCart.length !== 0 ? 'shoppingCart' : 'shoppingCart occupyMinHeight'}>
             {context.shoppingCart.length !== 0 ?
                 <>
                     <h1>Buy and walk your dreams.</h1>
@@ -23,7 +23,7 @@ function ShoppingCart () {
                     <div>
                         <div className='details'>
                             <p>Total items: {context.shoppingCart.length}</p>
-                            <p>Total price: ${context.addNumberThousandSeparator(context.shoppingCart.map((item) => (item.item.price)).reduce((a, b) => a + b, 0))}</p>
+                            <p>Total price: ${context.addNumberThousandSeparator(context.shoppingCart.map((item) => (item.item.price*item.quantity)).reduce((a, b) => a + b, 0))}</p>
                         </div>
                         <div className='btns'>
                             <button className='btn-tertiary'onClick={() => context.emptyShoppingCart()}>Empty cart</button>
@@ -32,7 +32,11 @@ function ShoppingCart () {
                             }} >
                                 <button className='btn-secondary'>Keep buying</button>
                             </Link>
+                            <Link to={{
+                                pathname:'/checkout/personalDataFormStep',
+                            }} >
                             <button className='btn-primary'>Check out</button>
+                            </Link>
                         </div>
                     </div>
                 </> :

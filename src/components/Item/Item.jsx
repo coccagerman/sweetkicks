@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import { Icon } from '@iconify/react';
 import heartSolid from '@iconify-icons/clarity/heart-solid';
 import ItemCarousel from './ItemCarousel';
@@ -105,7 +105,7 @@ function Item () {
                 </div>
 
                 <div className='item-otherOptions'>
-                    
+                    <p>Here will go the other options.</p>
                 </div>
         </section>
     )
