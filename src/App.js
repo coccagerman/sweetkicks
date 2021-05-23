@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Context from './Context';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Header from './components/Header/Header';
 import Hero from './components/Hero/Hero';
 import Gallery from './components/Gallery/Gallery';
@@ -19,7 +19,7 @@ function App() {
   // Hook used to track the dark mode state
   const [darkMode,setDarkMode] = useState(false)
 
-  // hook used to store the array of products that will be shown in the gallery
+  // Hook used to store the array of products that will be shown in the gallery
   const [productsArray, setProductsArray] = useState (productsDataBase)
 
   // Regex used to insert thousand separator in prices
@@ -27,23 +27,23 @@ function App() {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
   }
 
-  // hook that stores the product search parameters
+  // Hook that stores the product search parameters
   const [searchParams, setSearchParams] = useState([])
 
-  // hooks used to store the arrays of products in the wishlist and shopping cart
-  const [wishList, setwishList] = useState ([])
-  const [shoppingCart, setShoppingCart] = useState ([])
+  // Hooks used to store the arrays of products in the wishlist and shopping cart
+  const [wishList, setwishList] = useState (JSON.parse(localStorage.getItem('wishList')) || [])
+  const [shoppingCart, setShoppingCart] = useState (JSON.parse(localStorage.getItem('shoppingCart')) || [])
 
-  // functions used to add and substract items from the wishlist and shopping cart
+  // Functions used to add and substract items from the wishlist and shopping cart
   const wishlistAdd = (itemToAdd) => setwishList([...wishList, itemToAdd])
   const wishlistSubstract = (itemToSubstract) => setwishList(wishList.filter(item => (item !== itemToSubstract)))
-  const shoppingCartAdd = (item) => setShoppingCart([...shoppingCart, item])
+  const shoppingCartAdd = (item) => {setShoppingCart([...shoppingCart, item])}
   const shoppingCartSubstract = (itemToSubstract) => setShoppingCart(shoppingCart.filter(item => (item !== itemToSubstract)))
-  const emptyShoppingCart = () => setShoppingCart([])
+  const emptyShoppingCart = () => {setShoppingCart([])}
 
-  // Hooks used to store the shoe size and quantity selected
-  // const [selectedSize, setSelectedSize] = useState (null)
-  // const [selectedQuantity, setSelectedQuantity] = useState (1)
+  // Hooks store and update the shopping cart and wishlist in local storage
+  useEffect(() => {localStorage.setItem('shoppingCart', JSON.stringify(shoppingCart))}, [shoppingCart])
+  useEffect(() => {localStorage.setItem('wishList', JSON.stringify(wishList))}, [wishList])
 
   // Function used to identify items that were added to the wishlist
   function findInWishlist (id) {
