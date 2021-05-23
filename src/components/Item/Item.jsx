@@ -12,8 +12,8 @@ function Item () {
     const context = useContext(Context)
 
     // Hooks used to store the shoe size and quantity selected
-    const [selectedSize, setSelectedSize] = useState (null)
-    const [selectedQuantity, setSelectedQuantity] = useState (1)
+    // const [selectedSize, setSelectedSize] = useState (null)
+    // const [selectedQuantity, setSelectedQuantity] = useState (1)
 
     // Hooks used to display quantity, stock and size errors
     const [quantityErrorMessage, setQuantityErrorMessage] = useState (null)
@@ -54,6 +54,8 @@ function Item () {
 
     function handleShoppingCartClick (item) {
         cleanUpErrors()
+        let selectedQuantity = context.selectedQuantity
+        let selectedSize = context.selectedSize
         let selectedProduct = {item, selectedQuantity, selectedSize}
         if (!selectedSize) {
             setSizeErrorMessage('Please select the shoe size you want.')
@@ -65,28 +67,26 @@ function Item () {
             context.shoppingCartAdd(selectedProduct)
             setModalShow(true)
         }
-
-        console.log(modalContent)
     }
 
     // Functions that execute when the user selects item quantity and size
     function handleQuantityChange (operation) {
         cleanUpErrors()
-        if (operation === 'substract' && selectedQuantity === 1) { setQuantityErrorMessage("You can't buy less than a pair, bro.") }
-        if (operation === 'substract' && selectedQuantity > 1) { setSelectedQuantity(selectedQuantity-1) }
-        if (operation === 'add' && selectedQuantity === stock) { setStockErrorMessage('Sorry bro, we dont have more stock of this one.') }
-        if (operation === 'add' && selectedQuantity < stock) { setSelectedQuantity(selectedQuantity+1) }
+        if (operation === 'substract' && context.selectedQuantity === 1) { setQuantityErrorMessage("You can't buy less than a pair, mate.") }
+        if (operation === 'substract' && context.selectedQuantity > 1) { context.setSelectedQuantity(context.selectedQuantity-1) }
+        if (operation === 'add' && context.selectedQuantity === stock) { setStockErrorMessage('Sorry mate, we dont have more stock of this one.') }
+        if (operation === 'add' && context.selectedQuantity < stock) { context.setSelectedQuantity(context.selectedQuantity+1) }
     }
 
     function handleSizeSelection (size) {
         cleanUpErrors()
-        size === selectedSize ? setSelectedSize(null) : setSelectedSize(size)
+        size === context.selectedSize ? context.setSelectedSize(null) : context.setSelectedSize(size)
     }
 
     // Hook used to control modal display
-    const [modalShow, setModalShow] = useState(false);
+    const [modalShow, setModalShow] = useState(false)
     // Hook used to control modal content
-    const [modalContent, setModalContent] = useState('itemAdded');
+    const [modalContent, setModalContent] = useState('itemAdded')
 
     return (
         <section className='itemPage'>
@@ -103,7 +103,7 @@ function Item () {
                         <div className='quantityContainer'>
                             <p>Quantity:</p>
                             <btn className='operator' onClick={() => handleQuantityChange('substract')}>-</btn>
-                            <p className='selectedQuantity'>{selectedQuantity}</p>
+                            <p className='selectedQuantity'>{context.selectedQuantity}</p>
                             <btn className='operator' onClick={() => handleQuantityChange('add')}>+</btn>
                             <p className={quantityErrorMessage || stockErrorMessage ? 'errorMessage' : 'displayNone'}>{quantityErrorMessage}{stockErrorMessage}</p>
                         </div>
@@ -111,11 +111,12 @@ function Item () {
                         <div className='sizesContainer'>
                             <p>Sizes: </p> 
                             <div className='availableSizes'>
-                                {sizes.map(size => <p className={size === selectedSize ? 'size selectedSize' : 'size'} onClick={() => handleSizeSelection(size)}>{size}</p>)}
+                                {sizes.map(size => <p className={size === context.selectedSize ? 'size selectedSize' : 'size'} onClick={() => handleSizeSelection(size)}>{size}</p>)}
+                                <p className={sizeErrorMessage ? 'errorMessage' : 'displayNone'}>{sizeErrorMessage}</p> 
                             </div>
                         </div>
 
-                        <p className={sizeErrorMessage ? 'errorMessage' : 'displayNone'}>{sizeErrorMessage}</p>
+
                         <button className='btn-primary' onClick={() => handleShoppingCartClick(item)}>Add to cart</button>
                         <Icon icon={heartSolid} className={context.findInWishlist(item.id) ? 'wished' : 'notWished'} onClick={() => handleWishlistClick(item)}/>
                         <Link to='/gallery' href="#searchResults"><button className='btn-secondary'>Back to search results</button></Link>

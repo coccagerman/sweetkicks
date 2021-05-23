@@ -10,7 +10,7 @@ function ShoppingCart () {
 
     // Function that displays the items in the shopping cart
     const showShoppingCartItem = () => context.shoppingCart.map((item) => (
-        <ShoppingCartItem shoppingCartItem={item} item={item.item} brand={item.item.brand} model={item.item.model} price={item.item.price} mainImage={item.item.mainImage} quantity={item.quantity} size={item.size}/>
+        <ShoppingCartItem shoppingCartItem={item} item={item.item} />
         )
     )
     
@@ -23,19 +23,15 @@ function ShoppingCart () {
                     <div>
                         <div className='details'>
                             <p>Total items: {context.shoppingCart.length}</p>
-                            <p>Total price: ${context.addNumberThousandSeparator(context.shoppingCart.map((item) => (item.item.price*item.quantity)).reduce((a, b) => a + b, 0))}</p>
+                            <p>Total price: ${context.addNumberThousandSeparator(context.shoppingCart.map(item => (item.item.price*item.selectedQuantity)).reduce((a, b) => a + b, 0))}</p>
                         </div>
                         <div className='btns'>
                             <button className='btn-tertiary'onClick={() => context.emptyShoppingCart()}>Empty cart</button>
-                            <Link to={{
-                                pathname:'/gallery',
-                            }} >
+                            <Link to='/gallery'>
                                 <button className='btn-secondary'>Keep buying</button>
                             </Link>
-                            <Link to={{
-                                pathname:'/checkout/personalDataFormStep',
-                            }} >
-                            <button className='btn-primary'>Check out</button>
+                            <Link to='/checkout/personalDataFormStep'>
+                                <button className='btn-primary'>Check out</button>
                             </Link>
                         </div>
                     </div>
@@ -43,9 +39,7 @@ function ShoppingCart () {
                 <> 
                     <h1>Sorry mate, you have no items in your shopping cart yet.</h1>
                     <div className='btns'>
-                        <Link to={{
-                            pathname:'/gallery',
-                        }} >
+                        <Link to='/gallery'>
                             <button className='btn-primary'>Go to gallery</button>
                         </Link>
                     </div>

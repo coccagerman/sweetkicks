@@ -4,11 +4,11 @@
 - FEATURE: Implementar color picker para formulario de búsqueda.
 - FEATURE: Implementar buscador para que se pueda tipear y buscar el modelo de zapa  directamente.
 - FEATURE: Create a 404 page
-- FEATURE: Implementar pop up que diga 'Se agregó producto a la wishlist' cuando se agrega prod. a wishlist.
 - FEATURE: Implementar reducer para gestionar estado de wishlist y carrito.
 - FEATURE: Implementar useMemo para evitar volver a renderizar componentes de manera innecesaria por useContext.
 - FEATURE: Implementar posibilidad de modificar cantidad y sizes en carrito.
 - FEATURE: auth/login. Implementar alguno de los servicios de autenticación disponibles de firebase para evitar el flujo de email. Si un usuario está logueado, el checkout debería decir ‘comprar como xxxx@gmail.com’, para evitar compras con cuentas indeseadas.
+- FEATURE: Implementar URL dinámicos para items.
 - FEATURE: Cart y wishlist persistente. Hacer que el cart sea persistente en alguna api de almacenamiento local en el navegador (local/session storage).
 - BUG: Cuando hacés una búsqueda y después ingresás a través del header a una categoría, te sigue mostrando el formulario y los search params de la búsqueda previa, cuando te tendría que mostrar solo el param de la categoría seleccionada.
 - BUG: El dropdown debiese cerrarse cuando se hace click fuera de él.

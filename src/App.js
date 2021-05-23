@@ -41,6 +41,10 @@ function App() {
   const shoppingCartSubstract = (itemToSubstract) => setShoppingCart(shoppingCart.filter(item => (item !== itemToSubstract)))
   const emptyShoppingCart = () => setShoppingCart([])
 
+  // Hooks used to store the shoe size and quantity selected
+  const [selectedSize, setSelectedSize] = useState (null)
+  const [selectedQuantity, setSelectedQuantity] = useState (1)
+
   // Function used to identify items that were added to the wishlist
   function findInWishlist (id) {
     for (let i = 0; i < wishList.length; i++) {
@@ -54,7 +58,7 @@ function App() {
     <div className={darkMode === false ? 'lightMode' : 'darkMode'}>
         <Router>
 
-          <Context.Provider value={{ wishList: wishList, wishlistAdd: wishlistAdd, wishlistSubstract: wishlistSubstract, shoppingCart: shoppingCart, shoppingCartAdd: shoppingCartAdd, shoppingCartSubstract: shoppingCartSubstract, emptyShoppingCart: emptyShoppingCart, addNumberThousandSeparator: addNumberThousandSeparator, findInWishlist: findInWishlist, searchParams: searchParams, setSearchParams: setSearchParams }}>
+          <Context.Provider value={{ wishList: wishList, wishlistAdd: wishlistAdd, wishlistSubstract: wishlistSubstract, shoppingCart: shoppingCart, shoppingCartAdd: shoppingCartAdd, shoppingCartSubstract: shoppingCartSubstract, emptyShoppingCart: emptyShoppingCart, addNumberThousandSeparator: addNumberThousandSeparator, findInWishlist: findInWishlist, searchParams: searchParams, setSearchParams: setSearchParams, selectedSize: selectedSize, setSelectedSize: setSelectedSize, selectedQuantity: selectedQuantity, setSelectedQuantity: setSelectedQuantity }}>
 
             <Header setDarkMode={setDarkMode} darkMode={darkMode} productsDataBase={productsDataBase} setProductsArray={setProductsArray} />
 

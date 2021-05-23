@@ -11,10 +11,10 @@
         align-items: center;
 
         .item-carousel {
-            width: 31rem;
+            width: 36.5rem;
             
             .carousel-img {
-                width: 30rem;
+                width: 33rem;
                 margin: auto;
             }
 
@@ -135,9 +135,10 @@
             }
 
             .errorMessage {
-                background-color: $sweetOrange;
-                color: white;
+                background-color: black;
+                color:$sweetOrange;
                 padding: 0 1rem;
+                font-size: 2.5rem;
             }
         }
     }
