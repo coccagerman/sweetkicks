@@ -1,53 +1,51 @@
 import Modal from 'react-bootstrap/Modal'
 import { Icon } from '@iconify/react';
 import cancelIcon from '@iconify-icons/topcoat/cancel';
-import { useContext, useState } from 'react';
-import Context from '../../../Context';
-
+import { useState } from 'react';
 
 function ShoppingCartModal (props) {
 
-    // Hook used to access context
-    const context = useContext(Context)
-    // Hooks used to re render component with quantity changes
-    const [state, setState] = useState (0)
-
-    // Functions that execute when the user selects item quantity and size
-    function handleQuantityChange (operation) {
-        cleanUpErrors()
-        if (operation === 'substract' && props.shoppingCartItem.selectedQuantity === 1) { setQuantityErrorMessage("You can't buy less than a pair, mate.") }
-        if (operation === 'substract' && props.shoppingCartItem.selectedQuantity > 1) {
-            props.shoppingCartItem.selectedQuantity-=1
-            setState(state-1)
-        }
-        if (operation === 'add' && props.shoppingCartItem.selectedQuantity === props.shoppingCartItem.item.stock) { setStockErrorMessage('Sorry mate, we dont have more stock of this one.') }
-        if (operation === 'add' && props.shoppingCartItem.selectedQuantity < props.shoppingCartItem.item.stock) {
-            props.shoppingCartItem.selectedQuantity+=1
-            setState(state+1)
-        }
-    }
-
-    function handleSizeSelection (size) {
-        cleanUpErrors()
-        if (size === props.shoppingCartItem.selectedSize) {
-            props.shoppingCartItem.selectedSize = null
-            setState(state-1)
-        } else {
-            props.shoppingCartItem.selectedSize = size
-            setState(state+1)
-        }
-        console.log(props.shoppingCartItem.selectedSize)
-    }
-
-    // Hooks used to display quantity, stock and size errors
+    // Hooks and funciton used to display quantity, stock and size errors
     const [quantityErrorMessage, setQuantityErrorMessage] = useState (null)
-    const [stockErrorMessage, setStockErrorMessage] = useState (null)
+    // const [stockErrorMessage, setStockErrorMessage] = useState (null)
     const [sizeErrorMessage, setSizeErrorMessage] = useState (null)
     
     function cleanUpErrors() {
         setQuantityErrorMessage(null)
-        setStockErrorMessage(null)
         setSizeErrorMessage(null)
+    }
+
+    // Functions that execute when user selects item quantity and size
+    function handleQuantityChange (operation) {
+        cleanUpErrors()
+        if (operation === 'substract' && props.modalQuantity === 1) {
+            setQuantityErrorMessage("Can't buy less than a pair, mate.")
+            setTimeout(cleanUpErrors, 4000)
+        }
+        if (operation === 'substract' && props.modalQuantity > 1) {props.setModalQuantity(props.modalQuantity-1)}
+        if (operation === 'add' && props.modalQuantity === props.shoppingCartItem.item.stock) {
+            setQuantityErrorMessage("Sorry mate, we don't have more stock of this one.")
+            setTimeout(cleanUpErrors, 4000)
+        }
+        if (operation === 'add' && props.modalQuantity < props.shoppingCartItem.item.stock) {props.setModalQuantity(props.modalQuantity+1)}
+
+    }
+
+    function handleSizeSelection (size) {
+        cleanUpErrors()
+        size === props.modalSize ? props.setModalSize(null) : props.setModalSize(size)
+    }
+
+    // Function that saves the changes in quantity and sizes
+    const handleSave = () => {
+        if (!props.modalSize) {
+            setSizeErrorMessage('Gotta pick a size for your shoes, mate.')
+            setTimeout(cleanUpErrors, 4000)
+        } else {
+            props.shoppingCartItem.selectedQuantity = props.modalQuantity
+            props.shoppingCartItem.selectedSize = props.modalSize
+            props.onHide()
+        }
     }
 
     return (
@@ -68,24 +66,24 @@ function ShoppingCartModal (props) {
                 <h2>Quantity:</h2>
                 <div className='quantitySubContainer'>    
                     <btn className='operator' onClick={() => handleQuantityChange('substract')}>-</btn>
-                    <p className='selectedQuantity'>{props.shoppingCartItem.selectedQuantity}</p>
+                    <p className='selectedQuantity'>{props.modalQuantity}</p>
                     <btn className='operator' onClick={() => handleQuantityChange('add')}>+</btn>
                 </div>
-                <p className={quantityErrorMessage || stockErrorMessage ? 'errorMessage' : 'displayNone'}>{quantityErrorMessage}{stockErrorMessage}</p>
+                <p className={quantityErrorMessage ? 'errorMessage' : 'displayNone'}>{quantityErrorMessage}</p>
             </div>
 
             <div className='sizesContainer'>
                 <h2>Sizes:</h2> 
                 <div className='availableSizes'>
-                    {props.shoppingCartItem.item.sizes.map(size => <p className={size === props.shoppingCartItem.selectedSize ? 'size selectedSize' : 'size'} onClick={() => handleSizeSelection(size)}>{size}</p>)}
-                    <p className={sizeErrorMessage ? 'errorMessage' : 'displayNone'}>{sizeErrorMessage}</p> 
+                    {props.shoppingCartItem.item.sizes.map(size => <p className={size === props.modalSize ? 'size selectedSize' : 'size'} onClick={() => handleSizeSelection(size)}>{size}</p>)}
                 </div>
+                <p className={sizeErrorMessage ? 'errorMessage' : 'displayNone'}>{sizeErrorMessage}</p> 
             </div>
 
         </Modal.Body>
         <Modal.Footer className='modal-footer' >
             <button className='btn-tertiary' onClick={props.onHide}>Cancel</button>
-            <button className='btn-primary' onClick={props.onHide}>Save changes</button>
+            <button className='btn-primary' onClick={()=> handleSave()}>Save changes</button>
         </Modal.Footer>
       </Modal>
     )

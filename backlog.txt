@@ -14,3 +14,4 @@
 - BUG: El dropdown debiese cerrarse cuando se hace click fuera de él.
 - BUG: cuando se va a url http://localhost:3001/item arroja error, la url cuando se ingresa e ver un item debiese ir acompañada por el ID del item. Si se va a url http://localhost:3001/item debiese mostrar 404.
 - BUG: Cuando se toca el boton 'categories' en la página de item, arroja error.
+- BUG: Cuando seleccionás determinada cantidad de pares en un producto y luego ingresás a otro, te muestra inicialmente la cantidad que seleccionaste en el otro item.
