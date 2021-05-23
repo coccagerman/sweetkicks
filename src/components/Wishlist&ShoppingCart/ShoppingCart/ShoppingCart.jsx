@@ -10,7 +10,7 @@ function ShoppingCart () {
 
     // Function that displays the items in the shopping cart
     const showShoppingCartItem = () => context.shoppingCart.map((item) => (
-        <ShoppingCartItem shoppingCartItem={item} item={item.item} />
+        <ShoppingCartItem shoppingCartItem={item} item={item.item} mainImage={item.item.mainImage} />
         )
     )
     

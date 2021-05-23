@@ -10,7 +10,7 @@ function Checkout () {
 
     // Function that displays the items in the shopping cart
     const showShoppingCartItem = () => context.shoppingCart.map((item) => (
-        <ShoppingCartItem shoppingCartItem={item} item={item.item} brand={item.item.brand} model={item.item.model} price={item.item.price} mainImage={`/${item.item.mainImage}`} quantity={item.quantity} size={item.size}/>
+        <ShoppingCartItem shoppingCartItem={item} item={item.item} mainImage={`/${item.item.mainImage}`} />
         )
     )
 
