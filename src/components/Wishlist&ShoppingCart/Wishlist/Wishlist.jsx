@@ -5,12 +5,12 @@ import WishlistItem from './WishlistItem';
 
 function Wishlist () {
 
-    // Hook used to access wishlist and modify it
+    // Hook used to access context and modify it
     const context = useContext(Context)
 
     // Function that displays the items in the wishlist
     const showWishlistItem = () => context.wishList.map((item) => (
-            <WishlistItem item={item} brand={item.brand} model={item.model} price={item.price} mainImage={item.mainImage} />
+            <WishlistItem item={item} />
         )
     )
 
@@ -25,9 +25,7 @@ function Wishlist () {
                 <> 
                     <h1>Sorry mate, you have no items in your wish list yet.</h1>
                     <div className='btns'>
-                        <Link to={{
-                            pathname:'/gallery',
-                        }} >
+                        <Link to='/gallery' >
                             <button className='btn-primary'>Go to gallery</button>
                         </Link>
                     </div>

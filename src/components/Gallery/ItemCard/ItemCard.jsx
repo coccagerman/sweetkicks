@@ -10,8 +10,8 @@ import { Icon } from '@iconify/react';
 import heartSolid from '@iconify-icons/clarity/heart-solid';
 import Context from '../../../Context';
 
-function ItemCard ({item, brand, model, price, latestRelease, discount, mainImage}) {
-
+function ItemCard ({item}) {
+    
     // Hook used to access context
     const context = useContext(Context)
     
@@ -22,7 +22,7 @@ function ItemCard ({item, brand, model, price, latestRelease, discount, mainImag
 
     // Function used to show the corresponding brand icon in each card
     function showBraindIcon () {
-        switch (brand) {
+        switch (item.brand) {
             default: break;
             case 'Nike': return NikeIcon;
             case 'Adidas': return AdidasIcon;
@@ -35,21 +35,21 @@ function ItemCard ({item, brand, model, price, latestRelease, discount, mainImag
 
     // Function used to display an icon if the product is a latest release or has discount
     function showLatestOrSaleIcon() {
-        if (latestRelease) {return <div className='LatestOrSale-icon'><p>Latest release</p></div>}
-        else if (discount !== 0) {return <div className='LatestOrSale-icon'><p>On sale</p></div>}
+        if (item.latestRelease) {return <div className='LatestOrSale-icon'><p>Latest release</p></div>}
+        else if (item.discount !== 0) {return <div className='LatestOrSale-icon'><p>On sale</p></div>}
         else {return null}
     }
 
     // Function used to show the price of the item
     function showPrice() { 
-        if (discount !== 0) { return (
+        if (item.discount !== 0) { return (
             <p className="card-price">
-                <span className='noDiscountPrice'>${context.addNumberThousandSeparator(price)}</span>
-                ${context.addNumberThousandSeparator(price-(price*discount/100).toFixed(0))}
-                <span className='discountPercentage'>%{discount} off</span>
+                <span className='noDiscountPrice'>${context.addNumberThousandSeparator(item.price)}</span>
+                ${context.addNumberThousandSeparator(item.price-(item.price*item.discount/100).toFixed(0))}
+                <span className='discountPercentage'>%{item.discount} off</span>
             </p>
             ) }
-        else { return <p className="card-price">${context.addNumberThousandSeparator(price)}</p> }
+        else { return <p className="card-price">${context.addNumberThousandSeparator(item.price)}</p> }
     }
 
     return (
@@ -60,13 +60,10 @@ function ItemCard ({item, brand, model, price, latestRelease, discount, mainImag
                 {showLatestOrSaleIcon()}
                 <Icon icon={heartSolid} className={context.findInWishlist(item.id) ? 'wished' : 'notWished'} onClick={() => handleWishlistClick(item)}/>
             </div>
-            <Link to={{
-                pathname:'/item',
-                state: { item:{item} }
-            }} >
-                <img src={mainImage} className="card-img" alt="Product"/>
+            <Link to={`/item/${item.id}`} >
+                <img src={item.mainImage} className="card-img" alt="Product"/>
                 <div className="card-footer">
-                    <h3 className="card-title">{model}</h3>
+                    <h3 className="card-title">{item.model}</h3>
                     {showPrice()}
                 </div>
             </Link>

@@ -30,7 +30,7 @@ function App() {
   // Hook that stores the product search parameters
   const [searchParams, setSearchParams] = useState([])
 
-  // Hooks used to store the arrays of products in the wishlist and shopping cart
+  // Hooks that store the arrays of products in the wishlist and shopping cart
   const [wishList, setwishList] = useState (JSON.parse(localStorage.getItem('wishList')) || [])
   const [shoppingCart, setShoppingCart] = useState (JSON.parse(localStorage.getItem('shoppingCart')) || [])
 
@@ -41,7 +41,7 @@ function App() {
   const shoppingCartSubstract = (itemToSubstract) => setShoppingCart(shoppingCart.filter(item => (item !== itemToSubstract)))
   const emptyShoppingCart = () => {setShoppingCart([])}
 
-  // Hooks store and update the shopping cart and wishlist in local storage
+  // Hooks that store and update the shopping cart and wishlist in local storage
   useEffect(() => {localStorage.setItem('shoppingCart', JSON.stringify(shoppingCart))}, [shoppingCart])
   useEffect(() => {localStorage.setItem('wishList', JSON.stringify(wishList))}, [wishList])
 
@@ -71,8 +71,8 @@ function App() {
                 <Gallery darkMode={darkMode} productsDataBase={productsDataBase} productsArray={productsArray} setProductsArray={setProductsArray} />
               </Route>
 
-              <Route path='/item'>
-                <Item  />
+              <Route path='/item/:itemId'>
+                <Item  productsDataBase={productsDataBase} />
               </Route>
 
               <Route path='/shoppingcart'>

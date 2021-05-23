@@ -1,12 +1,12 @@
 import { useContext, useState } from 'react';
-import { Link, useLocation } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Icon } from '@iconify/react';
 import heartSolid from '@iconify-icons/clarity/heart-solid';
 import ItemCarousel from './ItemCarousel';
 import ItemModal from './ItemModal';
 import Context from '../../Context';
 
-function Item () {
+function Item ({productsDataBase}) {
 
     // Hook used to access context
     const context = useContext(Context)
@@ -24,17 +24,10 @@ function Item () {
         setSizeErrorMessage(null)
     }
 
-    // Variables that store the props received from the item card
-    let location = useLocation() 
-    let item = location.state.item.item
-    let brand = location.state.item.item.brand
-    let model = location.state.item.item.model
-    let price = location.state.item.item.price
-    let category = location.state.item.item.category
-    let mainImage = location.state.item.item.mainImage
-    let images = location.state.item.item.images
-    let sizes = location.state.item.item.sizes
-    let stock = location.state.item.item.stock
+    // Hook that access the item ID in the URL and saves it in a variable
+    const { itemId } = useParams();
+    // Functions that identifies the corresponding item given the item ID in the URL, and assigns it to a variable
+    const item = productsDataBase.filter(item => (item.id === itemId))[0]
     
     // Functions that execute when the item is added to the wishlist or shopping cart
     function handleWishlistClick (item) {
@@ -74,11 +67,11 @@ function Item () {
             setTimeout(cleanUpErrors, 4000)
         }
         if (operation === 'substract' && selectedQuantity > 1) { setSelectedQuantity(selectedQuantity-1) }
-        if (operation === 'add' && selectedQuantity === stock) {
+        if (operation === 'add' && selectedQuantity === item.stock) {
             setQuantityErrorMessage('Sorry mate, we dont have more stock of this one.')
             setTimeout(cleanUpErrors, 4000)
         }
-        if (operation === 'add' && selectedQuantity < stock) { setSelectedQuantity(selectedQuantity+1) }
+        if (operation === 'add' && selectedQuantity < item.stock) { setSelectedQuantity(selectedQuantity+1) }
     }
 
     function handleSizeSelection (size) {
@@ -95,13 +88,13 @@ function Item () {
         <section className='itemPage'>
                 <div className="item-section_carouselAndInfo">
                     <div className="item-carousel">
-                        <ItemCarousel mainImage={mainImage} images={images} />
+                        <ItemCarousel mainImage={`/${item.mainImage}`} images={item.images} />
                     </div>
 
                     <div className="item-info">
-                        <h2>{brand} {model} </h2>
-                        <p>Category: {category}</p>
-                        <p>Price: ${context.addNumberThousandSeparator(price)} </p>
+                        <h2>{item.brand} {item.model} </h2>
+                        <p>Category: {item.category}</p>
+                        <p>Price: ${context.addNumberThousandSeparator(item.price)} </p>
                         
                         <div className='quantityContainer'>
                             <p>Quantity:</p>
@@ -114,7 +107,7 @@ function Item () {
                         <div className='sizesContainer'>
                             <p>Sizes: </p> 
                             <div className='availableSizes'>
-                                {sizes.map(size => <p className={size === selectedSize ? 'size selectedSize' : 'size'} onClick={() => handleSizeSelection(size)}>{size}</p>)}
+                                {item.sizes.map(size => <p className={size === selectedSize ? 'size selectedSize' : 'size'} onClick={() => handleSizeSelection(size)}>{size}</p>)}
                                 <p className={sizeErrorMessage ? 'errorMessage' : 'displayNone'}>{sizeErrorMessage}</p> 
                             </div>
                         </div>
@@ -124,8 +117,6 @@ function Item () {
                         <Icon icon={heartSolid} className={context.findInWishlist(item.id) ? 'wished' : 'notWished'} onClick={() => handleWishlistClick(item)}/>
                         <Link to='/gallery' href="#searchResults"><button className='btn-secondary'>Back to search results</button></Link>
 
-                        <button onClick={()=>console.log(JSON.parse(localStorage.getItem('shoppingCart')))}>test</button>
-                    
                     </div>
                 </div>
 

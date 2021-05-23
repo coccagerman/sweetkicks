@@ -6,8 +6,7 @@ import { useState, useContext } from 'react';
 import Context from '../../../Context';
 import ShoppingCartModal from './ShoppingCartModal';
 
-
-function ShoppingCartItem ({shoppingCartItem, item, mainImage}) {
+function ShoppingCartItem ({shoppingCartItem}) {
     
     // Hook used to access wishlist and modify it
     const context = useContext(Context)
@@ -28,11 +27,8 @@ function ShoppingCartItem ({shoppingCartItem, item, mainImage}) {
     return (
         <> 
             <article className='shoppingCart-item'>
-                <Link to={{
-                    pathname:'/item',
-                    state: { item:{item} }
-                }} >
-                    <img src={mainImage} alt="shopping cart item" />
+                <Link to={`/item/${shoppingCartItem.item.id}`} >
+                    <img src={`/${shoppingCartItem.item.mainImage}`} alt="shopping cart item" />
                 </Link>
                 <p className='item-name'>{shoppingCartItem.item.brand} {shoppingCartItem.item.model}</p>
                 <p className='item-price'>${context.addNumberThousandSeparator(shoppingCartItem.item.price)}</p>

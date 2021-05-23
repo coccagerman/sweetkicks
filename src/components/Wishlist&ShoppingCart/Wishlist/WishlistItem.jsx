@@ -5,26 +5,20 @@ import { Link } from "react-router-dom";
 import { useContext } from 'react';
 import Context from '../../../Context';
 
-function WishlistItem ({item, brand, model, price, mainImage}) {
+function WishlistItem ({item}) {
 
     // Hook used to access wishlist and modify it
     const context = useContext(Context)
 
     return (
         <article className='wishlist-item'>
-            <Link to={{
-                pathname:'/item',
-                state: { item:{item} }
-            }} >
-                <img src={mainImage} alt="Wishlist item" />
+            <Link to={`/item/${item.id}`} >
+                <img src={item.mainImage} alt="Wishlist item" />
             </Link>
 
-            <p className='item-name'>{brand} {model}</p>
-            <p className='item-price'>${context.addNumberThousandSeparator(price)}</p>
-            <Link to={{
-                pathname:'/item',
-                state: { item:{item} }
-            }} >
+            <p className='item-name'>{item.brand} {item.model}</p>
+            <p className='item-price'>${context.addNumberThousandSeparator(item.price)}</p>
+            <Link to={`/item/${item.id}`} >
                 <Icon className='icon buy-icon' icon={shoppingCart} />
             </Link>
             <Icon className='icon eliminate-icon' icon={cancelIcon} onClick={() => context.wishlistSubstract(item)} />
