@@ -7,6 +7,8 @@
 - FEATURE: Implementar reducer para gestionar estado de wishlist y carrito.
 - FEATURE: Implementar useMemo para evitar volver a renderizar componentes de manera innecesaria por useContext.
 - FEATURE: auth/login. Implementar alguno de los servicios de autenticación disponibles de firebase para evitar el flujo de email. Si un usuario está logueado, el checkout debería decir ‘comprar como xxxx@gmail.com’, para evitar compras con cuentas indeseadas.
+- FEATURE: Si no se tienen productos en el carrito, no te debe dejar ingresar al checkout. Tampoco te debe dejar ingresar al segundo step del checkout sin antes haber completado el primero. Debiese chequear si se cumplen ciertas condiciones, y si no se cumplen, redirigirte a otro link.
+- FEATURE: Agregar animación de barra cargando y 'procesando pago' en formulario de checkout.
 - BUG: Cuando hacés una búsqueda y después ingresás a través del header a una categoría, te sigue mostrando el formulario y los search params de la búsqueda previa, cuando te tendría que mostrar solo el param de la categoría seleccionada.
 - BUG: El dropdown debiese cerrarse cuando se hace click fuera de él.
 - BUG: cuando se va a url http://localhost:3001/item arroja error, la url cuando se ingresa e ver un item debiese ir acompañada por el ID del item. Si se va a url http://localhost:3001/item debiese mostrar 404.

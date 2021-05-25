@@ -1,8 +1,9 @@
-import { Link } from "react-router-dom";
+import { Link} from "react-router-dom";
 import { useState } from "react";
 
-function PersonalDataFormStep ({purchaseData}) {
+function PersonalDataFormStep ({purchaseData, personalDataValidation, setPersonalDataValidation}) {
     
+    // Hook that stores form's error messages
     const [errorDisplay, setErrorDisplay] = useState (null)
 
     // Constant that stores regex used to validate checkout form input
@@ -15,18 +16,22 @@ function PersonalDataFormStep ({purchaseData}) {
     // Function that validates user input against the corresponding regex
     const validateInput = (regex, field) => regex.test(field) ? true : false
     
-    function handleConfirm () {
-        if (!validateInput(regex.name, purchaseData.fullName)) {setErrorDisplay('Please check the name you entered.')}
-        if (!validateInput(regex.telephone, purchaseData.telephone)) {setErrorDisplay('Please check the telephone you entered.')}
-        if (!validateInput(regex.email, purchaseData.email)) {setErrorDisplay('Please check the email you entered.')}
-        if (purchaseData.email !== purchaseData.validationEmail) {setErrorDisplay("The emails you entered don't match.")}
+    function validatePersonalData () {
         if (validateInput(regex.name, purchaseData.fullName) && validateInput(regex.telephone, purchaseData.telephone) && validateInput(regex.email, purchaseData.email) && purchaseData.email === purchaseData.validationEmail) {
-        }
+            setPersonalDataValidation(true)
+        } else {
+            setPersonalDataValidation(false)
 
-        // let nameValidation = validateInput(regex.name, purchaseData.fullName)
-        // let telephoneValidation = validateInput(regex.telephone, purchaseData.telephone)
-        // let emailValidation = validateInput(regex.email, purchaseData.email)
-        // let emailCoincidenceValidation
+            if (!validateInput(regex.name, purchaseData.fullName) || !purchaseData.fullName) {
+                setErrorDisplay('Please check the name you entered.')
+            } else if (!validateInput(regex.telephone, purchaseData.telephone) || !purchaseData.telephone) {
+                setErrorDisplay('Please check the telephone you entered.')
+            } else if (!validateInput(regex.email, purchaseData.email) || !purchaseData.email) {
+                setErrorDisplay('Please check the email you entered.')
+            } else if (purchaseData.email !== purchaseData.validationEmail || !purchaseData.validationEmail) {
+                setErrorDisplay("The emails you entered don't match.")
+            }
+        }
     }
 
     return (
@@ -54,12 +59,19 @@ function PersonalDataFormStep ({purchaseData}) {
             </article>
 
             <div className='btn-container'>
-                <Link to='/checkout/addressFormStep' >
-                    <button className='btn-primary'>Confirm</button>
-                </Link>
+
+            {personalDataValidation ? 
+            <Link to='/checkout/addressFormStep' >
+                <button className='btn-primary' onClick={() => validatePersonalData()}>Confirm</button>
+            </Link> 
+            :
+            <button className='btn-primary' onClick={() => validatePersonalData()}>Confirm</button>
+            }
+
+            <button onClick={()=>console.log(personalDataValidation)}>test</button>
             </div>
 
-            <p className='errorDisplay'>{errorDisplay}</p>
+            <p className='errorDisplay'>{errorDisplay ? errorDisplay : null}</p>
         </section>
     )
 }

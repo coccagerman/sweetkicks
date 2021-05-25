@@ -137,6 +137,12 @@
                         margin: 0 1rem;
                     }
                 }
+
+                .errorDisplay {
+                    font-size: 3rem;
+                    color: $sweetOrange;
+                    margin-top: -2rem;
+                }
             }
 
             .confirmationStep {
@@ -153,6 +159,10 @@
                     width: 20rem;
                 }
 
+                p {
+                    font-size: 1.75rem;
+                }
+
                 .confirmationDetails{
                     background-color: white;
                     display: block;
@@ -162,12 +172,6 @@
                     p {
                         padding: 0 0 0 1rem;
                     }
-                }
-            }
-
-            .completionStep {
-                p {
-                    font-size: 1.75rem;
                 }
             }
         }
