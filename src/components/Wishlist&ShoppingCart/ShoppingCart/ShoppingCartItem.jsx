@@ -6,7 +6,7 @@ import { useState, useContext } from 'react';
 import Context from '../../../Context';
 import ShoppingCartModal from './ShoppingCartModal';
 
-function ShoppingCartItem ({shoppingCartItem}) {
+function ShoppingCartItem ({shoppingCartItem, setTotalPrice}) {
     
     // Hook used to access wishlist and modify it
     const context = useContext(Context)
@@ -38,7 +38,7 @@ function ShoppingCartItem ({shoppingCartItem}) {
                 <Icon className='icon eliminate-icon' icon={cancelIcon} onClick={() => context.shoppingCartSubstract(shoppingCartItem)} />
             </article>
 
-            <ShoppingCartModal show={modalShow} shoppingCartItem={shoppingCartItem} onHide={() => setModalShow(false)} modalQuantity={modalQuantity} setModalQuantity={setModalQuantity} modalSize={modalSize} setModalSize={setModalSize}/>
+            <ShoppingCartModal show={modalShow} shoppingCartItem={shoppingCartItem} onHide={() => setModalShow(false)} modalQuantity={modalQuantity} setModalQuantity={setModalQuantity} modalSize={modalSize} setModalSize={setModalSize} setTotalPrice={setTotalPrice} />
         </>
     )
 }

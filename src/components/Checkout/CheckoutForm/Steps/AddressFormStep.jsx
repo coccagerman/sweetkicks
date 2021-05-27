@@ -177,8 +177,8 @@ function AddressFormStep ({purchaseData, resetPersonalData, addressValidation, s
 
             <h2>Shipping costs and times will vary depending on your location.</h2>
             <div className='shippingDetails'>
-                <p>Shipping cost: $ {purchaseData.shippingCost}</p>
-                <p>Shipping time: {purchaseData.shippingTime} days</p>
+                <p>Shipping cost: ${purchaseData.shippingCost}</p>
+                <p>Shipping time: {purchaseData.shippingTime} {purchaseData.shippingTime === 1 ? 'day' : 'days'}</p>
             </div>
             
             <div className='btn-container'>
@@ -186,12 +186,9 @@ function AddressFormStep ({purchaseData, resetPersonalData, addressValidation, s
                     <button className='btn-secondary' onClick={() => resetPersonalData()}>Go back</button>
                 </Link>
 
-                {addressValidation ? 
-                <Link to='/checkout/creditCardFormStep' >
+                <Link to={addressValidation ? '/checkout/creditCardFormStep' : '/checkout/addressFormStep'} >
                     <button className='btn-primary' onClick={() => validateAddressData()}>Confirm</button>
                 </Link> 
-                :
-                <button className='btn-primary' onClick={() => validateAddressData()}>Confirm</button>}
             </div>
 
             <p className='errorDisplay'>{errorDisplay ? errorDisplay : null}</p>

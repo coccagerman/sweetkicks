@@ -70,6 +70,7 @@ function CreditCardFormStep ({purchaseData, resetAddressData, paymentValidation,
                 <Link to='/checkout/addressFormStep' >
                     <button className='btn-secondary' onClick={() => resetAddressData()}>Go back</button>
                 </Link>
+                
                 <Link to='/checkout/confirmationFormStep' >
                     <button className='btn-primary'>Confirm</button>
                 </Link>

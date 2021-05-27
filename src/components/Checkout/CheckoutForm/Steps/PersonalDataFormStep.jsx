@@ -16,7 +16,7 @@ function PersonalDataFormStep ({purchaseData, personalDataValidation, setPersona
     // Function that validates user input against the corresponding regex
     const validateInput = (regex, field) => regex.test(field) ? true : false
     
-    function validatePersonalData () {
+    const validatePersonalData = () => {
         if (validateInput(regex.name, purchaseData.fullName) && validateInput(regex.telephone, purchaseData.telephone) && validateInput(regex.email, purchaseData.email) && purchaseData.email === purchaseData.validationEmail) {
             setPersonalDataValidation(true)
         } else {
@@ -59,16 +59,9 @@ function PersonalDataFormStep ({purchaseData, personalDataValidation, setPersona
             </article>
 
             <div className='btn-container'>
-
-            {personalDataValidation ? 
-            <Link to='/checkout/addressFormStep' >
-                <button className='btn-primary' onClick={() => validatePersonalData()}>Confirm</button>
-            </Link> 
-            :
-            <button className='btn-primary' onClick={() => validatePersonalData()}>Confirm</button>
-            }
-
-            <button onClick={()=>console.log(personalDataValidation)}>test</button>
+                <Link to={personalDataValidation ? '/checkout/addressFormStep' : '/checkout/personalDataFormStep'}>
+                    <button className='btn-primary' onClick={() => validatePersonalData()}>Confirm</button>
+                </Link> 
             </div>
 
             <p className='errorDisplay'>{errorDisplay ? errorDisplay : null}</p>

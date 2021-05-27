@@ -1,10 +1,14 @@
 import Modal from 'react-bootstrap/Modal'
 import { Icon } from '@iconify/react';
 import cancelIcon from '@iconify-icons/topcoat/cancel';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import Context from '../../../Context';
 
 function ShoppingCartModal (props) {
 
+    // Hook used to access context
+    const context = useContext(Context)
+    
     // Hooks and funciton used to display quantity, stock and size errors
     const [quantityErrorMessage, setQuantityErrorMessage] = useState (null)
     // const [stockErrorMessage, setStockErrorMessage] = useState (null)
@@ -44,6 +48,7 @@ function ShoppingCartModal (props) {
         } else {
             props.shoppingCartItem.selectedQuantity = props.modalQuantity
             props.shoppingCartItem.selectedSize = props.modalSize
+            props.setTotalPrice(context.addNumberThousandSeparator(context.shoppingCart.map(item => (item.item.price*item.selectedQuantity)).reduce((a, b) => a + b, 0)))
             props.onHide()
         }
     }

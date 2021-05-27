@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useState, useContext } from 'react';
 import { Link } from "react-router-dom";
 import Context from '../../../Context';
 import ShoppingCartItem from './ShoppingCartItem';
@@ -8,12 +8,14 @@ function ShoppingCart () {
     // Hook used to access context
     const context = useContext(Context)
 
+    const [totalPrice, setTotalPrice] = useState(context.addNumberThousandSeparator(context.shoppingCart.map(item => (item.item.price*item.selectedQuantity)).reduce((a, b) => a + b, 0)))
+
     // Function that displays the items in the shopping cart
     const showShoppingCartItem = () => context.shoppingCart.map((item) => (
-        <ShoppingCartItem shoppingCartItem={item} />
+        <ShoppingCartItem shoppingCartItem={item} setTotalPrice={setTotalPrice} />
         )
     )
-    
+        
     return (
         <section className={context.shoppingCart.length !== 0 ? 'shoppingCart' : 'shoppingCart occupyMinHeight'}>
             {context.shoppingCart.length !== 0 ?
@@ -23,7 +25,7 @@ function ShoppingCart () {
                     <div>
                         <div className='details'>
                             <p>Total items: {context.shoppingCart.length}</p>
-                            <p>Total price: ${context.addNumberThousandSeparator(context.shoppingCart.map(item => (item.item.price*item.selectedQuantity)).reduce((a, b) => a + b, 0))}</p>
+                            <p>Total price: ${totalPrice}</p>
                         </div>
                         <div className='btns'>
                             <button className='btn-tertiary'onClick={() => context.emptyShoppingCart()}>Empty cart</button>
@@ -37,7 +39,7 @@ function ShoppingCart () {
                     </div>
                 </> :
                 <> 
-                    <h1>Sorry mate, you have no items in your shopping cart yet.</h1>
+                    <h1>Sorry mate, you've got no items in your shopping cart yet.</h1>
                     <div className='btns'>
                         <Link to='/gallery'>
                             <button className='btn-primary'>Go to gallery</button>
