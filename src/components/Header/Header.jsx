@@ -16,6 +16,8 @@ function Header ({setDarkMode, darkMode, productsDataBase, setProductsArray}) {
 
     // Hook used to show and hide the dropdown menu
     const [showDropdown, setshowDropdown] = useState(false)
+    // Hook used to show and hide the mobile menu
+    const [showMobileMenu, setShowMobileMenu] = useState(false)
 
     // Function used to handle the click of category btns
     function handleCategoryBtnClick (category) {
@@ -28,7 +30,15 @@ function Header ({setDarkMode, darkMode, productsDataBase, setProductsArray}) {
         < >
         <header>
             <Link to='/'><img className='headerLogo' src={darkMode ? HeaderLogoDark : HeaderLogoLight} alt='Company logo' /></Link>
-            <nav>
+            <a href="#menu">
+                <div className="hamburguer-icon" onClick={() => setShowMobileMenu(!showMobileMenu)}>
+                    <div className={!showMobileMenu ? 'line' : 'line top'}></div>
+                    <div className={!showMobileMenu ? 'line' : 'line center'}></div>
+                    <div className={!showMobileMenu ? 'line' : 'line bottom'}></div>
+                </div>
+            </a>
+
+            <nav className={showMobileMenu ? 'menu-active' : null}>
                 <ul>
                     <li><a href="#" onClick={() => setshowDropdown(!showDropdown)} className='categories hover-effect'>Categories 
                             <Icon icon={arrowDownAlt2} className={!showDropdown ? 'arrowIcon' : 'arrowIcon open' }/> 
@@ -45,8 +55,10 @@ function Header ({setDarkMode, darkMode, productsDataBase, setProductsArray}) {
                     <li><Link to="/about" className='hover-effect'>About</Link></li>
                     <li><Link to="/orders" className='hover-effect'>My orders</Link></li>
 
-                    <Link to="/shoppingcart"><ShoppingCartIcon /></Link>
-                    <Link to="/wishlist"><WishlistIcon /></Link>
+                    <div className='shoppingcartAndWishlist-container'>
+                        <Link to="/shoppingcart"><ShoppingCartIcon /></Link>
+                        <Link to="/wishlist"><WishlistIcon /></Link>
+                    </div>
 
                     <li className='switch-container'>
                         <span className="iconify" data-icon="ion:sunny-outline" data-inline="false"></span>

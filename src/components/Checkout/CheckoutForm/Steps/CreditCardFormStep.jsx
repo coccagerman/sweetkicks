@@ -32,8 +32,13 @@ function CreditCardFormStep ({purchaseData, resetAddressData, paymentValidation,
 
     return (
         <section className='checkoutForm'>
-            <h1>Please enter your payment data</h1>
+            <h1>Please enter your credit card data</h1>
 
+            <article className="formInput">
+                <label for="creditCardName">Name</label>
+                <input id="creditCardName" type="text" className="textBox"/>
+            </article>
+            
             <article className="formInput">
                 <label for="creditCardNumber">Credit card number</label>
                 <input id="creditCardNumber" type="text" className="textBox"/>

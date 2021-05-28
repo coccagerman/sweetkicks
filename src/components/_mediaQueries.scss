@@ -1,0 +1,114 @@
+/*------------------- MOBILE ------------------- */
+
+@media screen and (max-width: 767px) {
+
+    header {
+        display: flex;
+            justify-content: space-between;
+            align-items: center;
+        padding: 0;
+        position: relative;
+        
+        .headerLogo{
+            width: 20rem;
+            margin: 0;
+            position: relative;
+            top: 0;
+            left: 1rem;
+            padding: 1rem 0;
+        }
+    
+        nav {
+            display: flex;
+            position: fixed;
+            left: -100%;
+            top: 0;
+            width: 100%;
+            height: 100vh;
+            overflow-y: hidden;
+            transition: left 0.5s;
+            z-index: 1;
+
+            ul {    
+                width: 100%;
+                height: 100%;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                margin-top: -1rem;
+
+                li {
+                    font-size: 4rem;
+                    margin: .5rem 0;
+                }
+                
+                .shoppingcartAndWishlist-container {
+                    display: flex;
+                    justify-content: space-between;
+                    margin: 2rem 0;
+
+                    .shoppingCart-icon {
+                        font-size: 3.5rem;
+                    }
+
+                    .wishList-icon {
+                        font-size: 3.75rem;
+                    }
+                }
+    
+                .switch-container {
+                    margin: 1.5rem 0 0 0;
+    
+                    .switch {
+    
+                        .slider {
+                            position: absolute;
+                            cursor: pointer;
+                            top: 0;
+                            left: 0;
+                            right: 0;
+                            bottom: 0;
+                            background-color: $sweetGray;
+                            -webkit-transition: .4s;
+                            transition: .4s;
+                            border: black solid 1px;
+    
+                            &:before {
+                                left: 3px;
+                                bottom: 3px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .menu-active {
+            left: 0;
+            transition: left .5s;
+        }
+
+        .hamburguer-icon {
+            display: block;
+        }
+    }
+
+
+
+    .lightMode {
+        header {
+            nav {
+                background: linear-gradient(160deg, white 75%, $sweetOrange 100%);
+            }
+        }
+    }
+    
+    .darkMode {
+        header {
+            nav {
+                background: linear-gradient(160deg, black 50%, $sweetOrange 100%);
+            }
+        }
+    }
+
+}
