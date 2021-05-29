@@ -3,19 +3,14 @@
 @media screen and (max-width: 767px) {
 
     header {
-        display: flex;
-            justify-content: space-between;
-            align-items: center;
         padding: 0;
-        position: relative;
         
         .headerLogo{
-            width: 20rem;
-            margin: 0;
+            width: 15rem;
+            margin: 1.2rem 0 2rem 0;
             position: relative;
             top: 0;
             left: 1rem;
-            padding: 1rem 0;
         }
     
         nav {
@@ -35,44 +30,33 @@
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
-                margin-top: -1rem;
 
                 li {
-                    font-size: 4rem;
-                    margin: .5rem 0;
+                    font-size: 3rem;
+                    margin: .1rem 0;
                 }
                 
                 .shoppingcartAndWishlist-container {
+                    position: relative;
+                    left: .5rem;
                     display: flex;
                     justify-content: space-between;
-                    margin: 2rem 0;
+                    margin: 1rem 0;
 
                     .shoppingCart-icon {
-                        font-size: 3.5rem;
+                        font-size: 2.5rem;
                     }
 
                     .wishList-icon {
-                        font-size: 3.75rem;
+                        font-size: 2.75rem;
                     }
                 }
     
                 .switch-container {
                     margin: 1.5rem 0 0 0;
-    
                     .switch {
-    
                         .slider {
-                            position: absolute;
-                            cursor: pointer;
-                            top: 0;
-                            left: 0;
-                            right: 0;
-                            bottom: 0;
-                            background-color: $sweetGray;
-                            -webkit-transition: .4s;
-                            transition: .4s;
                             border: black solid 1px;
-    
                             &:before {
                                 left: 3px;
                                 bottom: 3px;
@@ -93,7 +77,60 @@
         }
     }
 
+    .hero {
+        height: 75.5vh;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+            justify-content: center;
+            align-items: center;
+    
+        .hero-img {
+            height: auto;
+            width: 100%;
+            margin-top: -4rem;
+        }
+    
+        .cta-container{
+            position: absolute;
+            width: 10rem;
+            height: 5rem;
+            top: 64%;
+            left: 12%;
+            z-index: 0;
+            
+            .container-arrow{
+                font-size: 30px;
+            
+            @keyframes down{ 0%{transform:translateY(0px)} 100%{transform:translateY(18px)} } 
+            @-webkit-keyframes down{ 0%{-webkit-transform:translateY(0px)} 100%{-webkit-transform:translateY(18px)} } 
+            }
 
+            .arrow-left {
+                bottom: -5rem;
+                left:-2rem;
+            }
+        
+            .arrow-right {
+                bottom: -5rem;
+                right:-9.2rem;
+            }
+        }
+          
+    }
+
+    footer {    
+        .footerLogo {
+            width: 12rem;
+        }
+
+        .socialNetwork-container{
+            .socialNetwork {
+                font-size: 1.5rem;
+                margin: .25rem .5rem 0 .5rem;
+            }
+        }
+    }
 
     .lightMode {
         header {

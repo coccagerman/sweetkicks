@@ -1,14 +1,39 @@
 import { Link } from "react-router-dom";
-import ImageDark from '../../assets/hero/hero-img-dark.png'
+import { useState, useEffect } from "react";
 import ImageLight from '../../assets/hero/hero-img-light.png'
+import ImageDark from '../../assets/hero/hero-img-dark.png'
+import ImageLightMobile from '../../assets/hero/hero-img-mobile-light.png'
+import ImageDarkMobile from '../../assets/hero/hero-img-mobile-dark.png'
 
 function Hero ({darkMode, productsDataBase, setProductsArray}) {
+
+// Hook that reads screen size
+function useWindowSize() {
+    const [windowSize, setWindowSize] = useState({
+      width: undefined,
+      height: undefined,
+    });
+
+    useEffect(() => {
+      function handleResize() {
+        setWindowSize({
+          width: window.innerWidth,
+          height: window.innerHeight,
+        });
+      }
+
+      window.addEventListener("resize", handleResize);
+      handleResize();
+      return () => window.removeEventListener("resize", handleResize);
+    }, []);
+    return windowSize;
+  }
+  
+  const size = useWindowSize();
+
     return (
         <section className='hero'>
-            <img src={darkMode === false ? ImageLight : ImageDark} className='hero-img' alt="Shoe background"/>
-
-
-
+            <img src={size.width > 1000 ? (!darkMode ? ImageLight : ImageDark) : (!darkMode ? ImageLightMobile : ImageDarkMobile)} className='hero-img' alt="Shoe background"/>
 
                 <div class="cta-container">
 
