@@ -25,7 +25,11 @@ function CheckoutForm () {
     const [location, setLocation] = useState(null)
     const [shippingCost, setShippingCost] = useState(null)
     const [shippingTime, setShippingTime] = useState(null)
+    const [cardName, setCardName] = useState(null)
     const [cardNumber, setCardNumber] = useState(null)
+    const [cardExpMonth, setCardExpMonth] = useState(null)
+    const [cardExpYear, setCardExpYear] = useState(null)
+    const [cardSecCode, setCardSecCode] = useState(null)
     const [installments, setInstallments] = useState(1)
     const [installmentsAmount, setInstallmentsAmount] = useState(context.addNumberThousandSeparator(context.shoppingCart.map(item => (item.item.price*item.selectedQuantity)).reduce((a, b) => a + b, 0)))
 
@@ -50,8 +54,16 @@ function CheckoutForm () {
         setShippingCost: setShippingCost,
         shippingTime: shippingTime,
         setShippingTime: setShippingTime,
+        cardName: cardName,
+        setCardName: setCardName,
         cardNumber: cardNumber,
         setCardNumber: setCardNumber,
+        cardExpMonth: cardExpMonth,
+        setCardExpMonth: setCardExpMonth,
+        cardExpYear: cardExpYear,
+        setCardExpYear: setCardExpYear,
+        cardSecCode: cardSecCode,
+        setCardSecCode: setCardSecCode,
         installments: installments,
         setInstallments: setInstallments,
         installmentsAmount: installmentsAmount,
