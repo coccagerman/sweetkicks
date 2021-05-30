@@ -30,20 +30,24 @@ function App() {
   // Hook that stores the product search parameters
   const [searchParams, setSearchParams] = useState([])
 
-  // Hooks that store the arrays of products in the wishlist and shopping cart
+  // Hooks that store the arrays of products in the wishlist, shopping cart and orders
   const [wishList, setwishList] = useState (JSON.parse(localStorage.getItem('wishList')) || [])
   const [shoppingCart, setShoppingCart] = useState (JSON.parse(localStorage.getItem('shoppingCart')) || [])
+  const [orders, setOrders] = useState (JSON.parse(localStorage.getItem('orders')) || [])
 
-  // Functions used to add and substract items from the wishlist and shopping cart
+  // Functions used to add and substract items from the wishlist, shopping cart and orders
   const wishlistAdd = (itemToAdd) => setwishList([...wishList, itemToAdd])
   const wishlistSubstract = (itemToSubstract) => setwishList(wishList.filter(item => (item !== itemToSubstract)))
-  const shoppingCartAdd = (item) => {setShoppingCart([...shoppingCart, item])}
+  const shoppingCartAdd = (item) => setShoppingCart([...shoppingCart, item])
   const shoppingCartSubstract = (itemToSubstract) => setShoppingCart(shoppingCart.filter(item => (item !== itemToSubstract)))
-  const emptyShoppingCart = () => {setShoppingCart([])}
+  const emptyShoppingCart = () => setShoppingCart([])
+  const ordersAdd = (itemToAdd) => setOrders([...orders, itemToAdd])
+  const ordersErase = () => setOrders([])
 
-  // Hooks that store and update the shopping cart and wishlist in local storage
+  // Hooks that stores and update the wishlist, shopping cart and orders in local storage
   useEffect(() => {localStorage.setItem('shoppingCart', JSON.stringify(shoppingCart))}, [shoppingCart])
   useEffect(() => {localStorage.setItem('wishList', JSON.stringify(wishList))}, [wishList])
+  useEffect(() => {localStorage.setItem('orders', JSON.stringify(orders))}, [orders])
 
   // Function used to identify items that were added to the wishlist
   function findInWishlist (id) {
@@ -58,7 +62,7 @@ function App() {
     <div className={darkMode === false ? 'lightMode' : 'darkMode'}>
         <Router>
 
-          <Context.Provider value={{ wishList: wishList, wishlistAdd: wishlistAdd, wishlistSubstract: wishlistSubstract, shoppingCart: shoppingCart, shoppingCartAdd: shoppingCartAdd, shoppingCartSubstract: shoppingCartSubstract, emptyShoppingCart: emptyShoppingCart, addNumberThousandSeparator: addNumberThousandSeparator, findInWishlist: findInWishlist, searchParams: searchParams, setSearchParams: setSearchParams }}>
+          <Context.Provider value={{ wishList: wishList, wishlistAdd: wishlistAdd, wishlistSubstract: wishlistSubstract, shoppingCart: shoppingCart, shoppingCartAdd: shoppingCartAdd, shoppingCartSubstract: shoppingCartSubstract, emptyShoppingCart: emptyShoppingCart, ordersAdd: ordersAdd, ordersErase: ordersErase, addNumberThousandSeparator: addNumberThousandSeparator, findInWishlist: findInWishlist, searchParams: searchParams, setSearchParams: setSearchParams }}>
 
             <Header setDarkMode={setDarkMode} darkMode={darkMode} productsDataBase={productsDataBase} setProductsArray={setProductsArray} />
 
@@ -88,7 +92,7 @@ function App() {
               </Route>
 
               <Route path='/orders'>
-                <MyOrders />
+                <MyOrders orders={orders} />
               </Route>
 
               <Route path='/about'>

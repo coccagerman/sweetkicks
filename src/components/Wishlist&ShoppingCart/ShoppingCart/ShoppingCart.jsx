@@ -11,10 +11,7 @@ function ShoppingCart () {
     const [totalPrice, setTotalPrice] = useState(context.addNumberThousandSeparator(context.shoppingCart.map(item => (item.item.price*item.selectedQuantity)).reduce((a, b) => a + b, 0)))
 
     // Function that displays the items in the shopping cart
-    const showShoppingCartItem = () => context.shoppingCart.map((item) => (
-        <ShoppingCartItem shoppingCartItem={item} setTotalPrice={setTotalPrice} />
-        )
-    )
+    const showShoppingCartItem = () => context.shoppingCart.map(item => <ShoppingCartItem shoppingCartItem={item} setTotalPrice={setTotalPrice} /> )
         
     return (
         <section className={context.shoppingCart.length !== 0 ? 'shoppingCart' : 'shoppingCart occupyMinHeight'}>

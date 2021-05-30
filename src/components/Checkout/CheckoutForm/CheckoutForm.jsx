@@ -6,6 +6,7 @@ import PersonalDataFormStep from './Steps/PersonalDataFormStep'
 import AddressFormStep from './Steps/AddressFormStep'
 import CreditCardFormStep from './Steps/CreditCardFormStep'
 import ConfirmationFormStep from './Steps/ConfirmationFormStep'
+import ProcessingPaymentFormStep from './Steps/ProcessingPaymentFormStep'
 import CompletionFormStep from './Steps/CompletionFormStep'
 
 function CheckoutForm () {
@@ -32,6 +33,10 @@ function CheckoutForm () {
     const [cardSecCode, setCardSecCode] = useState(null)
     const [installments, setInstallments] = useState(1)
     const [installmentsAmount, setInstallmentsAmount] = useState(context.addNumberThousandSeparator(context.shoppingCart.map(item => (item.item.price*item.selectedQuantity)).reduce((a, b) => a + b, 0)))
+    const [orderId, setOrderId] = useState(null)
+    const [purchasedProducts, setPurchasedProducts] = useState(null)
+    const [purchaseDate, setPurchaseDate] = useState(null)
+
 
     // Object that stores the purchase data states
     const purchaseData = {
@@ -67,7 +72,13 @@ function CheckoutForm () {
         installments: installments,
         setInstallments: setInstallments,
         installmentsAmount: installmentsAmount,
-        setInstallmentsAmount: setInstallmentsAmount
+        setInstallmentsAmount: setInstallmentsAmount,
+        orderId: orderId,
+        setOrderId: setOrderId,
+        purchasedProducts: purchasedProducts,
+        setPurchasedProducts: setPurchasedProducts,
+        purchaseDate: purchaseDate,
+        setPurchaseDate: setPurchaseDate
     }
 
     // Hooks that stores form's steps validation state
@@ -91,6 +102,15 @@ function CheckoutForm () {
         history.push('/checkout/addressFormStep')
     }
 
+    const resetCreditCardData = () => {
+    setCardName(null)
+    setCardNumber(null)
+    setCardExpMonth(null)
+    setCardExpYear(null)
+    setCardSecCode(null)
+    history.push('/checkout/creditCardFormStep')
+    }
+
     return (
 
         <Switch>
@@ -107,7 +127,11 @@ function CheckoutForm () {
             </Route>
 
             <Route path='/checkout/confirmationFormStep'>
-                <ConfirmationFormStep purchaseData={purchaseData} />
+                <ConfirmationFormStep purchaseData={purchaseData} resetCreditCardData={resetCreditCardData} />
+            </Route>
+
+            <Route path='/checkout/processingPaymentFormStep'>
+                <ProcessingPaymentFormStep purchaseData={purchaseData} />
             </Route>
 
             <Route path='/checkout/completionFormStep'>

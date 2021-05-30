@@ -12,6 +12,16 @@ function CreditCardFormStep ({purchaseData, resetAddressData, setPaymentValidati
     // Hook that stores form's error messages
     const [errorDisplay, setErrorDisplay] = useState (null)
 
+    // Constant that stores regex used to validate checkout form input
+    const regex  = {
+        name: /^[a-zÀ-ú\s]{2,30}$/i,
+        cardNumber: /^\d{16}$/,
+        cardSecCode: /^\d{3}$/
+    }
+
+    // Function that validates user input against the corresponding regex
+    const validateInput = (regex, field) => regex.test(field) ? true : false
+
     const handleInstallmentsChange = (value) => {
         switch (value) {
             case '1':
@@ -20,15 +30,15 @@ function CreditCardFormStep ({purchaseData, resetAddressData, setPaymentValidati
                 break;
             case '3':
                 purchaseData.setInstallments(3)
-                purchaseData.setInstallmentsAmount(context.addNumberThousandSeparator(Math.round((purchaseData.itemsPrice*1.05)/3)))
+                purchaseData.setInstallmentsAmount(Math.round((purchaseData.itemsPrice*1.05)/3))
                 break;
             case '6':
                 purchaseData.setInstallments(6)
-                purchaseData.setInstallmentsAmount(context.addNumberThousandSeparator(Math.round((purchaseData.itemsPrice*1.1)/6)))
+                purchaseData.setInstallmentsAmount(Math.round((purchaseData.itemsPrice*1.1)/6))
                 break;
             case '12':
                 purchaseData.setInstallments(12)
-                purchaseData.setInstallmentsAmount(context.addNumberThousandSeparator(Math.round((purchaseData.itemsPrice*1.15)/12)))
+                purchaseData.setInstallmentsAmount(Math.round((purchaseData.itemsPrice*1.15)/12))
                 break;
             default:
                 break;
@@ -36,16 +46,16 @@ function CreditCardFormStep ({purchaseData, resetAddressData, setPaymentValidati
     }
 
     const validateCreditCardData = () => {
-        if (purchaseData.cardName && purchaseData.cardNumber && purchaseData.cardExpMonth && purchaseData.cardExpYear && purchaseData.cardSecCode){
+        if (purchaseData.cardName && validateInput(regex.name, purchaseData.cardName) && purchaseData.cardNumber && validateInput(regex.cardNumber, purchaseData.cardNumber) && purchaseData.cardExpMonth && purchaseData.cardExpYear && purchaseData.cardSecCode && validateInput(regex.cardSecCode, purchaseData.cardSecCode)){
             setPaymentValidation(true)
             history.push('/checkout/confirmationFormStep')
         } else {
             setPaymentValidation(false)
-            if (!purchaseData.cardName) { setErrorDisplay("Please enter the credit card's owner name.") }
-            else if (!purchaseData.cardNumber) { setErrorDisplay('Please check your credit card number.') }
+            if (!purchaseData.cardName || !validateInput(regex.name, purchaseData.cardName)) { setErrorDisplay("Please enter the credit card's owner name.") }
+            else if (!purchaseData.cardNumber || !validateInput(regex.cardNumber, purchaseData.cardNumber)) { setErrorDisplay('Please check your credit card number.') }
             else if (!purchaseData.cardExpMonth) { setErrorDisplay("Please enter your credit card's expiration month.") }
             else if (!purchaseData.cardExpYear) { setErrorDisplay("Please enter your credit card's expiration year.") }
-            else if (!purchaseData.cardSecCode) { setErrorDisplay("Please check your credit card's security code.") }
+            else if (!purchaseData.cardSecCode || !validateInput(regex.cardSecCode, purchaseData.cardSecCode)) { setErrorDisplay("Please check your credit card's security code.") }
         }
     }
 
@@ -109,16 +119,16 @@ function CreditCardFormStep ({purchaseData, resetAddressData, setPaymentValidati
             <article className="formInput">
                 <label for="installments">Installments</label>
                 <select id="installments" className="selectBox" onChange={e => handleInstallmentsChange(e.target.value)}>
-                    <option value="1">1 - No interest</option>
-                    <option value="3">3 - 5% interest</option>
-                    <option value="6">6 - 10% interest</option>
-                    <option value="12">12 - 15% interest</option>
+                    <option value="1">1 installments - No interest</option>
+                    <option value="3">3 installments - 5% interest</option>
+                    <option value="6">6 installments - 10% interest</option>
+                    <option value="12">12 installments - 15% interest</option>
                 </select>
             </article>
 
             <h2>Total costs may vary according to the payment conditions selected.</h2>
             <div className='paymentDetails'>
-                <p>{purchaseData.installments} {purchaseData.installments === 1 ? 'payment' : 'payments'} of ${purchaseData.installmentsAmount}</p>
+                <p>{purchaseData.installments} {purchaseData.installments === 1 ? 'payment' : 'payments'} of ${context.addNumberThousandSeparator(purchaseData.installmentsAmount)}</p>
             </div>
 
             <div className='btn-container'>
