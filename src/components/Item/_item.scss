@@ -3,6 +3,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    overflow-y: hidden;
 
     .item-section_carouselAndInfo{
         padding: 2rem 0;
@@ -149,6 +150,16 @@
         font-size: 1.25rem;
         max-width: 50rem;
         margin: 2rem 0;
+        }
+    }
+
+    .item-otherOptions {
+        text-align: center;
+        .OtherOptions-gallery {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
         }
     }
 }

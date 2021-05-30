@@ -60,8 +60,8 @@ function ItemCard ({item}) {
                 {showLatestOrSaleIcon()}
                 <Icon icon={heartSolid} className={context.findInWishlist(item.id) ? 'wished' : 'notWished'} onClick={() => handleWishlistClick(item)}/>
             </div>
-            <Link to={`/item/${item.id}`} >
-                <img src={item.mainImage} className="card-img" alt="Product"/>
+            <Link to={`/item/${item.id}`} onClick={()=> window.scrollTo(0, 0)}>
+                <img src={`/${item.mainImage}`} className="card-img" alt="Product"/>
                 <div className="card-footer">
                     <h3 className="card-title">{item.model}</h3>
                     {showPrice()}

@@ -4,6 +4,7 @@ import { Icon } from '@iconify/react';
 import heartSolid from '@iconify-icons/clarity/heart-solid';
 import ItemCarousel from './ItemCarousel';
 import ItemModal from './ItemModal';
+import ItemOtherOptions from './ItemOtherOptions';
 import Context from '../../Context';
 
 function Item ({productsDataBase}) {
@@ -85,7 +86,7 @@ function Item ({productsDataBase}) {
     const [modalContent, setModalContent] = useState('itemAdded')
 
     return (
-        <section className='itemPage'>
+        <section className='itemPage' id='itemPage'>
                 <div className="item-section_carouselAndInfo">
                     <div className="item-carousel">
                         <ItemCarousel mainImage={`/${item.mainImage}`} images={item.images} />
@@ -127,7 +128,8 @@ function Item ({productsDataBase}) {
                 </div>
 
                 <div className='item-otherOptions'>
-                    <p>Here will go the other options.</p>
+                    <h2>Other options you might be interested in</h2>
+                    <ItemOtherOptions productsDataBase={productsDataBase} displayedItem={item} />
                 </div>
         </section>
     )
