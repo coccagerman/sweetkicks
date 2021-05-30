@@ -1,7 +1,9 @@
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useState } from "react";
 
-function AddressFormStep ({purchaseData, resetPersonalData, addressValidation, setAddressValidation}) {
+function AddressFormStep ({purchaseData, resetPersonalData, setAddressValidation}) {
+
+    const history = useHistory()
 
     // Hook that stores form's error messages
     const [errorDisplay, setErrorDisplay] = useState (null)
@@ -121,6 +123,7 @@ function AddressFormStep ({purchaseData, resetPersonalData, addressValidation, s
     function validateAddressData () {
         if (purchaseData.address && purchaseData.city && purchaseData.location) {
             setAddressValidation(true)
+            history.push('/checkout/creditCardFormStep')
         } else {
             setAddressValidation(false)
             if (!purchaseData.address) { setErrorDisplay('Please enter a valid address.') }
@@ -182,13 +185,8 @@ function AddressFormStep ({purchaseData, resetPersonalData, addressValidation, s
             </div>
             
             <div className='btn-container'>
-                <Link to='/checkout/personalDataFormStep' >
-                    <button className='btn-secondary' onClick={() => resetPersonalData()}>Go back</button>
-                </Link>
-
-                <Link to={addressValidation ? '/checkout/creditCardFormStep' : '/checkout/addressFormStep'} >
-                    <button className='btn-primary' onClick={() => validateAddressData()}>Confirm</button>
-                </Link> 
+                <button className='btn-secondary' onClick={() => resetPersonalData()}>Go back</button>
+                <button className='btn-primary' onClick={() => validateAddressData()}>Confirm</button>
             </div>
 
             <p className='errorDisplay'>{errorDisplay ? errorDisplay : null}</p>

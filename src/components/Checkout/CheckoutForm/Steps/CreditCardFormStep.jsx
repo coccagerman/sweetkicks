@@ -1,8 +1,10 @@
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useContext } from 'react';
 import Context from '../../../../Context';
 
 function CreditCardFormStep ({purchaseData, resetAddressData, paymentValidation, setPaymentValidation}) {
+
+    const history = useHistory()
 
     // Hook used to access context
     const context = useContext(Context)
@@ -28,6 +30,10 @@ function CreditCardFormStep ({purchaseData, resetAddressData, paymentValidation,
             default:
                 break;
         }
+    }
+
+    const validateCreditCardData = () => {
+        history.push('/checkout/confirmationFormStep')
     }
 
     return (
@@ -72,13 +78,8 @@ function CreditCardFormStep ({purchaseData, resetAddressData, paymentValidation,
             </div>
 
             <div className='btn-container'>
-                <Link to='/checkout/addressFormStep' >
-                    <button className='btn-secondary' onClick={() => resetAddressData()}>Go back</button>
-                </Link>
-                
-                <Link to='/checkout/confirmationFormStep' >
-                    <button className='btn-primary'>Confirm</button>
-                </Link>
+                <button className='btn-secondary' onClick={() => resetAddressData()}>Go back</button>
+                <button className='btn-primary' onClick={() => validateCreditCardData()}>Confirm</button>
             </div>
         </section>
     )

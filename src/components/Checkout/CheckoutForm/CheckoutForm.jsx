@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { BrowserRouter as useRouteMatch, Route, Switch } from "react-router-dom";
+import { BrowserRouter as useRouteMatch, Route, Switch, useHistory } from "react-router-dom";
 import { useContext } from 'react';
 import Context from '../../../Context';
 import PersonalDataFormStep from './Steps/PersonalDataFormStep'
@@ -9,6 +9,8 @@ import ConfirmationFormStep from './Steps/ConfirmationFormStep'
 import CompletionFormStep from './Steps/CompletionFormStep'
 
 function CheckoutForm () {
+
+    const history = useHistory()
 
     // Hook used to access context
     const context = useContext(Context)
@@ -67,12 +69,14 @@ function CheckoutForm () {
         setEmail(null)
         setValidationEmail(null)
         setPersonalDataValidation(false)
+        history.push('/checkout/personalDataFormStep')
     }
 
     const resetAddressData = () => {
         setAddress(null)
         setCity(null)
         setLocation(null)
+        history.push('/checkout/addressFormStep')
     }
 
     return (

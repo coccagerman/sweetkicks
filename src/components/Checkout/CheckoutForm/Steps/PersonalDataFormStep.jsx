@@ -1,8 +1,10 @@
-import { Link} from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useState } from "react";
 
-function PersonalDataFormStep ({purchaseData, personalDataValidation, setPersonalDataValidation}) {
+function PersonalDataFormStep ({purchaseData, setPersonalDataValidation}) {
     
+    const history = useHistory()
+
     // Hook that stores form's error messages
     const [errorDisplay, setErrorDisplay] = useState (null)
 
@@ -19,6 +21,7 @@ function PersonalDataFormStep ({purchaseData, personalDataValidation, setPersona
     const validatePersonalData = () => {
         if (validateInput(regex.name, purchaseData.fullName) && validateInput(regex.telephone, purchaseData.telephone) && validateInput(regex.email, purchaseData.email) && purchaseData.email === purchaseData.validationEmail) {
             setPersonalDataValidation(true)
+            history.push('/checkout/addressFormStep')
         } else {
             setPersonalDataValidation(false)
 
@@ -59,9 +62,7 @@ function PersonalDataFormStep ({purchaseData, personalDataValidation, setPersona
             </article>
 
             <div className='btn-container'>
-                <Link to={personalDataValidation ? '/checkout/addressFormStep' : '/checkout/personalDataFormStep'}>
-                    <button className='btn-primary' onClick={() => validatePersonalData()}>Confirm</button>
-                </Link> 
+                <button className='btn-primary' onClick={() => validatePersonalData()}>Confirm</button>
             </div>
 
             <p className='errorDisplay'>{errorDisplay ? errorDisplay : null}</p>
