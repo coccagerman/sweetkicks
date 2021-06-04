@@ -11,6 +11,10 @@
         justify-content: center;
         align-items: center;
 
+        .mobileTittle {
+            display: none;
+        }
+
         .item-carousel {
             width: 36.5rem;
             
@@ -108,8 +112,10 @@
             .sizesContainer{
                 display: flex;
                 align-items: center;
+                max-width: 20rem;
                 .availableSizes {
                     display: flex;
+                    flex-wrap: wrap;
                     margin-left: 1rem;
                     .size {
                         font-size: 1.75rem;

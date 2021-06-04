@@ -2,6 +2,34 @@
 
 @media screen and (max-width: 767px) {
 
+    // General styles
+    .btn-primary, .btn-secondary, .btn-tertiary {
+        font-size: 1.5rem;
+        line-height: 1.75rem;
+    }
+
+    .modal {
+        .modal-header {
+            h1 {
+                font-size: 2.5rem;
+                margin-top: 1rem;
+            }
+        }
+    
+        .modal-body {    
+            .modal-text {
+                font-size: 2rem;
+                max-width: 28rem;
+            }
+        }
+
+        .modal-footer {
+            border: none;
+            margin: auto;
+        }
+    }
+
+    // Header
     header {
         padding: 0;
         
@@ -22,7 +50,7 @@
             height: 100vh;
             overflow-y: hidden;
             transition: left 0.5s;
-            z-index: 1;
+            z-index: 3;
 
             ul {    
                 width: 100%;
@@ -76,7 +104,21 @@
             display: block;
         }
     }
+    // Footer
+    footer {
+        position: absolute;
+        .footerLogo {
+            width: 12rem;
+        }
 
+        .socialNetwork-container{
+            .socialNetwork {
+                font-size: 1.5rem;
+                margin: .25rem .5rem 0 .5rem;
+            }
+        }
+    }
+    // Hero
     .hero {
         height: 75.5vh;
         position: relative;
@@ -95,9 +137,8 @@
             position: absolute;
             width: 10rem;
             height: 5rem;
-            top: 64%;
-            left: 12%;
-            z-index: 0;
+            bottom: 16%;
+            z-index: 1;
             
             .container-arrow{
                 font-size: 30px;
@@ -107,27 +148,200 @@
             }
 
             .arrow-left {
-                bottom: -5rem;
-                left:-2rem;
+                display: none;
             }
         
             .arrow-right {
-                bottom: -5rem;
-                right:-9.2rem;
+                display: none;
             }
         }
           
     }
+    // Wishlist & shopping cart
+    .wishlist, .shoppingCart {
+    
+            h1 {
+                font-size: 3rem;
+                margin-top: 0;
+            }
+    
+            .wishlist-item, .shoppingCart-item {
+                width: 25rem;
+                margin: .25rem 0;
+                padding: .25rem 2rem;
+                
+                img {
+                    width: 4rem;
+                }
+    
+                p {
+                    font-size: 1.2rem;
+                    padding-bottom: 0;
+                }
+    
+                .icon {
+                    font-size: 1.5rem;
+                    margin-bottom: 1.2rem;
+                }
+    
+                .item-name {
+                    position: absolute;
+                    left: 7rem;
+                }
+    
+                .item-price {
+                    position: absolute;
+                    left: 16rem;
+                }
+    
+                .item-quantity{
+                    display: none;
+                }
+    
+                .item-size{
+                    position: absolute;
+                    left: 49rem;
+                }
+    
+                .buy-icon {
+                    position: absolute;
+                    right: 4rem;
+                    bottom: .3rem;
+                }
+    
+                .edit-icon {
+                    font-size: 1.5rem;
+                    position: absolute;
+                    right: 4rem;
+                    bottom: .25rem;
+                }
+            }
+    
+            .details {
+                margin-top: 1rem;
+                font-size: 2rem;
+            }
+    
+            .btns {
+                margin: 1rem 0 2rem 0;
 
-    footer {    
-        .footerLogo {
-            width: 12rem;
+                    .btn-tertiary, .btn-secondary, .btn-primary {
+                        margin: 0 1rem;
+                    }
+            }
+    }
+    // Shopping cart modal
+    .shoppingCartModal {
+        .modal-body {
+            h2 {
+                font-size: 2rem;
+            }
+    
+            .quantityContainer {
+                .quantitySubContainer {
+
+                    .operator {
+                        width: 2.5rem;
+                        height: 2.5rem;
+                        line-height: 2.5rem;
+                    }
+        
+                    .selectedQuantity {
+                        font-size: 3rem;
+                        margin: 0 .5rem;
+                    }
+                }
+            }
+        
+            .sizesContainer{
+                display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+    
+                .availableSizes {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-wrap: wrap;
+    
+                    .size {
+                        font-size: 2rem;
+                        width: 2.5rem;
+                        height: 2.5rem;
+                    }
+                }
+            }
+        
+            .errorMessage {
+                background-color: black;
+                color:$sweetOrange;
+                padding: 0 1rem;
+                font-size: 1.5rem;
+            }
+        }
+        
+    }
+    // Item page
+    .itemPage {
+        display: flex;
+        flex-direction: column;
+        
+        .mobileTittle {
+            display: block;
+            font-size: 3rem;
+            margin: .5rem 0;
         }
 
-        .socialNetwork-container{
-            .socialNetwork {
-                font-size: 1.5rem;
-                margin: .25rem .5rem 0 .5rem;
+        .item-section_carouselAndInfo{
+            padding: 0;
+            flex-direction: column;
+
+            .item-carousel {
+                width: 100%;
+                
+                .carousel-img {
+                    width: 100%;
+                }
+            }
+    
+            .item-info {
+                margin: 1rem 0;
+    
+                h2 {
+                    display: none;
+                }
+    
+                button {
+                    margin: 1rem 1rem 1rem 0;
+                    height: 3rem;
+                }
+    
+                .errorMessage {
+                    font-size: 1.5rem;
+                }
+            }
+        }
+    
+        .item-description {
+            p {
+            font-size: 1rem;
+            max-width: 20rem;
+            text-align: center;
+            }
+        }
+    
+        .item-otherOptions {
+            text-align: center;
+
+            h2 {
+                font-size: 2rem;
+            }
+            .OtherOptions-gallery {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-wrap: wrap;
             }
         }
     }

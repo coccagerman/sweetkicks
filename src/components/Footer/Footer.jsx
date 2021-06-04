@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import FooterLogo from '../../assets/sweetkicks_logo_footer.png'
 
-function Footer () {
+function Footer ({fixFooter}) {
     return (
         < >
         <footer>

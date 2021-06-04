@@ -87,6 +87,7 @@ function Item ({productsDataBase}) {
 
     return (
         <section className='itemPage' id='itemPage'>
+                <h2 className='mobileTittle'>{item.brand} {item.model} </h2>
                 <div className="item-section_carouselAndInfo">
                     <div className="item-carousel">
                         <ItemCarousel mainImage={`/${item.mainImage}`} images={item.images} />

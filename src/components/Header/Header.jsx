@@ -44,20 +44,20 @@ function Header ({setDarkMode, darkMode, productsDataBase, setProductsArray}) {
                             <Icon icon={arrowDownAlt2} className={!showDropdown ? 'arrowIcon' : 'arrowIcon open' }/> 
                         </a>
                         <ul className={showDropdown ? 'dropdown' : 'hiddenDropdown' }>
-                            <li><Link to='/gallery' href="#searchResults" onClick={() => handleCategoryBtnClick('Street')}>Street</Link></li>
-                            <li><Link to='/gallery' href="#searchResults" onClick={() => handleCategoryBtnClick('Running')}>Running</Link></li>
-                            <li><Link to='/gallery' href="#searchResults" onClick={() => handleCategoryBtnClick('Basketball')}>Basketball</Link></li>
-                            <li><Link to='/gallery' href="#searchResults" onClick={() => handleCategoryBtnClick('Tennis')}>Tennis</Link></li>
+                            <li><Link to='/gallery' href="#searchResults" onClick={() => {handleCategoryBtnClick('Street'); setShowMobileMenu(false)}}>Street</Link></li>
+                            <li><Link to='/gallery' href="#searchResults" onClick={() => {handleCategoryBtnClick('Running'); setShowMobileMenu(false)}}>Running</Link></li>
+                            <li><Link to='/gallery' href="#searchResults" onClick={() => {handleCategoryBtnClick('Basketball'); setShowMobileMenu(false)}}>Basketball</Link></li>
+                            <li><Link to='/gallery' href="#searchResults" onClick={() => {handleCategoryBtnClick('Tennis'); setShowMobileMenu(false)}}>Tennis</Link></li>
                         </ul>
                     </li>
-                    <li onClick={() => setProductsArray(productsDataBase.filter(item => (item.discount !== 0)))}><Link to='/gallery' href="#searchResults" className='hover-effect'>Sale</Link></li>
-                    <li onClick={() => setProductsArray(productsDataBase.filter(item => (item.latestRelease)))}><Link to='/gallery' href="#searchResults" className='hover-effect'>Latest releases</Link></li>
-                    <li><Link to="/about" className='hover-effect'>About</Link></li>
-                    <li><Link to="/orders" className='hover-effect'>My orders</Link></li>
+                    <li onClick={() => {setProductsArray(productsDataBase.filter(item => (item.discount !== 0))); setShowMobileMenu(false)}}><Link to='/gallery' href="#searchResults" className='hover-effect'>Sale</Link></li>
+                    <li onClick={() => {setProductsArray(productsDataBase.filter(item => (item.latestRelease))); setShowMobileMenu(false)}}><Link to='/gallery' href="#searchResults" className='hover-effect'>Latest releases</Link></li>
+                    <li><Link to="/about" className='hover-effect' onClick={()=>setShowMobileMenu(false)}>About</Link></li>
+                    <li ><Link to="/orders" className='hover-effect' onClick={()=>setShowMobileMenu(false)}>My orders</Link></li>
 
                     <div className='shoppingcartAndWishlist-container'>
-                        <Link to="/shoppingcart"><ShoppingCartIcon /></Link>
-                        <Link to="/wishlist"><WishlistIcon /></Link>
+                        <Link to="/shoppingcart" onClick={()=>setShowMobileMenu(false)}><ShoppingCartIcon /></Link>
+                        <Link to="/wishlist" onClick={()=>setShowMobileMenu(false)}><WishlistIcon /></Link>
                     </div>
 
                     <li className='switch-container'>
