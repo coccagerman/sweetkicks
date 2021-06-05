@@ -2,6 +2,7 @@ import { useState, useContext } from 'react';
 import { Link } from "react-router-dom";
 import Context from '../../../Context';
 import ShoppingCartItem from './ShoppingCartItem';
+import {useSpring, animated} from 'react-spring'
 
 function ShoppingCart () {
 
@@ -12,14 +13,17 @@ function ShoppingCart () {
 
     // Function that displays the items in the shopping cart
     const showShoppingCartItem = () => context.shoppingCart.map(item => <ShoppingCartItem shoppingCartItem={item} setTotalPrice={setTotalPrice} /> )
-        
+    
+    // Animation props
+    const shoppingCartDetailsAnimationProps = useSpring({opacity: 1, marginTop:5, from: {opacity: 0, marginTop:-100}, delay: 500})
+
     return (
         <section className={context.shoppingCart.length !== 0 ? 'shoppingCart' : 'shoppingCart occupyMinHeight'}>
             {context.shoppingCart.length !== 0 ?
                 <>
                     <h1>Buy and walk your dreams.</h1>
                     {showShoppingCartItem()}
-                    <div>
+                    <animated.div style={shoppingCartDetailsAnimationProps}>
                         <div className='details'>
                             <p>Total items: {context.shoppingCart.length}</p>
                             <p>Total price: ${totalPrice}</p>
@@ -33,7 +37,7 @@ function ShoppingCart () {
                                 <button className='btn-primary'>Check out</button>
                             </Link>
                         </div>
-                    </div>
+                    </animated.div>
                 </> :
                 <> 
                     <h1>Sorry mate, you've got no items in your shopping cart yet.</h1>

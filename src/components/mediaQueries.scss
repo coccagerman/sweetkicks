@@ -4,8 +4,9 @@
 
     // General styles
     .btn-primary, .btn-secondary, .btn-tertiary {
-        font-size: 1.5rem;
+        font-size: 2rem;
         line-height: 1.75rem;
+        padding: .5rem;
     }
 
     .modal {
@@ -26,6 +27,9 @@
         .modal-footer {
             border: none;
             margin: auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
         }
     }
 
@@ -159,7 +163,6 @@
     }
     // Wishlist & shopping cart
     .wishlist, .shoppingCart {
-    
             h1 {
                 font-size: 3rem;
                 margin-top: 0;
@@ -287,16 +290,16 @@
         display: flex;
         flex-direction: column;
         
-        .mobileTittle {
-            display: block;
-            font-size: 3rem;
-            margin: .5rem 0;
-        }
-
         .item-section_carouselAndInfo{
             padding: 0;
             flex-direction: column;
 
+            .mobileTittle {
+                display: block;
+                font-size: 3rem;
+                margin: .5rem 0;
+            }
+            
             .item-carousel {
                 width: 100%;
                 
@@ -343,6 +346,122 @@
                 align-items: center;
                 flex-wrap: wrap;
             }
+        }
+    }
+    // Gallery
+    .gallery {
+        
+        .galleryHeader {
+    
+            .formInputs {
+                margin: 0;
+                justify-content: center;
+                flex-wrap: wrap;
+    
+                .formInput {
+                    margin: 0 .5rem;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+    
+                    select {
+                        width: 6rem;
+                    }
+                }
+            }
+    
+            .btns {
+                flex-direction: column;
+    
+                button {
+                    margin: .5rem 0;
+                    font-size: 2rem;
+                    padding: .5rem 0;
+                }
+            }
+    
+            .searchResults {
+                margin-top: 1rem;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+    
+                p {
+                    font-size: 1.5rem;
+                }
+    
+                .searchParams {
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                    width: 20rem;
+                    p {
+                        margin: 1rem;
+                    }
+                }
+            }
+        }
+    }
+    // Checkout
+    .checkout {
+        .containersContainer{
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            .showShoppingContainer {
+                width: auto;
+                display: flex;
+                flex-wrap: wrap;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+    
+                .shoppingCart-item {
+                    padding: .25rem .25rem;
+                    max-width: 20rem;
+                
+                    img {
+                        width: 6rem;
+                    }
+                
+                    p {
+                        font-size: 1.25rem;
+                        padding-bottom: .5rem;
+                    }
+                
+                    .item-name {
+                        left: 7rem;
+                    }
+                
+                    .item-price {
+                        left: 18rem;
+                    }
+                
+                    .item-quantity{
+                        display: none;
+                    }
+                
+                    .item-size{
+                        display: none;
+                    }
+                }
+            }
+        }
+
+        .checkoutFormContainer {
+            width: auto !important;
+            .checkoutForm {
+                select {
+                    font-size: 1.75rem !important;
+                }
+            }
+        }
+
+        .errorDisplay {
+            font-size: 2rem !important;
+            margin-top: -1rem !important;
         }
     }
 

@@ -6,6 +6,7 @@ import ItemCarousel from './ItemCarousel';
 import ItemModal from './ItemModal';
 import ItemOtherOptions from './ItemOtherOptions';
 import Context from '../../Context';
+import {useSpring, animated} from 'react-spring'
 
 function Item ({productsDataBase}) {
 
@@ -85,15 +86,19 @@ function Item ({productsDataBase}) {
     // Hook used to control modal content
     const [modalContent, setModalContent] = useState('itemAdded')
 
+    // Animation props
+    const carouselAnimationProps = useSpring({opacity: 1, marginLeft:10, from: {opacity: 0, marginLeft:-100, }, delay: 600})
+    const itemInfoAnimationProps = useSpring({opacity: 1, marginRight:10, from: {opacity: 0, marginRight:-100, }, delay: 600})
+
     return (
         <section className='itemPage' id='itemPage'>
                 <h2 className='mobileTittle'>{item.brand} {item.model} </h2>
                 <div className="item-section_carouselAndInfo">
-                    <div className="item-carousel">
+                    <animated.div className="item-carousel" style={carouselAnimationProps}>
                         <ItemCarousel mainImage={`/${item.mainImage}`} images={item.images} />
-                    </div>
+                    </animated.div>
 
-                    <div className="item-info">
+                    <animated.div className="item-info" style={itemInfoAnimationProps}>
                         <h2>{item.brand} {item.model} </h2>
                         <p>Category: {item.category}</p>
                         <p>Price: ${context.addNumberThousandSeparator(item.price)} </p>
@@ -119,7 +124,7 @@ function Item ({productsDataBase}) {
                         <Icon icon={heartSolid} className={context.findInWishlist(item.id) ? 'wished' : 'notWished'} onClick={() => handleWishlistClick(item)}/>
                         <Link to='/gallery' href="#searchResults"><button className='btn-secondary'>Back to search results</button></Link>
 
-                    </div>
+                    </animated.div>
                 </div>
 
                 <ItemModal show={modalShow} modalContent={modalContent} onHide={() => setModalShow(false)} />

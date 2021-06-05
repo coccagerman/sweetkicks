@@ -9,10 +9,7 @@ function Wishlist () {
     const context = useContext(Context)
 
     // Function that displays the items in the wishlist
-    const showWishlistItem = () => context.wishList.map((item) => (
-            <WishlistItem item={item} />
-        )
-    )
+    const showWishlistItem = () => context.wishList.map((item) => <WishlistItem item={item} />)
 
     return (
         <section className={context.wishList.length !== 0 ? 'wishlist' : 'wishlist occupyMinHeight'}>

@@ -4,6 +4,7 @@ import ImageLight from '../../assets/hero/hero-img-light.png'
 import ImageDark from '../../assets/hero/hero-img-dark.png'
 import ImageLightMobile from '../../assets/hero/hero-img-mobile-light.png'
 import ImageDarkMobile from '../../assets/hero/hero-img-mobile-dark.png'
+import {useSpring, animated} from 'react-spring'
 
 function Hero ({darkMode, productsDataBase, setProductsArray}) {
 
@@ -31,6 +32,9 @@ function useWindowSize() {
   
   const size = useWindowSize();
 
+    // Animation props
+    const btnAnimationProps = useSpring({opacity: 1, marginBottom:0, from: {opacity: 0, marginBottom:-100, }, delay: 300})
+
     return (
         <section className='hero'>
             <img src={size.width > 1000 ? (!darkMode ? ImageLight : ImageDark) : (!darkMode ? ImageLightMobile : ImageDarkMobile)} className='hero-img' alt="Shoe background"/>
@@ -40,7 +44,7 @@ function useWindowSize() {
                     <a class="container-arrow arrow-left scroll-to" href="#cards"><span><i class="fa fa-angle-down" aria-hidden="true"></i></span></a>
 
                     <Link to='/gallery' onClick={() => setProductsArray(productsDataBase)}>
-                        <a href="#" class="btn">
+                        <animated.a href="#" class="btn" style={btnAnimationProps}>
                             <svg width="277" height="62">
                                 <defs>
                                     <linearGradient id="grad1">
@@ -51,7 +55,7 @@ function useWindowSize() {
                                 <rect x="5" y="5" rx="25" fill="none" stroke="url(#grad1)" width="266" height="50"></rect>
                             </svg>
                             <span>SHOW ME THE SHOES</span>
-                        </a>
+                        </animated.a>
                     </Link>
 
                     <a class="container-arrow arrow-right scroll-to" href="#cards"><span><i class="fa fa-angle-down" aria-hidden="true"></i></span></a>
