@@ -23,7 +23,7 @@ $sweetGray: #ccc;
 $bitterGray: #131515;
 
 .displayNone {
-    display: none;
+    display: none !important;
 }
 
 .btn-primary {

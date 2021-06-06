@@ -5,15 +5,15 @@
     align-items: center;
     overflow-y: hidden;
 
+    .mobileTittle {
+        display: none;
+    }
+
     .item-section_carouselAndInfo{
         padding: 2rem 0;
         display: flex;
         justify-content: center;
         align-items: center;
-
-        .mobileTittle {
-            display: none;
-        }
 
         .item-carousel {
             width: 36.5rem;

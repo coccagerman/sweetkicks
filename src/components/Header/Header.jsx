@@ -1,13 +1,13 @@
-import { Link } from "react-router-dom";
-import { useState } from 'react';
-import { useContext } from 'react';
-import Context from '../../Context';
+import { Link } from "react-router-dom"
+import { useState } from 'react'
+import { useContext } from 'react'
+import Context from '../../Context'
 import HeaderLogoDark from '../../assets/sweetkicks_logo_header_dark.png'
 import HeaderLogoLight from '../../assets/sweetkicks_logo_header_light.png'
 import WishlistIcon from '../Wishlist&ShoppingCart/Wishlist/WishlistIcon'
 import ShoppingCartIcon from '../Wishlist&ShoppingCart/ShoppingCart/ShoppingCartIcon'
-import { Icon } from '@iconify/react';
-import arrowDownAlt2 from '@iconify-icons/dashicons/arrow-down-alt2';
+import { Icon } from '@iconify/react'
+import arrowDownAlt2 from '@iconify-icons/dashicons/arrow-down-alt2'
 
 function Header ({setDarkMode, darkMode, productsDataBase, setProductsArray}) {
 
@@ -26,6 +26,7 @@ function Header ({setDarkMode, darkMode, productsDataBase, setProductsArray}) {
         context.setSearchParams([])
     }
 
+
     return (
         < >
         <header>
@@ -40,7 +41,9 @@ function Header ({setDarkMode, darkMode, productsDataBase, setProductsArray}) {
 
             <nav className={showMobileMenu ? 'menu-active' : null}>
                 <ul>
-                    <li><a href="#" onClick={() => setshowDropdown(!showDropdown)} className='categories hover-effect'>Categories 
+                    <li onClick={() => setShowMobileMenu(false)} className={showMobileMenu ? null : 'displayNone'}><Link to='/gallery' href="#searchResults" className='hover-effect'>Gallery</Link></li>
+
+                    <li className={!showMobileMenu ? null : 'displayNone'}><a href="#" onClick={() => setshowDropdown(!showDropdown)} className='categories hover-effect'>Categories 
                             <Icon icon={arrowDownAlt2} className={!showDropdown ? 'arrowIcon' : 'arrowIcon open' }/> 
                         </a>
                         <ul className={showDropdown ? 'dropdown' : 'hiddenDropdown' }>
@@ -50,6 +53,7 @@ function Header ({setDarkMode, darkMode, productsDataBase, setProductsArray}) {
                             <li><Link to='/gallery' href="#searchResults" onClick={() => {handleCategoryBtnClick('Tennis'); setShowMobileMenu(false)}}>Tennis</Link></li>
                         </ul>
                     </li>
+
                     <li onClick={() => {setProductsArray(productsDataBase.filter(item => (item.discount !== 0))); setShowMobileMenu(false)}}><Link to='/gallery' href="#searchResults" className='hover-effect'>Sale</Link></li>
                     <li onClick={() => {setProductsArray(productsDataBase.filter(item => (item.latestRelease))); setShowMobileMenu(false)}}><Link to='/gallery' href="#searchResults" className='hover-effect'>Latest releases</Link></li>
                     <li><Link to="/about" className='hover-effect' onClick={()=>setShowMobileMenu(false)}>About</Link></li>

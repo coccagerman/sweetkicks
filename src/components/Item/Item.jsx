@@ -123,7 +123,6 @@ function Item ({productsDataBase}) {
                         <button className='btn-primary' onClick={() => handleShoppingCartClick(item)}>Add to cart</button>
                         <Icon icon={heartSolid} className={context.findInWishlist(item.id) ? 'wished' : 'notWished'} onClick={() => handleWishlistClick(item)}/>
                         <Link to='/gallery' href="#searchResults"><button className='btn-secondary'>Back to search results</button></Link>
-
                     </animated.div>
                 </div>
 
