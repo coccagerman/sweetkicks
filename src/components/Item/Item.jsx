@@ -114,7 +114,7 @@ function Item ({productsDataBase}) {
                         <div className='sizesContainer'>
                             <p>Sizes: </p> 
                             <div className='availableSizes'>
-                                {item.sizes.map(size => <p className={size === selectedSize ? 'size selectedSize' : 'size'} onClick={() => handleSizeSelection(size)}>{size}</p>)}
+                                {item.sizes.map(size => <p key={size} className={size === selectedSize ? 'size selectedSize' : 'size'} onClick={() => handleSizeSelection(size)}>{size}</p>)}
                                 <p className={sizeErrorMessage ? 'errorMessage' : 'displayNone'}>{sizeErrorMessage}</p> 
                             </div>
                         </div>

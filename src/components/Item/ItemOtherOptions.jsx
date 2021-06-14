@@ -12,8 +12,8 @@ function ItemOtherOptions({productsDataBase, displayedItem}) {
         }
 
         // Function that displays the available items
-        return otherOptions.map((item) => (
-            <article>
+        return otherOptions.map(item => (
+            <article key={item}>
                 <ItemCard item={item} />
             </article>
             )

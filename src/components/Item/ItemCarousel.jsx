@@ -1,16 +1,16 @@
 function ItemCarousel ({mainImage, images}) {
 
         // Function that displays the carousel images
-        const showCarouselImages = () => images.map((image) => (
-                <div className="carousel-item">
+        const showCarouselImages = () => images.map(image => (
+                <div key={image} className="carousel-item">
                     <img src={`/${image}`} className="d-block carousel-img" alt="Product slide."/>
                 </div>
             )
         )
 
         // Function that displays the carousel indicators
-        const showCarouselIndicators = () => images.map((image) => (
-                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to={(images.indexOf(image)+1)} aria-label={`Slide ${(images.indexOf(image)+2)}`} ></button>
+        const showCarouselIndicators = () => images.map(image => (
+                <button key={image} type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to={(images.indexOf(image)+1)} aria-label={`Slide ${(images.indexOf(image)+2)}`} ></button>
             )
         )
 
@@ -46,14 +46,3 @@ function ItemCarousel ({mainImage, images}) {
 }
 
 export default ItemCarousel
-
-
-
-
-
-
-
-
-
-
-

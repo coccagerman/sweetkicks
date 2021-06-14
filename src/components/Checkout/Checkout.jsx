@@ -8,19 +8,13 @@ function Checkout () {
     // Hook used to access context
     const context = useContext(Context)
 
-    // Function that displays the items in the shopping cart
-    const showShoppingCartItem = () => context.shoppingCart.map((item) => (
-        <ShoppingCartItem shoppingCartItem={item} />
-        )
-    )
-
     return (
         <>
         <section className='checkout'>
         <h1>Just a few more steps and the kicks are yours!</h1>
             <div className='containersContainer'>
                 <div className='showShoppingContainer'>
-                    {showShoppingCartItem()}
+                    {context.shoppingCart.map(item => <ShoppingCartItem key={item.item.id} shoppingCartItem={item} />)}
                 </div>
                 <div className='checkoutFormContainer'>
                     <CheckoutForm />

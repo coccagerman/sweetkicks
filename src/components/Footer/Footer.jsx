@@ -3,7 +3,7 @@ import FooterLogo from '../../assets/sweetkicks_logo_footer.png'
 
 function Footer ({fixFooter}) {
     return (
-        < >
+        <>
         <footer>
             <Link to='/'><img className='footerLogo' src={FooterLogo} alt='Company logo' /></Link>
             <div className='socialNetwork-container'>

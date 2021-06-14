@@ -8,15 +8,14 @@ function Wishlist () {
     // Hook used to access context and modify it
     const context = useContext(Context)
 
-    // Function that displays the items in the wishlist
-    const showWishlistItem = () => context.wishList.map((item) => <WishlistItem item={item} />)
-
     return (
         <section className={context.wishList.length !== 0 ? 'wishlist' : 'wishlist occupyMinHeight'}>
             {context.wishList.length !== 0 ? 
                 <>
                     <h1>Stop wishing, start enjoying.</h1>
-                    {showWishlistItem()}
+
+                    {context.wishList.map(item => <WishlistItem key={item.id} item={item} />)}
+                    
                     <p className='details'>Wished items: {context.wishList.length}</p>
                 </> :
                 <> 

@@ -10,9 +10,6 @@ function ShoppingCart () {
     const context = useContext(Context)
 
     const [totalPrice, setTotalPrice] = useState(context.addNumberThousandSeparator(context.shoppingCart.map(item => (item.item.price*item.selectedQuantity)).reduce((a, b) => a + b, 0)))
-
-    // Function that displays the items in the shopping cart
-    const showShoppingCartItem = () => context.shoppingCart.map(item => <ShoppingCartItem shoppingCartItem={item} setTotalPrice={setTotalPrice} /> )
     
     // Animation props
     const shoppingCartDetailsAnimationProps = useSpring({opacity: 1, marginTop:5, from: {opacity: 0, marginTop:-100}, delay: 500})
@@ -22,7 +19,9 @@ function ShoppingCart () {
             {context.shoppingCart.length !== 0 ?
                 <>
                     <h1>Buy and walk your dreams.</h1>
-                    {showShoppingCartItem()}
+                    
+                    {context.shoppingCart.map(item => <ShoppingCartItem key={item.item.id} shoppingCartItem={item} setTotalPrice={setTotalPrice} />)}
+
                     <animated.div style={shoppingCartDetailsAnimationProps}>
                         <div className='details'>
                             <p>Total items: {context.shoppingCart.length}</p>
