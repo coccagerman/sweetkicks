@@ -2,7 +2,7 @@ import { useContext } from "react"
 import MyOrdersItem from './MyOrdersItem'
 import Context from '../../Context'
 
-function MyOrders ({orders}) {
+function MyOrders () {
     
     // Hook used to access context
     const context = useContext(Context)
@@ -10,7 +10,7 @@ function MyOrders ({orders}) {
     return (
         <>
             <h1>My orders</h1>
-            {orders.map((order, i) => <MyOrdersItem key={i} order={order}/>)}
+            {context.orders.map((order, i) => <MyOrdersItem key={i} order={order}/>)}
             <button onClick={()=> context.ordersErase()}>Erase orders</button>
         </>
     )

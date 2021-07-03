@@ -1,11 +1,11 @@
-import { useContext, useState } from 'react';
-import { Link, useParams } from "react-router-dom";
-import { Icon } from '@iconify/react';
-import heartSolid from '@iconify-icons/clarity/heart-solid';
-import ItemCarousel from './ItemCarousel';
-import ItemModal from './ItemModal';
-import ItemOtherOptions from './ItemOtherOptions';
-import Context from '../../Context';
+import { useContext, useState } from 'react'
+import { Link, useParams } from "react-router-dom"
+import { Icon } from '@iconify/react'
+import heartSolid from '@iconify-icons/clarity/heart-solid'
+import ItemCarousel from './ItemCarousel'
+import ItemModal from './ItemModal'
+import ItemOtherOptions from './ItemOtherOptions'
+import Context from '../../Context'
 import {useSpring, animated} from 'react-spring'
 
 function Item ({productsDataBase}) {
@@ -27,7 +27,7 @@ function Item ({productsDataBase}) {
     }
 
     // Hook that access the item ID in the URL and saves it in a variable
-    const { itemId } = useParams();
+    const { itemId } = useParams()
     // Functions that identifies the corresponding item given the item ID in the URL, and assigns it to a variable
     const item = productsDataBase.filter(item => (item.id === itemId))[0]
     
@@ -40,9 +40,9 @@ function Item ({productsDataBase}) {
     function containsObject(obj, list) {
         for (let i = 0; i < list.length; i++) {
             if (list[i].item === obj) {
-                return true;
+                return true
             }
-        } return false;
+        } return false
     }
 
     function handleShoppingCartClick (item) {
