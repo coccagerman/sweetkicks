@@ -57,7 +57,6 @@ function Header ({setDarkMode, darkMode, productsDataBase, setProductsArray}) {
                     <li onClick={() => {setProductsArray(productsDataBase.filter(item => (item.discount !== 0))); setShowMobileMenu(false)}}><Link to='/gallery' href="#searchResults" className='hover-effect'>Sale</Link></li>
                     <li onClick={() => {setProductsArray(productsDataBase.filter(item => (item.latestRelease))); setShowMobileMenu(false)}}><Link to='/gallery' href="#searchResults" className='hover-effect'>Latest releases</Link></li>
                     <li><Link to="/about" className='hover-effect' onClick={()=>setShowMobileMenu(false)}>About</Link></li>
-                    <li ><Link to="/orders" className='hover-effect' onClick={()=>setShowMobileMenu(false)}>My orders</Link></li>
 
                     <div className='shoppingcartAndWishlist-container'>
                         <Link to="/shoppingcart" onClick={()=>setShowMobileMenu(false)}><ShoppingCartIcon /></Link>
