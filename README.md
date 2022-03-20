@@ -1,4 +1,4 @@
-Ecommerce site built with react, sass and bootstrap. This was my first "big" project built with react and I used it to learn about hooks, context and react router navigation.
+Ecommerce site built with react, sass and bootstrap. This was my first project built with react and I used it to learn about hooks, context and react router navigation.
 
 Main functionalities include:
 - State management with hooks and context.
